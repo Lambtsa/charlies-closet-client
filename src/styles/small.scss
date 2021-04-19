@@ -155,4 +155,60 @@ h3 {
   margin: 0 auto;
   display: grid;
   grid-template-columns: 1fr 2fr;
+  gap: 1rem;
+}
+.about__left, .about__right {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+.about__left {
+  text-align: center;
+  align-items: center;
+}
+.about__right {
+  text-align: left;
+  align-items: flex-start;
+}
+.about__quote {
+  font-size: 2rem;
+  color: $primaryColor;
+  font-family: 'Pacifico', cursive;
+}
+.about__title {
+  margin-bottom: 1rem;
+  color: $primaryColor;
+}
+.about__subtitle {
+  color: $secondaryColor;
+}
+
+/*
+  Service Component
+*/
+.service {
+  background-color: $white;
+  padding: 3rem 0;
+  text-align: center;
+}
+.service__container {
+  max-width: 1140px;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1rem;
+}
+.service__title {
+  color: $primaryColor;
+  margin-bottom: 2rem;
+}
+.service__item {
+  padding: 1rem;
+  h3 {
+    color: $primaryColor;
+    margin-bottom: 1rem;
+  }
+  p {
+    color: $grey;
+  }
 }
