@@ -1,6 +1,11 @@
 import React from 'react';
 import { BrowserRouter } from 'react-router-dom';
+
+/*
+  Components
+*/
 import AboutUs from './components/AboutUs';
+import Copyright from './components/Copyright';
 import Header from './components/Header';
 import Jumbotron from './components/Jumbotron';
 import Service from './components/Service';
@@ -14,6 +19,7 @@ const App = () => (
     <Values />
     <AboutUs />
     <Service />
+    <Copyright />
   </BrowserRouter>
 );
 

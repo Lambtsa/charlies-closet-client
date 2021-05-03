@@ -212,3 +212,20 @@ h3 {
     color: $grey;
   }
 }
+
+/*
+  Copyright Component
+*/
+.copyright {
+  background-color: $darkGreen;
+  padding: 1rem;
+}
+.copyright__container {
+  max-width: 1140px;
+  margin: 0 auto;
+  text-align: center;
+}
+.copyright__content {
+  font-size: .8rem;
+  color: rgba($white, 0.6);
+}
