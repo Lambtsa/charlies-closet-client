@@ -11,7 +11,7 @@ a {
 }
 #root {
   display: grid;
-  grid-template-rows: auto 1fr auto;
+  grid-template-rows: 1fr auto;
   min-height: 100vh;
 }
 h1, h2, h3 {
@@ -20,6 +20,7 @@ h1, h2, h3 {
 button {
   font-weight: 700;
 }
+
 /*
   Loader
 */
@@ -63,6 +64,7 @@ button {
     opacity: 0;
   }
 }
+
 /*
   SnackBar Component
 */
@@ -96,8 +98,117 @@ button {
   font-weight: 700;
 }
 .snackbar__success {
-  background-color: $secondaryColor;
+  background-color: $secondary-color;
 }
 .snackbar__error {
   background-color: $red;
+}
+
+/*
+  Social
+*/
+.social__icon {
+  font-size: 2rem;
+  color: rgba($white, 0.8);
+  margin-right: .5rem;
+  &:hover {
+    color: $white;
+  }
+}
+
+/*
+  Header
+*/
+.header {
+  background-color: transparent;
+  padding: 1rem;
+}
+.header__container {
+  max-width: 1140px;
+  margin: 0 auto;
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
+}
+
+/*
+  Forms
+*/
+.form__input {
+  padding: .5rem 1rem;
+  width: 100%;
+  background-color: rgba($white, 0.8);
+  border-radius: 10px;
+  color: $primary-color;
+  border: 1px solid transparent;
+  margin-bottom: 1rem;
+  &::placeholder {
+    color: rgba($primary-color, 0.8);
+  }
+  &.error {
+    border: 1px solid $red;
+  }
+}
+.form__error-message {
+  margin-top: -.8rem;
+  margin-bottom: .5rem;
+  color: $red;
+  font-size: .8rem;
+}
+.form__btn {
+  padding: .5rem 1rem;
+  background-color: $white;
+  border-radius: 10px;
+  color: $primary-color;
+  border: 1px solid transparent;
+  margin-bottom: 1rem;
+  &:hover {
+    background-color: darken($white, 5%);
+  }
+}
+
+/*
+  Footer Component
+*/
+.footer {
+  width: 100%;
+  background-color: $primary-color;
+  padding: 3rem 1rem;
+}
+.footer__container {
+  max-width: 1140px;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 1rem;
+}
+.links {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: flex-start;
+}
+.links__title {
+  font-size: 1.5rem;
+  margin-bottom: 1rem;
+  color: rgba($white, .8);
+}
+.links__subtitle {
+  color: rgba($white, .6);
+  margin-bottom: 1rem;
+}
+.links__anchor {
+  color: rgba($white, .6);
+  margin-bottom: .5rem;
+  &:hover {
+    text-decoration: underline;
+    color: $white;
+  }
+}
+.copyright {
+  padding: 1rem;
+  text-align: center;
+  background-color: darken($primary-color, 10%);
+  color: rgba($white, .8);
+  font-size: .8rem;
 }
