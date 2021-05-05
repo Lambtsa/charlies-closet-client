@@ -6,19 +6,21 @@ interface HeaderProps {
 }
 
 const Header = (props: HeaderProps) => {
-  console.log(props);
+  const { type } = props;
 
   return (
     <>
       <header className="header">
-        <nav className="header__container">
-          <Link to="/">Our boxes</Link>
-          <Link to="/">Our store</Link>
-          <h2>Charlie's closet</h2>
-          <Link to="/">My favourites</Link>
-          <Link to="/">Register</Link>
-          <Link to="/">Login</Link>
-        </nav>
+        <div className={`header__container ${type}`}>
+          <h2 className="header__logo">Charlie's closet</h2>
+          <div className="header__links">
+            <Link className="header__link" to="/">Our boxes</Link>
+            <Link className="header__link" to="/">Our store</Link>
+            <Link className="header__link" to="/">My favourites</Link>
+            <Link className="header__link" to="/">Register</Link>
+            <Link className="header__link" to="/">Login</Link>
+          </div>
+        </div>
       </header>
     </>
   );

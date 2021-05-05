@@ -14,6 +14,8 @@ import AboutUs from './views/AboutUs';
 import FAQ from './views/FAQ';
 import Terms from './views/Terms';
 import ContactUs from './views/ContactUs';
+import Privacy from './views/Privacy';
+import ItemDetails from './views/ItemDetails';
 
 const App = () => (
   <>
@@ -22,12 +24,14 @@ const App = () => (
         <Route exact path="/" component={Home} />
         <Route exact path="/boxes" component={Boxes} />
         <Route exact path="/boutique" component={Boutique} />
+        <Route exact path="/boutique/:id" component={ItemDetails} />
         <Route exact path="/register" component={Register} />
         <Route exact path="/login" component={Login} />
         <Route exact path="/about-us" component={AboutUs} />
         <Route exact path="/faq" component={FAQ} />
         <Route exact path="/terms" component={Terms} />
         <Route exact path="/contact-us" component={ContactUs} />
+        <Route exact path="/privacy" component={Privacy} />
       </Switch>
     </BrowserRouter>
   </>
