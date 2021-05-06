@@ -1,5 +1,4 @@
 import React, { useState } from 'react';
-import { Link } from 'react-router-dom';
 import charlie from '../assets/charlies_closet.webp';
 
 /*
@@ -33,10 +32,12 @@ const ContactUs = () => {
               placeholder="Enter email"
               value={email}
               setValue={setEmail} />
-            <select className="form__input">
+            <select value={object} onChange={(e:any) => setObject(e.target.value)} className="form__input">
               <option value="livraison">Livraison</option>
             </select>
             <textarea
+              value={message}
+              onChange={(e: any) => setMessage(e.target.value)}
               className="form__input"
               placeholder="Enter message" />
             <button className="form__btn" type="submit">Login</button>
