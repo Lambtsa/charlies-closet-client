@@ -1,6 +1,4 @@
 import React, { useEffect, useState } from 'react';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faHeart } from '@fortawesome/free-regular-svg-icons';
 import { useParams } from 'react-router-dom';
 
 /*
@@ -11,6 +9,7 @@ import Header from '../components/Header';
 import Jumbotron from '../components/Jumbotron';
 import SnackBar from '../components/SnackBar';
 import Loader from '../components/Loader';
+import LikeToggle from '../components/LikeToggle';
 
 const ItemDetails = () => {
   const { id } = useParams<any>();
@@ -22,20 +21,13 @@ const ItemDetails = () => {
   useEffect(() => {
     window.scrollTo(0,0);
     fetch(`http://localhost:8080/api/items/${id}`)
-    .then((response: any) => {
-      console.log(response);
-      return response.json();
-    })
+    .then((response: any) => response.json())
     .then((data: any) => {
-      console.log(data)
       setItem(data);
       setImage(data.itemImages[0]);
       setIsLoading(false);
     })
-    .catch(err => {
-      console.log(err);
-      setError(true);
-    })
+    .catch(() => setError(true))
   }, [id])
 
   return (
@@ -56,7 +48,9 @@ const ItemDetails = () => {
               <div className="itemdetails__content">
                 <div className="itemdetails__header">
                   <h1 className="itemdetails__title">{item.itemTitle}</h1>
-                  <FontAwesomeIcon className="itemdetails__icon" icon={faHeart} />
+                  <div className="itemdeatails__heart">
+                    <LikeToggle itemId={id} />
+                  </div>
                 </div>
                 <p className="itemdetails__price">{item.itemPrice}</p>
                 <p className="itemdetails__description">{item.itemDescription}</p>

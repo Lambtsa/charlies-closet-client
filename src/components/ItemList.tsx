@@ -1,15 +1,15 @@
 import React, { useEffect, useState } from 'react';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faHeart } from '@fortawesome/free-regular-svg-icons';
-import { Link } from 'react-router-dom';
+import { useHistory } from 'react-router-dom';
 
 /*
   Components
 */
 import SnackBar from '../components/SnackBar';
 import Loader from './Loader';
+import LikeToggle from './LikeToggle';
 
 const ItemList = () => {
+  const history = useHistory();
   const [items, setItems] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
   const [error, setError] = useState(false);
@@ -51,6 +51,12 @@ const ItemList = () => {
     setIsSize(true);
   };
 
+  const handleBtnClick = (e: any, id: string) => {
+    if (e.target.getAttribute('id') === 'itemBtn') {
+      history.push(`/boutique/${id}`)
+    };
+  }
+
   return (
     <>
       <section className="itemlist">
@@ -66,12 +72,16 @@ const ItemList = () => {
         {!isLoading && items.length> 0 && (
           <div className="itemlist__container">
             {items.map((item: any) => (
-              <Link to={`/boutique/${item._id}`} key={item._id} className="item">
-                <img className="item__img" src={item.itemImages[0]} alt="" />
-                <h4 className="item__title">{item.itemTitle}</h4>
-                <p className="item__price">{item.itemPrice}</p>
-                <FontAwesomeIcon className="item__heart" icon={faHeart} />
-              </Link>
+              <div className="item" key={item._id}>
+                <button type="button" onClick={(e: any) => handleBtnClick(e, item._id)} >
+                  <img className="item__img" id="itemBtn" src={item.itemImages[0]} alt="" />
+                  <h4 className="item__title">{item.itemTitle}</h4>
+                  <p className="item__price">{item.itemPrice}</p>
+                </button>
+                <div className="item__heart">
+                  <LikeToggle itemId={item._id} />
+                </div>
+              </div>
             ))}
           </div>
         )}
