@@ -516,6 +516,33 @@ h3 {
   color: $grey;
   margin-bottom: 1rem;
 }
+
+/*
+  Filters
+*/
+.filters__container {
+  max-width: 1140px;
+  margin: 0 auto;
+  margin-bottom: 2rem;
+}
+.filters__title {
+  color: $primary-color;
+  margin-bottom: 1rem;
+}
+.filters__btn {
+  color: $grey;
+  margin-right: 1rem;
+  &:hover, &.active {
+    text-decoration: underline;
+    color: $black;
+  }
+}
+.filters {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+}
+
 /*
   Itemlist
 */
