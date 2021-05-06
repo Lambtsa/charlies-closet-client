@@ -1,24 +1,49 @@
-import React from 'react';
-import clothing1 from '../assets/clothing-1.png';
-import clothing2 from '../assets/clothing-2.png';
-import clothing3 from '../assets/clothing-3.png';
-import clothing4 from '../assets/clothing-4.png';
-import clothing5 from '../assets/clothing-5.png';
-import clothing6 from '../assets/clothing-6.png';
+import React, { useEffect, useState } from 'react';
+import { Link } from 'react-router-dom';
 
-const Examples = () => (
-  <>
-    <section className="examples">
-      <div className="examples__container">
-        <img className="example__img" src={clothing1} alt="" />
-        <img className="example__img" src={clothing2} alt="" />
-        <img className="example__img" src={clothing3} alt="" />
-        <img className="example__img" src={clothing4} alt="" />
-        <img className="example__img" src={clothing5} alt="" />
-        <img className="example__img" src={clothing6} alt="" />
-      </div>
-    </section>
-  </>
-);
+/*
+  Components
+*/
+import Loader from './Loader';
+import SnackBar from './SnackBar';
+
+const Examples = () => {
+  const [items, setItems] = useState([]);
+  const [isLoading, setIsLoading] = useState(true);
+  const [error, setError] = useState(false);
+
+  useEffect(() => {
+    fetch('http://localhost:8080/api/items')
+    .then((response: any) => {
+      console.log(response);
+      return response.json();
+    })
+    .then((data: any) => {
+      console.log(data)
+      setItems(data.slice(0, 6));
+      setIsLoading(false);
+    })
+    .catch(err => {
+      console.log(err);
+      setError(true);
+    })
+  }, []);
+
+  return (
+    <>
+      <section className="examples">
+        {!isLoading && items.length > 0 && <div className="examples__container">
+          {items.map((item: any) => (
+            <Link className="example__link" to={`/boutique/${item._id}`} key={item._id}>
+              <img className="example__img" src={item.itemImages[0]} alt={item.itemTitle} />
+            </Link>
+          ))}
+        </div>}
+      {isLoading && <Loader />}
+      {error && <SnackBar type="error" state={error} setState={setError} message="Cannot fetch the items" />}
+      </section>
+    </>
+  );
+};
 
 export default Examples;

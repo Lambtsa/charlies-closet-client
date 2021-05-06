@@ -11,7 +11,7 @@ const Upload = () => {
     const url = 'https://api.cloudinary.com/v1_1/charlies-closet/upload';
     const file = e.target.files[0];
     const formData = new FormData();
-    formData.append('upload_preset', 'yn7z4c3k');
+    formData.append('upload_preset', 'charlies-images');
     formData.append('file', file);
     console.log(formData);
     fetch(url, {
