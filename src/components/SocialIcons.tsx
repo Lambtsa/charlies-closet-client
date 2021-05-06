@@ -7,10 +7,10 @@ import {
   faTiktok as tiktok,
 } from '@fortawesome/free-brands-svg-icons';
 
-const SocialIcons = () => {
+const SocialIcons = (props: {class: string}) => {
   return (
     <>
-      <div className="social">
+      <div className={`social ${props.class}`}>
         <a href="/">
           <FontAwesomeIcon className="social__icon" icon={facebook} />
         </a>

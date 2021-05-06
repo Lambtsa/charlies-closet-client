@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 
 interface InputFieldProps {
   value: string,
+  class?: string,
   setValue: (arg: string) => void,
   type?: string,
   maxLength?: number,
@@ -29,7 +30,7 @@ const InputField = (props: InputFieldProps) => {
   return (
     <>
       <input
-        className={`form__input ${error ? 'error' : ''}`}
+        className={`form__input ${props.class ? props.class : ''} ${error ? 'error' : ''}`}
         value={props.value}
         onChange={handleValueChange}
         type={props.type}

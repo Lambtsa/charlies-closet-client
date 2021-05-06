@@ -33,11 +33,11 @@ const Header = (props: HeaderProps) => {
         <div className={`header__container ${type}`}>
           <Link to="/"><h2 className="header__logo">Charlie's closet</h2></Link>
           <div className="header__links">
-            <Link className="header__link" to="/">Our boxes</Link>
-            <Link className="header__link" to="/">Our store</Link>
+            <Link className="header__link" to="/boxes">Our boxes</Link>
+            <Link className="header__link" to="/boutique">Our store</Link>
             <Link className="header__link" to="/">My favourites</Link>
-            <Link className="header__link" to="/">Register</Link>
-            <Link className="header__link" to="/">Login</Link>
+            <Link className="header__link" to="/register">Register</Link>
+            <Link className="header__link" to="/login">Login</Link>
           </div>
         </div>
       </header>

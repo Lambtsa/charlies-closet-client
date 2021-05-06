@@ -32,24 +32,25 @@ const Footer = () => {
           <div className="links">
             <h3 className="links__title">Social</h3>
             <p className="links__subtitle">Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
-            <SocialIcons />
+            <SocialIcons class="light" />
           </div>
           <div className="links">
             <h3 className="links__title">Newsletter</h3>
             <p className="links__subtitle">Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
             <form onSubmit={handleFormSubmit}>
               <InputField
+                class="footer"
                 value={email}
                 setValue={setEmail}
                 type="email"
                 placeholder="Votre mail"
                 maxLength={30} />
-              <button className="form__btn" type="submit">Submit</button>
+              <button className="form__btn footer" type="submit">Submit</button>
             </form>
           </div>
         </div>
       </footer>
-      <Copyright />
+      <Copyright type="block" />
     </>
   );
 };
