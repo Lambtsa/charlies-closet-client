@@ -7,6 +7,7 @@ import { Link } from 'react-router-dom';
   Components
 */
 import SnackBar from '../components/SnackBar';
+import Loader from './Loader';
 
 const ItemList = () => {
   const [items, setItems] = useState([]);
@@ -33,6 +34,7 @@ const ItemList = () => {
   return (
     <>
       <section className="itemlist">
+        {isLoading && <Loader />}
         {!isLoading && items.length> 0 && (
           <div className="itemlist__container">
             {items.map((item: any) => (
