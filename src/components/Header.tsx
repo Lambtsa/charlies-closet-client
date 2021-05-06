@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 
 interface HeaderProps {
@@ -7,12 +7,31 @@ interface HeaderProps {
 
 const Header = (props: HeaderProps) => {
   const { type } = props;
+  const [isScrolled, setIsScrolled] = useState(false);
+
+  const handleScrolling = () => {
+    // scroll position for navbar colour
+    const scrollPos = window.scrollY;
+    // navbar scroll logic (colour when scrolled)
+    if (scrollPos !== 0) {
+      setIsScrolled(true);
+    } else {
+      setIsScrolled(false);
+    }
+  };
+
+  useEffect(() => {
+    window.addEventListener('scroll', handleScrolling);
+    return () => {
+      window.removeEventListener('scroll', handleScrolling);
+    };
+  });
 
   return (
     <>
-      <header className="header">
+      <header className={`header ${isScrolled ? 'isScrolled' : ''}`}>
         <div className={`header__container ${type}`}>
-          <h2 className="header__logo">Charlie's closet</h2>
+          <Link to="/"><h2 className="header__logo">Charlie's closet</h2></Link>
           <div className="header__links">
             <Link className="header__link" to="/">Our boxes</Link>
             <Link className="header__link" to="/">Our store</Link>

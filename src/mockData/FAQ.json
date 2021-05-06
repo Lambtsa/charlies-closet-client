@@ -1,0 +1,32 @@
+[
+  {
+    "id": 1,
+    "question": "Une fois inscrit, comment se passent les commandes suivantes ?",
+    "answer": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sollicitudin nisl, orci velit, nunc, aliquam sit est at semper. Diam egestas at et ac dolor, nullam aliquam feugiat. Id nulla adipiscing ipsum consectetur massa leo sit euismod. Nulla pulvinar leo tincidunt commodo posuere elementum malesuada. Placerat egestas scelerisque cras dolor massa feugiat."
+  },
+  {
+    "id": 2,
+    "question": "Dois-je penser à payer mon abonnement chaque mois ?",
+    "answer": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sollicitudin nisl, orci velit, nunc, aliquam sit est at semper. Diam egestas at et ac dolor, nullam aliquam feugiat. Id nulla adipiscing ipsum consectetur massa leo sit euismod. Nulla pulvinar leo tincidunt commodo posuere elementum malesuada. Placerat egestas scelerisque cras dolor massa feugiat."
+  },
+  {
+    "id": 3,
+    "question": "Comment puis-je savoir si les vêtements seront à la taille de mon bébé ?",
+    "answer": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sollicitudin nisl, orci velit, nunc, aliquam sit est at semper. Diam egestas at et ac dolor, nullam aliquam feugiat. Id nulla adipiscing ipsum consectetur massa leo sit euismod. Nulla pulvinar leo tincidunt commodo posuere elementum malesuada. Placerat egestas scelerisque cras dolor massa feugiat."
+  },
+  {
+    "id": 4,
+    "question": "Combien de temps puis-je garder les vêtements ?",
+    "answer": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sollicitudin nisl, orci velit, nunc, aliquam sit est at semper. Diam egestas at et ac dolor, nullam aliquam feugiat. Id nulla adipiscing ipsum consectetur massa leo sit euismod. Nulla pulvinar leo tincidunt commodo posuere elementum malesuada. Placerat egestas scelerisque cras dolor massa feugiat."
+  },
+  {
+    "id": 5,
+    "question": "Comment sont lavés les vêtements proposés à la location ?",
+    "answer": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sollicitudin nisl, orci velit, nunc, aliquam sit est at semper. Diam egestas at et ac dolor, nullam aliquam feugiat. Id nulla adipiscing ipsum consectetur massa leo sit euismod. Nulla pulvinar leo tincidunt commodo posuere elementum malesuada. Placerat egestas scelerisque cras dolor massa feugiat."
+  },
+  {
+    "id": 6,
+    "question": "La livraison et le retour sont-ils à mes frais ?",
+    "answer": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sollicitudin nisl, orci velit, nunc, aliquam sit est at semper. Diam egestas at et ac dolor, nullam aliquam feugiat. Id nulla adipiscing ipsum consectetur massa leo sit euismod. Nulla pulvinar leo tincidunt commodo posuere elementum malesuada. Placerat egestas scelerisque cras dolor massa feugiat."
+  }
+]

@@ -11,14 +11,24 @@ a {
 }
 #root {
   display: grid;
-  grid-template-rows: 1fr auto;
+  grid-template-rows: auto 1fr auto;
   min-height: 100vh;
 }
-h1, h2, h3 {
+h1, h2, h3, h4, h5, h6 {
   font-family: 'Pacifico', cursive;
 }
 button {
   font-weight: 700;
+}
+h1 {
+  font-size: 2rem;
+}
+h2 {
+  font-size: 1.8rem;
+}
+h3 {
+  font-size: 1.5rem;
+  margin-bottom: 1rem;
 }
 
 /*
@@ -120,8 +130,15 @@ button {
   Header
 */
 .header {
+  position: fixed;
+  width: 100%;
+  z-index: 1000;
   background-color: transparent;
   padding: 1rem;
+  &.isScrolled {
+    background-color: rgba($black, .6);
+    box-shadow: 0px 1px 3px $black; 
+  }
 }
 .header__logo {
   font-size: 2rem;
@@ -184,6 +201,332 @@ button {
 }
 
 /*
+  Jumbotron
+*/
+.jumbotron {
+  width: 100vw;
+  &.height-100 {
+    height: 100vh;
+    background: url('../assets/charlie-jumbotron.webp');
+    background-position: center;
+  }
+  &.height-70 {
+    height: 70vh;
+    background: url('../assets/charlie_4.webp');
+    background-position: center;
+  }
+}
+.jumbotron__container {
+  max-width: 768px;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+  text-align: center;
+}
+.jumbotron__title {
+  color: $white;
+  margin-bottom: 1rem;
+}
+.jumbotron__subtitle {
+  color: rgba($white, .8);
+  margin-bottom: 1rem;
+}
+.jumbotron__btn {
+  padding: .8rem 1.5rem;
+  background-color: $white;
+  border-radius: 10px;
+  color: $primary-color;
+  border: 1px solid transparent;
+  margin-bottom: 1rem;
+  &:hover {
+    background-color: darken($white, 5%);
+  }
+}
+
+/*
+  Services
+*/
+.services {
+  padding: 1rem;
+  background-color: $white;
+  width: 100%;
+}
+.services__container {
+  max-width: 1140px;
+  margin: 0 auto;
+  display: grid;
+  gap: 1rem;
+  grid-template-columns: repeat(4, 1fr);
+}
+.service {
+  text-align: center;
+  padding: 1rem 0;
+}
+.service__title {
+  color: $primary-color;
+}
+.service__subtitle {
+  color: $grey;
+}
+
+/*
+  About us
+*/
+.about {
+  background-color: rgba($secondary-color, .2);
+  padding: 5rem 1rem;
+}
+.about__container {
+  max-width: 1140px;
+  margin: 0 auto;
+  display: grid;
+  gap: 1rem;
+  grid-template-columns: 2fr 3fr;
+}
+.about__quote {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 2rem;
+  color: $primary-color;
+}
+.about__title {
+  color: $primary-color;
+}
+.about__subtitle {
+  color: $secondary-color;
+}
+
+/*
+  Examples
+*/
+.examples {
+  background-color: $white;
+  padding: 1rem;
+}
+.examples__container {
+  max-width: 1140px;
+  margin: 0 auto;
+  display: grid;
+  gap: 1rem;
+  grid-template-columns: repeat(6, 1fr);
+}
+.example__img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+  border-radius: 10px;
+}
+
+/*
+  Testimonials
+*/
+.testimonials {
+  background-color: rgba($secondary-color, .2);
+  padding: 5rem 1rem;
+}
+.testimonials__container {
+  max-width: 1140px;
+  margin: 0 auto;
+  display: grid;
+  gap: 1rem;
+  grid-template-columns: repeat(4, 1fr);
+}
+.testimonial {
+  text-align: center;
+  padding: 2rem 1rem;
+  background-color: $white;
+  border-radius: 10px;
+  box-shadow: 0 0 4px rgba($black, .2);
+}
+.testimonial__title {
+  color: $primary-color;
+  margin-bottom: .2rem;
+}
+.testimonial__caption {
+  color: rgba($secondary-color, .5);
+  font-weight: 700;
+  font-size: .8rem;
+  margin-bottom: 1rem;
+}
+.testimonial__text {
+  color: $grey;
+  margin-bottom: .5rem;
+  font-style: italic;
+}
+.testimonial__star {
+  color: #FFD700;
+  font-size: 1.3rem;
+  margin: 0 .1rem;
+}
+
+/*
+  How it works
+*/
+.howitworks {
+  background-color: $white;
+  padding: 5rem 1rem;
+  text-align: center;
+}
+.howitworks__title {
+  font-size: 2rem;
+  margin-bottom: 2rem;
+  color: $primary-color;
+}
+.howitworks__container {
+  max-width: 1140px;
+  margin: 0 auto;
+  display: grid;
+  gap: 1rem;
+  grid-template-columns: repeat(3, 1fr);
+}
+.step__title {
+  color: $primary-color;
+}
+.step__subtitle {
+  color: $grey;
+}
+
+/*
+  Content
+*/
+.content {
+  background-color: $white;
+  padding: 5rem 1rem;
+}
+.content__container {
+  max-width: 768px;
+  margin: 0 auto;
+}
+.content__title {
+  color: $primary-color;
+  text-align: center;
+  margin-bottom: 2rem;
+}
+.paragraph__title {
+  color: grey;
+  margin-bottom: 1rem;
+}
+.paragraph__subtitle {
+  color: grey;
+  margin-bottom: 1rem;
+}
+.paragraph__split {
+  display: grid;
+  grid-template-columns: 1fr 2fr;
+  gap: 1rem;
+}
+.paragraph__text {
+  color: $grey;
+  margin-bottom: 1rem;
+}
+/*
+  Itemlist
+*/
+.itemlist {
+  background-color: $white;
+  padding: 5rem 1rem;
+}
+.itemlist__container {
+  max-width: 1140px;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 1rem;
+}
+.item {
+  position: relative;
+}
+.item__img {
+  width: 100%;
+  object-position: center;
+  object-fit: cover;
+  max-height: 290px;
+  border-radius: 10px;
+  margin-bottom: .5rem;
+}
+.item__title {
+  color: $primary-color;
+  font-size: 1rem;
+  margin-bottom: .5rem;
+}
+.item__price {
+  color: $primary-color;
+  font-style: italic;
+  font-size: .8rem;
+}
+.item__heart {
+  position: absolute;
+  top: 1rem;
+  right: 1rem;
+  font-size: 1.5rem;
+  color: $red;
+}
+
+/*
+  FAQ
+*/
+.faq {
+  background-color: $white;
+  padding: 5rem 1rem;
+}
+.faq__container {
+  max-width: 1140px;
+  margin: 0 auto;
+}
+.faq__title {
+  text-align: center;
+  margin-bottom: 3rem;
+  color: $primary-color;
+}
+.faq__contact {
+  color: $primary-color;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 3rem;
+  padding: 1rem;
+  background-color: rgba($secondary-color, .2);
+  border-radius: 10px;
+}
+.faq__link {
+  padding-left: .5rem;
+  font-weight: 700;
+  color: $primary-color;
+  &:hover {
+    text-decoration: underline;
+  }
+}
+.expandable__container {
+  margin-bottom: 1rem;
+  box-shadow: 0 0 4px rgba($black, .3);
+  border-radius: 10px;
+}
+.expandable {
+  padding: 1rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+}
+.expandable__title {
+  color: $grey;
+}
+.expandable__subtitle {
+  padding: 1rem;
+  color: $grey;
+  border-top: 1px solid rgba($grey, .2);
+}
+.expandable__icon {
+  font-size: 1rem;
+  color: $grey;
+}
+
+/*
   Footer Component
 */
 .footer {
@@ -205,8 +548,6 @@ button {
   align-items: flex-start;
 }
 .links__title {
-  font-size: 1.5rem;
-  margin-bottom: 1rem;
   color: rgba($white, .8);
 }
 .links__subtitle {

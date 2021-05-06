@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
+import Copyright from './Copyright';
 import InputField from './InputField';
 import SocialIcons from './SocialIcons';
 
@@ -48,9 +49,7 @@ const Footer = () => {
           </div>
         </div>
       </footer>
-      <div className="copyright">
-        {`© ${new Date().getFullYear()} Charlie's Closet. Tous droits réservés`}
-      </div>
+      <Copyright />
     </>
   );
 };
