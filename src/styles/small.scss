@@ -202,6 +202,7 @@ h3 {
 }
 .header__link {
   margin: 1rem;
+  font-size: 1.3rem;
   font-weight: 700;
   color: $white;
   &:hover {
@@ -357,6 +358,7 @@ h3 {
 }
 .jumbotron__title {
   color: $white;
+  line-height: 2.5rem;
   margin-bottom: 1rem;
 }
 .jumbotron__subtitle {
