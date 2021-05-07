@@ -1,5 +1,7 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faCheck } from '@fortawesome/free-solid-svg-icons';
 import charlie from '../assets/charlies_closet.webp';
 
 /*
@@ -45,7 +47,9 @@ const Register = () => {
               setValue={setPassword} />
             <div className="checkbox">
               <div className="checkbox__container">
-                <div className={`checkbox__overlay ${isAccepted ? 'checked' : ''}`} />
+                <div className={`checkbox__overlay ${isAccepted ? 'checked' : ''}`}>
+                  <FontAwesomeIcon className={`check ${isAccepted ? 'checked' : ''}`} icon={faCheck} />
+                </div>
                 <input className="checkbox__input" type="checkbox" checked={isAccepted} onChange={() => setIsAccepted(!isAccepted)} />
               </div>
               <p className="checkbox__text">J’accepte les conditions générales et la politique de confidentialité</p>
