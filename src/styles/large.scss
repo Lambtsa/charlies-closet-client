@@ -4,6 +4,12 @@
 .header__container {
   justify-content: space-between;
   align-items: center;
+  &.light .header__logo, &.light .header__link {
+    color: $white;
+  }
+  &.dark .header__logo, &.dark .header__link {
+    color: $primary-color;
+  }
 }
 .header__links {
   position: relative;

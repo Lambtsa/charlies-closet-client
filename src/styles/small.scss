@@ -203,6 +203,7 @@ h3 {
 .header__link {
   margin: 1rem;
   font-weight: 700;
+  color: $white;
   &:hover {
     text-decoration: underline;
   }
@@ -216,7 +217,7 @@ h3 {
   &.light .header__logo, &.light .header__link {
     color: $white;
   }
-  &.dark .header__logo, &.dark .header__link {
+  &.dark .header__logo {
     color: $primary-color;
   }
 }
