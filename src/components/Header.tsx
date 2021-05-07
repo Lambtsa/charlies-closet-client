@@ -50,7 +50,7 @@ const Header = (props: HeaderProps) => {
             <Link className="header__link" to="/login">Login</Link>
             <button onClick={handleBtnClick} type="button" className="header__close"><FontAwesomeIcon icon={faTimes} /></button>
           </nav>
-          <button type="button" onClick={handleBtnClick} className="header__icon" ><FontAwesomeIcon icon={faHamburger} /></button>
+          <button type="button" onClick={handleBtnClick} className="header__icon" ><FontAwesomeIcon className={`burger ${fixed ? 'fixed' : ''}`} icon={faHamburger} /></button>
         </div>
       </header>
     </>
