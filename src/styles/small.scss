@@ -730,9 +730,11 @@ select {
 }
 .expandable__title {
   color: $grey;
+  text-align: left;
 }
 .expandable__subtitle {
   padding: 1rem;
+  text-align: left;
   color: $grey;
   border-top: 1px solid rgba($grey, .2);
 }
