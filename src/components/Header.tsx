@@ -1,4 +1,6 @@
 import React, { useState, useEffect } from 'react';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faHamburger, faTimes } from '@fortawesome/free-solid-svg-icons';
 import { Link } from 'react-router-dom';
 
 interface HeaderProps {
@@ -9,6 +11,7 @@ interface HeaderProps {
 const Header = (props: HeaderProps) => {
   const { type, fixed } = props;
   const [isScrolled, setIsScrolled] = useState(false);
+  const [isClicked, setIsClicked] = useState(false);
 
   const handleScrolling = () => {
     if (!fixed) {
@@ -31,17 +34,23 @@ const Header = (props: HeaderProps) => {
     };
   });
 
+  const handleBtnClick = () => {
+    setIsClicked(!isClicked);
+  };
+
   return (
     <>
       <header className={`header ${isScrolled ? 'isScrolled' : ''} ${fixed ? 'fixed' : ''}`}>
         <div className={`header__container ${type}`}>
           <Link to="/"><h2 className="header__logo">Charlie's closet</h2></Link>
-          <div className="header__links">
+          <nav className={`header__links ${isClicked ? 'clicked' : ''}`}>
             <Link className="header__link" to="/boxes">Our boxes</Link>
             <Link className="header__link" to="/boutique">Our store</Link>
             <Link className="header__link" to="/register">Register</Link>
             <Link className="header__link" to="/login">Login</Link>
-          </div>
+            <button onClick={handleBtnClick} type="button" className="header__close"><FontAwesomeIcon icon={faTimes} /></button>
+          </nav>
+          <button type="button" onClick={handleBtnClick} className="header__icon" ><FontAwesomeIcon icon={faHamburger} /></button>
         </div>
       </header>
     </>
