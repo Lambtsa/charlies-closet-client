@@ -19,7 +19,7 @@ const Home = () => {
 
   return (
     <>
-      <Header type="light" />
+      <Header type="light" fixed />
       <main className="main">
         <Jumbotron height={100} />
         <Services />

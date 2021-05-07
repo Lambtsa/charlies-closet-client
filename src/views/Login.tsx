@@ -15,7 +15,7 @@ const Login = () => {
 
   return (
     <>
-      <Header type="dark" />
+      <Header type="dark" fixed={false} />
       <main className="main">
         <section className="split">
           <form className="split__left">
@@ -39,7 +39,7 @@ const Login = () => {
           <img className="split__img" src={charlie} alt="" />
         </section>
       </main>
-      <Copyright type="fixed" />
+      <Copyright type="light" />
     </>
   );
 };

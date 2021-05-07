@@ -15,7 +15,7 @@ const AboutUs = () => {
 
   return (
     <>
-      <Header type="light" />
+      <Header type="light" fixed />
       <main className="main">
         <Jumbotron height={70} />
         <section className="content">

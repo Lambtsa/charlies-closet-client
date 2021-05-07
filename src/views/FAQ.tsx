@@ -16,7 +16,7 @@ const FAQ = () => {
 
   return (
     <>
-      <Header type="light" />
+      <Header type="light" fixed />
       <Jumbotron height={70} />
       <main className="main">
         <section className="faq">

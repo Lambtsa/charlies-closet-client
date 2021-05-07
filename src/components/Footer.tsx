@@ -50,7 +50,7 @@ const Footer = () => {
           </div>
         </div>
       </footer>
-      <Copyright type="block" />
+      <Copyright type="dark" />
     </>
   );
 };

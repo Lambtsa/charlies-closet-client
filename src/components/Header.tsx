@@ -2,11 +2,12 @@ import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 
 interface HeaderProps {
-  type: string
+  type: string,
+  fixed: boolean,
 }
 
 const Header = (props: HeaderProps) => {
-  const { type } = props;
+  const { type, fixed } = props;
   const [isScrolled, setIsScrolled] = useState(false);
 
   const handleScrolling = () => {
@@ -29,7 +30,7 @@ const Header = (props: HeaderProps) => {
 
   return (
     <>
-      <header className={`header ${isScrolled ? 'isScrolled' : ''}`}>
+      <header className={`header ${isScrolled ? 'isScrolled' : ''} ${fixed ? 'fixed' : ''}`}>
         <div className={`header__container ${type}`}>
           <Link to="/"><h2 className="header__logo">Charlie's closet</h2></Link>
           <div className="header__links">
