@@ -34,6 +34,9 @@ h3 {
   font-size: 1.5rem;
   margin-bottom: 1rem;
 }
+p {
+  line-height: 1.5rem;
+}
 
 /*
   Loader
@@ -339,6 +342,31 @@ h3 {
     }
   }
 }
+.select__container {
+  position: relative;
+  width: 100%;
+  max-width: 375px;
+  margin-bottom: 1rem;
+}
+.select__overlay {
+  position: absolute;
+  right: 1rem;
+  top: 50%;
+  transform: translateY(-50%);
+}
+.select__overlay--icon {
+  color: $primary-color;
+  font-size: 1.2rem;
+}
+select {
+  // A reset of styles, including removing the default dropdown arrow
+  appearance: none;
+  width: 100%;
+  background-color: #E4E6CF;
+  border-radius: 10px;
+  padding: 1rem;
+  color: $primary-color;
+}
 
 /*
   Jumbotron
@@ -572,6 +600,7 @@ h3 {
 }
 .paragraph__split {
   display: grid;
+  align-items: center;
   grid-template-columns: 1fr;
   gap: 1rem;
 }

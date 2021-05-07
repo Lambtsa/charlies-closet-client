@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import charlie from '../assets/charlies_closet.webp';
+import { faChevronDown } from '@fortawesome/free-solid-svg-icons';
 
 /*
   Components
@@ -8,6 +9,7 @@ import Header from '../components/Header';
 import InputField from '../components/InputField';
 import Copyright from '../components/Copyright';
 import SocialIcons from '../components/SocialIcons';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
 const ContactUs = () => {
   const [firstName, setFirstName] = useState('');
@@ -32,9 +34,17 @@ const ContactUs = () => {
               placeholder="Enter email"
               value={email}
               setValue={setEmail} />
-            <select value={object} onChange={(e:any) => setObject(e.target.value)} className="form__input">
-              <option value="livraison">Livraison</option>
-            </select>
+            <div className="select__container">
+              <div className="select__overlay">
+                <div className="select__overlay--icon">
+                  <FontAwesomeIcon icon={faChevronDown} />
+                </div>
+              </div>
+              <select value={object} onChange={(e:any) => setObject(e.target.value)} className="select">
+                <option value="livraison">Livraison</option>
+                <option value="produit">Produit</option>
+              </select>
+            </div>
             <textarea
               value={message}
               onChange={(e: any) => setMessage(e.target.value)}

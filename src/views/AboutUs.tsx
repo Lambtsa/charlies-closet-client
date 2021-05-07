@@ -31,11 +31,11 @@ const AboutUs = () => {
                 <p className="paragraph__text">
                   {`Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sollicitudin nisl, orci velit, nunc, aliquam sit est at semper. Diam egestas at et ac dolor, nullam aliquam feugiat. Id nulla adipiscing ipsum consectetur massa leo sit euismod. Nulla pulvinar leo tincidunt commodo posuere elementum malesuada. Placerat egestas scelerisque cras dolor massa feugiat. Morbi tincidunt est aliquam ipsum malesuada purus scelerisque habitasse. Scelerisque morbi molestie nec, faucibus orci. Erat neque, aenean elementum maecenas adipiscing ipsum. Varius velit consectetur sit congue aliquam id sed ipsum. Semper nibh quis leo est. Nisl phasellus gravida odio facilisis nam. Malesuada pellentesque molestie aliquet ultrices.`}
                 </p>
-                <p className="paragraph__text">
-                  {`Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sollicitudin nisl, orci velit, nunc, aliquam sit est at semper. Diam egestas at et ac dolor, nullam aliquam feugiat. Id nulla adipiscing ipsum consectetur massa leo sit euismod. Nulla pulvinar leo tincidunt commodo posuere elementum malesuada. Placerat egestas scelerisque cras dolor massa feugiat.`}
-                </p>
                 </div>
               </div>
+              <p className="paragraph__text">
+                {`Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sollicitudin nisl, orci velit, nunc, aliquam sit est at semper. Diam egestas at et ac dolor, nullam aliquam feugiat. Id nulla adipiscing ipsum consectetur massa leo sit euismod. Nulla pulvinar leo tincidunt commodo posuere elementum malesuada. Placerat egestas scelerisque cras dolor massa feugiat.`}
+              </p>
               <p className="paragraph__text">
                 {`Lorem ipsum dolor sit amet, consectetur adipiscing elit. In eget neque quam at lectus augue vel massa sed. Id vulputate aliquam parturient leo facilisi ultrices. Et sollicitudin proin magnis quam et dolor euismod. Nisl aenean justo, turpis eu. Eget id vel quam sit rutrum nec lacus. Ullamcorper venenatis lectus id eu elit, elementum faucibus cras proin. Magna nulla vitae fames turpis dolor. Consequat purus felis odio neque.`}
               </p>
