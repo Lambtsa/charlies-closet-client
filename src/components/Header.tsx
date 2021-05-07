@@ -11,7 +11,7 @@ const Header = (props: HeaderProps) => {
   const [isScrolled, setIsScrolled] = useState(false);
 
   const handleScrolling = () => {
-    if (fixed) {
+    if (!fixed) {
       return;
     }
     // scroll position for navbar colour
