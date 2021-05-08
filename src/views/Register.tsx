@@ -26,21 +26,29 @@ const Register = () => {
           <form className="split__left">
             <h1 className="split__title">Inscription</h1>
             <InputField
+              id="first_name"
+              label="First name"
               type="text"
               placeholder="Enter first name"
               value={firstName}
               setValue={setFirstName} />
             <InputField
+              id="last_name"
+              label="Last name"
               type="text"
               placeholder="Enter last name"
               value={lastName}
               setValue={setLastName} />
             <InputField
+              id="email"
+              label="Email"
               type="email"
               placeholder="Enter email"
               value={email}
               setValue={setEmail} />
             <InputField
+              id="password"
+              label="Password"
               type="password"
               placeholder="Enter password"
               value={password}

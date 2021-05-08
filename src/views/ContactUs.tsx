@@ -25,11 +25,15 @@ const ContactUs = () => {
           <form className="split__left">
             <h1 className="split__title">Contact us</h1>
             <InputField
+              id="first_name"
+              label="First name"
               type="text"
               placeholder="Enter first name"
               value={firstName}
               setValue={setFirstName} />
             <InputField
+              id="email"
+              label="Email"
               type="email"
               placeholder="Enter email"
               value={email}

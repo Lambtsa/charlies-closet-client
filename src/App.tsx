@@ -16,6 +16,10 @@ import Terms from './views/Terms';
 import ContactUs from './views/ContactUs';
 import Privacy from './views/Privacy';
 import ItemDetails from './views/ItemDetails';
+import MyBaby from './views/MyBaby';
+import MyBox from './views/MyBox';
+import MyDetails from './views/MyDetails';
+import Payment from './views/Payment';
 
 const App = () => (
   <>
@@ -32,6 +36,11 @@ const App = () => (
         <Route exact path="/terms" component={Terms} />
         <Route exact path="/contact-us" component={ContactUs} />
         <Route exact path="/privacy" component={Privacy} />
+        <Route exact path="/onboarding/my-baby" component={MyBaby} />
+        <Route exact path="/onboarding/my-box" component={MyBox} />
+        <Route exact path="/onboarding/my-box" component={MyBox} />
+        <Route exact path="/onboarding/my-details" component={MyDetails} />
+        <Route exact path="/onboarding/payment" component={Payment} />
       </Switch>
     </BrowserRouter>
   </>

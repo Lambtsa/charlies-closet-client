@@ -3,6 +3,8 @@ import React, { useState } from 'react';
 interface InputFieldProps {
   value: string,
   class?: string,
+  id: string,
+  label: string,
   setValue: (arg: string) => void,
   type?: string,
   maxLength?: number,
@@ -29,14 +31,18 @@ const InputField = (props: InputFieldProps) => {
 
   return (
     <>
-      <input
-        className={`form__input ${props.class ? props.class : ''} ${error ? 'error' : ''}`}
-        value={props.value}
-        onChange={handleValueChange}
-        type={props.type}
-        maxLength={props.maxLength}
-        placeholder={props.placeholder} />
-      {error && <p className="form__error-message">{errorMessage}</p>}
+      <label className={`${props.class ? props.class : ''}`} htmlFor={props.id}>
+        {props.label}
+        <input
+          className={`form__input ${error ? 'error' : ''}`}
+          id={props.id}
+          value={props.value}
+          onChange={handleValueChange}
+          type={props.type}
+          maxLength={props.maxLength}
+          placeholder={props.placeholder} />
+        {error && <p className="form__error-message">{errorMessage}</p>}
+      </label>
     </>
   );
 };

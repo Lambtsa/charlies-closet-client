@@ -39,6 +39,8 @@ const Footer = () => {
             <p className="links__subtitle">Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
             <form onSubmit={handleFormSubmit}>
               <InputField
+                id="email"
+                label="Email"
                 class="footer"
                 value={email}
                 setValue={setEmail}
