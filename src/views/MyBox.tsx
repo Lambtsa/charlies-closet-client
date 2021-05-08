@@ -1,38 +1,21 @@
 import React, { useState } from 'react';
-import { Link, NavLink, useHistory } from 'react-router-dom';
+import OnboardingStep from '../components/OnboardingStep';
 
 const MyBox = () => {
-  const history = useHistory();
   const [selected, setSelected] = useState('btn-2');
 
   const handleBtnClick = (btnId: string) => {
     setSelected(btnId);
   }
 
-  const handleSubmitForm = (e: any) => {
-    e.preventDefault();
-    history.push('/onboarding/my-details');
-  };
-
-  const handleBtnBack = () => {
-    history.push('/onboarding/my-baby');
-  }
   return (
     <>
       <header className="header">
         <div className="header__onboarding">
-          <Link to="/"><h2 className="header__logo">Charlie's closet</h2></Link>
+          <h2 className="header__logo">Charlie's closet</h2>
         </div>
       </header>
-      <section className="onboarding">
-        <div className="nav__container">
-          <nav className="nav__links">
-            <NavLink activeClassName="nav__link--selected" className="nav__link" to="/onboarding/my-baby">Mon bébé</NavLink>
-            <NavLink activeClassName="nav__link--selected" className="nav__link" to="/onboarding/my-box">Ma box</NavLink>
-            <NavLink activeClassName="nav__link--selected" className="nav__link" to="/onboarding/my-details">Mes coordonnées</NavLink>
-            <NavLink activeClassName="nav__link--selected" className="nav__link" to="/onboarding/payment">Règlement</NavLink>
-          </nav>
-        </div>
+      <OnboardingStep next="my-details" previous="my-baby">
         <div className="boxes__container">
           <h1 className="boxes__title">Ma box</h1>
           <div className="boxes">
@@ -64,11 +47,7 @@ const MyBox = () => {
             </button>
           </div>
         </div>
-        <div className="btn__container">
-          <button onClick={handleBtnBack} className="form__btn back" type="button">Back</button>
-          <button onClick={handleSubmitForm} className="form__btn" type="submit">Next</button>
-        </div>
-      </section>
+      </OnboardingStep>
     </>
   );
 };

@@ -1,22 +1,16 @@
 import React, { useEffect, useState } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faChevronDown } from '@fortawesome/free-solid-svg-icons';
-import { Link, NavLink, useHistory } from 'react-router-dom';
 import InputField from '../components/InputField';
+import OnboardingStep from '../components/OnboardingStep';
 
 const MyBaby = () => {
-  const history = useHistory();
   const [firstName, setFirstName] = useState('');
   const [birth, setBirth] = useState('');
   const [gender, setGender] = useState('');
   const [size, setSize] = useState('');
   const [preferences, setPreferences] = useState('');
   const [color, setColor] = useState('');
-
-  const handleSubmitForm = (e: any) => {
-    e.preventDefault();
-    history.push('/onboarding/my-box');
-  };
 
   useEffect(() => {
     console.log(color);
@@ -26,18 +20,10 @@ const MyBaby = () => {
     <>
       <header className="header">
         <div className="header__onboarding">
-          <Link to="/"><h2 className="header__logo">Charlie's closet</h2></Link>
+          <h2 className="header__logo">Charlie's closet</h2>
         </div>
       </header>
-      <section className="onboarding">
-        <div className="nav__container">
-          <nav className="nav__links">
-            <NavLink activeClassName="nav__link--selected" className="nav__link" to="/onboarding/my-baby">Mon bébé</NavLink>
-            <NavLink activeClassName="nav__link--selected" className="nav__link" to="/onboarding/my-box">Ma box</NavLink>
-            <NavLink activeClassName="nav__link--selected" className="nav__link" to="/onboarding/my-details">Mes coordonnées</NavLink>
-            <NavLink activeClassName="nav__link--selected" className="nav__link" to="/onboarding/payment">Règlement</NavLink>
-          </nav>
-        </div>
+      <OnboardingStep next="my-box">
         <form className="form__container">
           <h1 className="form__title">Mon bébé</h1>
           <div className="form__split">
@@ -119,10 +105,7 @@ const MyBaby = () => {
             </div>
           </div>
         </form>
-        <div className="btn__container">
-          <button onClick={handleSubmitForm} className="form__btn" type="submit">Next</button>
-        </div>
-      </section>
+      </OnboardingStep>
     </>
   );
 };
