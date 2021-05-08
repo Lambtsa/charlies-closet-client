@@ -16,6 +16,11 @@ const MyBaby = () => {
     console.log(color);
   }, [color])
 
+  const handleColorChange = (e: any) => {
+    e.preventDefault();
+    setColor(e.target.value);
+  }
+
   return (
     <>
       <header className="header">
@@ -45,27 +50,27 @@ const MyBaby = () => {
               <button
                 className={`color ${color === 'black' ? 'selected' : ''}`}
                 value="black"
-                onClick={(e: any) => setColor(e.target.value)} />
+                onClick={handleColorChange} />
               <button
                 className={`color ${color === 'white' ? 'selected' : ''}`}
                 value="white"
-                onClick={(e: any) => setColor(e.target.value)} />
+                onClick={handleColorChange} />
               <button
                 className={`color ${color === 'blue' ? 'selected' : ''}`}
                 value="blue"
-                onClick={(e: any) => setColor(e.target.value)} />
+                onClick={handleColorChange} />
               <button
                 className={`color ${color === 'pink' ? 'selected' : ''}`}
                 value="pink"
-                onClick={(e: any) => setColor(e.target.value)} />
+                onClick={handleColorChange} />
               <button
                 className={`color ${color === 'green' ? 'selected' : ''}`}
                 value="green"
-                onClick={(e: any) => setColor(e.target.value)} />
+                onClick={handleColorChange} />
               <button
                 className={`color ${color === 'beige' ? 'selected' : ''}`}
                 value="beige"
-                onClick={(e: any) => setColor(e.target.value)} />
+                onClick={handleColorChange} />
             </div>
             <div className="select__container">
               <div className="select__overlay">

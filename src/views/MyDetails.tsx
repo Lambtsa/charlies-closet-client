@@ -1,6 +1,7 @@
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 import InputField from '../components/InputField';
 import OnboardingStep from '../components/OnboardingStep';
+import SnackBar from '../components/SnackBar';
 
 const baseUrl = process.env.NODE_ENV === 'production'
   ? ''
@@ -13,10 +14,7 @@ const MyBaby = () => {
   const [telephone, setTelephone] = useState('');
   const [address, setAddress] = useState('');
   const [suggestions, setSuggestions] = useState([]);
-
-  useEffect(() => {
-    console.log(suggestions);
-  }, [suggestions]);
+  const [error, setError] = useState(false);
 
   const handleAddressChange = (e: any) => {
     setAddress(e.target.value);
@@ -32,14 +30,14 @@ const MyBaby = () => {
     })
       .then(response => response.json())
       .then((data: any) => setSuggestions(data))
-      .catch(err => console.log(err));
+      .catch(() => setError(true));
   };
 
   const handleLocationSelect = (placeId: string) => {
     fetch(`${baseUrl}/api/addresses/${placeId}`)
       .then(response => response.json())
       .then((data: any) => setAddress(data.address))
-      .catch(err => console.log(err));
+      .catch(() => setError(true));
     setSuggestions([]);
   }
 
@@ -108,6 +106,7 @@ const MyBaby = () => {
           </div>
         </form>
       </OnboardingStep>
+      {error && <SnackBar type="error" message="Error fetching address" setState={setError} state={error} />}
     </>
   );
 };
