@@ -576,7 +576,7 @@ select {
 }
 .step {
   padding: 1rem;
-}
+}oard
 .step__title {
   color: $primary-color;
 }
@@ -639,10 +639,6 @@ select {
   display: grid;
   grid-template-columns: repeat(2, 1fr);
   gap: 1rem;
-  .search {
-    grid-column: span 2;
-    max-width: none;
-  }
 }
 .btn__container {
   max-width: 768px;
@@ -749,6 +745,35 @@ select {
   border-radius: 20px;
   color: $white;
   font-size: .8rem;
+}
+.form__input.drop {
+  border-radius: 10px 10px 0 0;
+}
+.address {
+  position: relative;
+  grid-column: span 2;
+  max-width: none;
+}
+.address__list {
+  position: absolute;
+  padding: 1rem 0;
+  margin-top: -1rem;
+  background-color: #E4E6CF;
+  // box-shadow: 1px 1px 2px rgba($black, .2);
+  width: 100%;
+  border-top: 1px solid rgba($secondary-color, .2);
+  border-radius: 0 0 10px 10px;
+}
+.address__btn {
+  padding: .5rem 1rem;
+  color: $primary-color;
+  button {
+    text-align: left;
+    width: 100%;
+  }
+  &:hover {
+    background-color: rgba($secondary-color, .5);
+  }
 }
 
 /*

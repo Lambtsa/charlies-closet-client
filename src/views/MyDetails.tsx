@@ -4,6 +4,10 @@ import { faChevronDown } from '@fortawesome/free-solid-svg-icons';
 import { Link, NavLink, useHistory } from 'react-router-dom';
 import InputField from '../components/InputField';
 
+const baseUrl = process.env.NODE_ENV === 'production'
+  ? ''
+  : 'http://localhost:8080';
+
 const MyBaby = () => {
   const history = useHistory();
   const [firstName, setFirstName] = useState('');
@@ -11,8 +15,11 @@ const MyBaby = () => {
   const [email, setEmail] = useState('');
   const [telephone, setTelephone] = useState('');
   const [address, setAddress] = useState('');
-  const [zipcode, setZipcode] = useState('');
-  const [city, setCity] = useState('');
+  const [suggestions, setSuggestions] = useState([]);
+
+  useEffect(() => {
+    console.log(suggestions);
+  }, [suggestions]);
 
   const handleSubmitForm = (e: any) => {
     e.preventDefault();
@@ -21,6 +28,31 @@ const MyBaby = () => {
 
   const handleBtnBack = () => {
     history.push('/onboarding/my-box');
+  }
+
+  const handleAddressChange = (e: any) => {
+    setAddress(e.target.value);
+    const search = e.target.value.replace(/\s/g, '');
+    fetch(`${baseUrl}/api/addresses`, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({
+        search,
+      }),
+    })
+      .then(response => response.json())
+      .then((data: any) => setSuggestions(data))
+      .catch(err => console.log(err));
+  };
+
+  const handleLocationSelect = (placeId: string) => {
+    fetch(`${baseUrl}/api/addresses/${placeId}`)
+      .then(response => response.json())
+      .then((data: any) => setAddress(data.address))
+      .catch(err => console.log(err));
+    setSuggestions([]);
   }
 
   return (
@@ -70,28 +102,29 @@ const MyBaby = () => {
               value={telephone}
               setValue={setTelephone}
               placeholder="Enter telephone" />
-            <InputField
-              id="adresse"
-              label="Adresse"
-              class="search"
-              type="text"
-              value={address}
-              setValue={setAddress}
-              placeholder="Enter address" />
-            <InputField
-              id="postal_code"
-              label="Zip code"
-              type="text"
-              value={zipcode}
-              setValue={setZipcode}
-              placeholder="Enter zipcode" />
-            <InputField
-              id="city"
-              label="City"
-              type="text"
-              value={city}
-              setValue={setCity}
-              placeholder="Enter city" />
+            <div className="address">
+              <label>
+                Address
+                <input
+                  id="adresse"
+                  type="text"
+                  className={`form__input ${suggestions.length > 0 ? 'drop' : ''}`}
+                  value={address}
+                  onChange={handleAddressChange}
+                  placeholder="Start typing to search" />
+              </label>
+              {suggestions.length > 0 && (
+                <ul className="address__list">
+                {suggestions.map((s: any) => (
+                  <li className="address__btn" key={s.place_id}>
+                    <button type="button" onClick={() => handleLocationSelect(s.place_id)}>
+                      {s.description}
+                    </button>
+                  </li>
+                ))}
+                </ul>
+              )}
+            </div>
           </div>
         </form>
         <div className="btn__container">
