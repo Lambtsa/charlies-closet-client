@@ -1015,7 +1015,10 @@ select {
   margin: 0 auto;
   display: grid;
   gap: 1rem;
-  grid-template-columns: 2fr 10fr 10fr;
+  grid-template-columns: 2fr 5fr 5fr;
+}
+.itemdetails__content {
+  grid-column: span 3;
 }
 .itemdetails__img {
   width: 100%;
@@ -1024,6 +1027,7 @@ select {
   object-fit: cover;
   object-position: center;
   border-radius: 10px;
+  grid-column: span 2;
   &.thumbnail {
     max-height: 20%;
   }
