@@ -753,7 +753,7 @@ input::-webkit-calendar-picker-indicator{
   border: 3px solid transparent;
   &:hover {
     box-shadow: 0 0 6px rgba($black, .3);
-    border: 3px solid rgba($primary-color, 0.8);
+    border: none;
   }
   &.selected {
     border: 3px solid rgba($primary-color, 0.8);

@@ -4,7 +4,7 @@ import OnboardingStep from '../../components/OnboardingStep';
 import SnackBar from '../../components/SnackBar';
 
 const baseUrl = process.env.NODE_ENV === 'production'
-  ? ''
+  ? 'https://charlies-closet-dev.herokuapp.com'
   : 'http://localhost:8080';
 
 const MyBaby = () => {
