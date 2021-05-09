@@ -81,6 +81,22 @@
 .itemlist__container {
   grid-template-columns: repeat(4, 1fr);
 }
+/*
+  Item details
+*/
+.itemdetails {
+  background-color: $white;
+  padding: 5rem 1rem;
+}
+.itemdetails__container {
+  grid-template-columns: 2fr 10fr 10fr;
+}
+.itemdetails__content {
+  grid-column: span 1;
+}
+.itemdetails__img {
+  grid-column: span 1;
+}
 
 /*
   Content
