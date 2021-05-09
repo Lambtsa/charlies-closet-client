@@ -729,7 +729,13 @@ select {
 }
 .box__list {
   margin-bottom: .5rem;
+  width: 100%;
   color: $primary-color;
+  &.payment {
+    display: flex;
+    align-content: center;
+    justify-content: space-between;
+  }
 }
 .box__price {
   font-size: 1.3rem;
@@ -774,6 +780,37 @@ select {
   &:hover {
     background-color: rgba($secondary-color, .5);
   }
+}
+.payment__details {
+  height: 100%;
+  padding: 2rem 1rem;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: space-between;
+  box-shadow: 0 0 4px rgba($black, .3);
+  border-radius: 10px;
+  .box__price {
+    align-self: flex-end;
+    font-weight: 700;
+  }
+}
+.box__details {
+  width: 100%;
+}
+.info__container {
+  display: flex;
+  align-content: center;
+  justify-content: center;
+  padding: 1rem;
+  background-color: rgba($secondary-color, .2);
+  border-radius: 10px;
+  color: $primary-color;
+  margin: 2rem 0;
+}
+.info__icon {
+  font-size: 1.2rem;
+  margin-right: .5rem;
 }
 
 /*
