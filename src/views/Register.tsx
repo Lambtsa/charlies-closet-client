@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useHistory } from 'react-router-dom';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faCheck } from '@fortawesome/free-solid-svg-icons';
 import charlie from '../assets/charlies_closet.webp';
@@ -12,20 +12,33 @@ import InputField from '../components/InputField';
 import Copyright from '../components/Copyright';
 
 const Register = () => {
+  const history = useHistory();
   const [firstName, setFirstName] = useState('');
   const [lastName, setLastName] = useState('');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [isAccepted, setIsAccepted] = useState(false);
+  const [error, setError] = useState(false);
+
+  const handleFormSubmit = (e: any) => {
+    e.preventDefault();
+    /* handle empty forms */
+    if (!firstName || !lastName || !email || !password || !isAccepted) {
+      window.scrollTo(0, 0);
+      return setError(true);
+    }
+    history.push('/onboarding/my-baby');
+  }
 
   return (
     <>
       <Header type="dark" fixed={false} />
       <main className="main">
         <section className="split__container background__white">
-          <form className="split__left">
+          <form onSubmit={handleFormSubmit} className="split__left">
             <h1 className="split__title">Inscription</h1>
             <InputField
+              required
               id="first_name"
               label="First name"
               type="text"
@@ -33,6 +46,7 @@ const Register = () => {
               value={firstName}
               setValue={setFirstName} />
             <InputField
+              required
               id="last_name"
               label="Last name"
               type="text"
@@ -40,6 +54,7 @@ const Register = () => {
               value={lastName}
               setValue={setLastName} />
             <InputField
+              required
               id="email"
               label="Email"
               type="email"
@@ -47,6 +62,7 @@ const Register = () => {
               value={email}
               setValue={setEmail} />
             <InputField
+              required
               id="password"
               label="Password"
               type="password"
@@ -62,11 +78,12 @@ const Register = () => {
               </div>
               <p className="checkbox__text">J’accepte les conditions générales et la politique de confidentialité</p>
             </div>
-            <button className="form__btn" type="submit">Login</button>
+            <button className="form__btn" type="submit">Register</button>
             <div className="form__link">
               <p>Déjà inscrit ?</p>
               <Link to="/login">Se connecter</Link>
             </div>
+            {error && <p className="form__error">Please provide valid credentials</p>}
           </form>
           <img className="split__img" src={charlie} alt="" />
         </section>

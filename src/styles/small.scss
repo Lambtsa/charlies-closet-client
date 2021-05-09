@@ -128,7 +128,7 @@ p {
 .snackbar__error, .snackbar__success {
   padding: 1.5rem 1rem;
   font-size: .9rem;
-  border-radius: 4px;
+  border-radius: 10px;
   color: $white;
   font-weight: 700;
 }
@@ -267,9 +267,6 @@ textarea {
   &::placeholder {
     color: rgba($primary-color, 0.8);
   }
-  &.error {
-    border: 1px solid $red;
-  }
   &.footer {
     background-color: rgba($white, 0.8);
     padding: .5rem 1rem;
@@ -279,15 +276,29 @@ label {
   color: $primary-color;
   max-width: 375px;
   width: 100%;
+  &.error {
+    margin-bottom: 0;
+    .form__input {
+      border: 1px solid $red;
+    }
+  }
 }
 .form__error-message {
-  margin-top: -.8rem;
-  margin-bottom: .5rem;
   color: $red;
   width: 100%;
   max-width: 375px;
   text-align: left;
   font-size: .8rem;
+}
+.form__error {
+  padding: 1rem;
+  border-radius: 10px;
+  border: 3px solid $red;
+  text-align: center;
+  color: $white;
+  width: 100%;
+  background-color: rgba($red, .8);
+  max-width: 375px;
 }
 .form__btn {
   padding: 1rem;

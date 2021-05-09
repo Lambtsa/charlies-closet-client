@@ -3,8 +3,9 @@ import React, { useState } from 'react';
 interface InputFieldProps {
   value: string,
   class?: string,
-  id: string,
-  label: string,
+  id?: string,
+  label?: string,
+  required?: boolean,
   setValue: (arg: string) => void,
   type?: string,
   maxLength?: number,
@@ -14,6 +15,18 @@ interface InputFieldProps {
 const InputField = (props: InputFieldProps) => {
   const [error, setError] = useState(false);
   const [errorMessage, setErrorMessage] = useState('');
+
+  const handleInputBlur = (e: any) => {
+    if (props.required && !e.target.value) {
+      setError(true);
+      setErrorMessage('This field cannot be blank')
+    }
+  };
+
+  const handleFocusBlur = (e: any) => {
+    e.preventDefault();
+    setError(false);
+  };
 
   const handleValueChange = (e: any) => {
     const regex = /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
@@ -31,10 +44,12 @@ const InputField = (props: InputFieldProps) => {
 
   return (
     <>
-      <label className={`${props.class ? props.class : ''}`} htmlFor={props.id}>
+      <label className={`${props.class ? props.class : ''} ${error ? 'error' : ''}`} htmlFor={props.id}>
         {props.label}
         <input
-          className={`form__input ${error ? 'error' : ''}`}
+          onBlur={handleInputBlur}
+          onFocus={handleFocusBlur}
+          className="form__input"
           id={props.id}
           value={props.value}
           onChange={handleValueChange}
