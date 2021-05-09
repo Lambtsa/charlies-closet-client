@@ -50,8 +50,8 @@ const MyBaby = () => {
       </header>
       <OnboardingStep next="payment" previous="my-box">
         <form className="form__container">
-          <h1 className="form__title">Mon bébé</h1>
-          <div className="form__split">
+          <h1 className="form__title">Mes coordonnées</h1>
+          <div className="split__container">
             <InputField
               id="first_name"
               label="First name"

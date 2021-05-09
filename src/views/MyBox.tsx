@@ -18,7 +18,7 @@ const MyBox = () => {
       <OnboardingStep next="my-details" previous="my-baby">
         <div className="boxes__container">
           <h1 className="boxes__title">Ma box</h1>
-          <div className="boxes">
+          <div className="split__container">
             <button
               type="button"
               onClick={() => handleBtnClick("btn-1")}

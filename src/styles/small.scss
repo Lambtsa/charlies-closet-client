@@ -40,6 +40,23 @@ p {
 }
 
 /*
+  Backgrounds
+*/
+.background__white {
+  background-color: $white;
+}
+
+/*
+  Containers
+*/
+.split__container {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 1rem;
+  min-height: 100%;
+}
+
+/*
   Loader
 */
 .loader__container {
@@ -234,6 +251,9 @@ p {
   color: $primary-color;
   margin-bottom: 2rem;
 }
+textarea {
+  max-width: 375px;
+}
 .form__input {
   display: inline-block;
   padding: 1rem;  
@@ -243,7 +263,6 @@ p {
   border-radius: 10px;
   color: $primary-color;
   border: 1px solid transparent;
-  margin-bottom: 1rem;
   margin-top: .2rem;
   &::placeholder {
     color: rgba($primary-color, 0.8);
@@ -278,7 +297,6 @@ label {
   width: 100%;
   max-width: 375px;
   border: 1px solid transparent;
-  margin-bottom: 1rem;
   .btn__icon {
     font-size: 1rem;
     margin-right: .5rem;
@@ -321,7 +339,6 @@ label {
   justify-content: flex-start;
   width: 100%;
   max-width: 375px;
-  margin-bottom: 1rem;
 }
 .checkbox__text {
   margin-left: 1rem;
@@ -364,13 +381,13 @@ label {
   position: relative;
   width: 100%;
   max-width: 375px;
-  margin-bottom: 1rem;
 }
 .select__overlay {
   position: absolute;
   right: 1rem;
+  height: 100%;
   top: 50%;
-  transform: translateY(-50%);
+  // transform: translateY(-50%);
 }
 .select__overlay--icon {
   color: $primary-color;
@@ -380,6 +397,7 @@ select {
   // A reset of styles, including removing the default dropdown arrow
   appearance: none;
   width: 100%;
+  margin-top: .2rem;
   background-color: #E4E6CF;
   border-radius: 10px;
   padding: 1rem;
@@ -576,7 +594,7 @@ select {
 }
 .step {
   padding: 1rem;
-}oard
+}
 .step__title {
   color: $primary-color;
 }
@@ -635,11 +653,6 @@ select {
   max-width: 768px;
   margin: 0 auto;
 }
-.form__split {
-  display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  gap: 1rem;
-}
 .btn__container {
   max-width: 768px;
   margin: 0 auto;
@@ -654,19 +667,22 @@ select {
 }
 .color__selector {
   width: 100%;
-  height: calc(100% - 1rem);
   border-radius: 10px;
   background-color: rgba($secondary-color, .2);
   padding: 1rem;
   display: grid;
   grid-template-columns: repeat(3, 1fr);
   grid-template-rows: repeat(2, 1fr);
-  grid-column: 2;
+  grid-column: 1;
   grid-row: 2 / span 3;
   gap: 1rem;
+  height: 250px;
 }
 .color {
   border-radius: 10px;
+  &:hover {
+    box-shadow: 0 0 4px rgba($secondary-color, .5);
+  }
   &:nth-child(1) {
     background-color: #2A2927;
   }
@@ -686,22 +702,18 @@ select {
     background-color: #FEEAB8;
   }
   &.selected {
-    box-shadow: 0 0 4px $black;
+    box-shadow: 0 0 4px rgba($secondary-color, .5);
   }
 }
 .boxes__container {
   max-width: 768px;
+  width: 100%;
   margin: 0 auto;
   padding: 2rem 0;
 }
 .boxes__title {
   color: $primary-color;
   margin-bottom: 2rem;
-}
-.boxes {
-  display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  gap: 1rem;
 }
 .box {
   position: relative;
@@ -757,7 +769,7 @@ select {
 }
 .address {
   position: relative;
-  grid-column: span 2;
+  grid-column: span 1;
   max-width: none;
 }
 .address__list {
@@ -810,7 +822,8 @@ select {
 }
 .info__icon {
   font-size: 1.2rem;
-  margin-right: .5rem;
+  margin-right: 1rem;
+  height: auto;
 }
 
 /*
@@ -1041,23 +1054,19 @@ select {
 /*
   Split
 */
-.split {
-  background-color: $white;
-  display: grid;
-  grid-template-columns: 1fr;
-}
 .split__title {
+  text-align: center;
   color: $primary-color;
   margin-bottom: 3rem;
 }
 .split__left {
-  padding: 5rem 1rem;
+  padding: 0 1rem;
   position: relative;
   display: flex;
   flex-direction: column;
+  gap: 1rem;
   justify-content: center;
   align-items: center;
-  height: 100%;
 }
 .split__img {
   display: none;

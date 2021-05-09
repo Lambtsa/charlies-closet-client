@@ -24,38 +24,36 @@ const Payment = () => {
       <OnboardingStep previous="my-details" next="" paymentStep>
         <div className="form__container">
           <h1 className="form__title">Paiement</h1>
-          <div className="form__split">
-            <form>
-              <div>
-                <InputField
-                  id="name"
-                  label="Name on card"
-                  type="text"
-                  value={name}
-                  setValue={setName}
-                  placeholder="Enter name on card" />
-                <InputField
-                  id="card_number"
-                  label="Card number"
-                  type="number"
-                  value={cardNumber}
-                  setValue={setCardNumber}
-                  placeholder="Enter card number" />
-                <InputField
-                  id="expiry"
-                  label="Expiry Date"
-                  type="date"
-                  value={expiry}
-                  setValue={setExpiry}
-                  placeholder="Enter expiry date" />
-                <InputField
-                  id="cvv"
-                  label="CVV"
-                  type="password"
-                  value={cvv}
-                  setValue={setCvv}
-                  placeholder="Enter CVV" />
-              </div>
+          <div className="split__container">
+            <form className="split__left">
+              <InputField
+                id="name"
+                label="Name on card"
+                type="text"
+                value={name}
+                setValue={setName}
+                placeholder="Enter name on card" />
+              <InputField
+                id="card_number"
+                label="Card number"
+                type="number"
+                value={cardNumber}
+                setValue={setCardNumber}
+                placeholder="Enter card number" />
+              <InputField
+                id="expiry"
+                label="Expiry Date"
+                type="date"
+                value={expiry}
+                setValue={setExpiry}
+                placeholder="Enter expiry date" />
+              <InputField
+                id="cvv"
+                label="CVV"
+                type="password"
+                value={cvv}
+                setValue={setCvv}
+                placeholder="Enter CVV" />
             </form>
             <div className="payment__details">
               <div className="box__details">

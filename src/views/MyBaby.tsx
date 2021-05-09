@@ -1,8 +1,8 @@
-import React, { useEffect, useState } from 'react';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faChevronDown } from '@fortawesome/free-solid-svg-icons';
+import React, { useState } from 'react';
 import InputField from '../components/InputField';
 import OnboardingStep from '../components/OnboardingStep';
+import ColorSelector from '../components/ColorSelector';
+import SelectField from '../components/SelectField';
 
 const MyBaby = () => {
   const [firstName, setFirstName] = useState('');
@@ -12,13 +12,18 @@ const MyBaby = () => {
   const [preferences, setPreferences] = useState('');
   const [color, setColor] = useState('');
 
-  useEffect(() => {
-    console.log(color);
-  }, [color])
+  const genderOptions = {
+    'boy': 'Boy',
+    'girl': 'Girl',
+  }
+  const sizeOptions = {
+    "3 months": '3 months',
+    "6 months": '6 months',
+    "9 months": '9 months'
+  };
 
-  const handleColorChange = (e: any) => {
-    e.preventDefault();
-    setColor(e.target.value);
+  const preferencesOptions = {
+    'pants': 'Pants',
   }
 
   return (
@@ -31,7 +36,7 @@ const MyBaby = () => {
       <OnboardingStep next="my-box">
         <form className="form__container">
           <h1 className="form__title">Mon bébé</h1>
-          <div className="form__split">
+          <div className="split__container">
             <InputField
               id="first_name"
               label="First name"
@@ -46,68 +51,25 @@ const MyBaby = () => {
               value={birth}
               setValue={setBirth}
               placeholder="Enter date of birth" />
-            <div className="color__selector">
-              <button
-                className={`color ${color === 'black' ? 'selected' : ''}`}
-                value="black"
-                onClick={handleColorChange} />
-              <button
-                className={`color ${color === 'white' ? 'selected' : ''}`}
-                value="white"
-                onClick={handleColorChange} />
-              <button
-                className={`color ${color === 'blue' ? 'selected' : ''}`}
-                value="blue"
-                onClick={handleColorChange} />
-              <button
-                className={`color ${color === 'pink' ? 'selected' : ''}`}
-                value="pink"
-                onClick={handleColorChange} />
-              <button
-                className={`color ${color === 'green' ? 'selected' : ''}`}
-                value="green"
-                onClick={handleColorChange} />
-              <button
-                className={`color ${color === 'beige' ? 'selected' : ''}`}
-                value="beige"
-                onClick={handleColorChange} />
-            </div>
-            <div className="select__container">
-              <div className="select__overlay">
-                <div className="select__overlay--icon">
-                  <FontAwesomeIcon icon={faChevronDown} />
-                </div>
-              </div>
-              <select value={gender} onChange={(e:any) => setGender(e.target.value)} className="select">
-                <option value="select gender">Select gender</option>
-                <option value="boy">Boy</option>
-                <option value="girl">Girl</option>
-              </select>
-            </div>
-            <div className="select__container">
-              <div className="select__overlay">
-                <div className="select__overlay--icon">
-                  <FontAwesomeIcon icon={faChevronDown} />
-                </div>
-              </div>
-              <select value={size} onChange={(e:any) => setSize(e.target.value)} className="select">
-                <option value="select size">Select size</option>
-                <option value="3 months">3 months</option>
-                <option value="6 months">6 months</option>
-                <option value="9 months">9 months</option>
-              </select>
-            </div>
-            <div className="select__container">
-              <div className="select__overlay">
-                <div className="select__overlay--icon">
-                  <FontAwesomeIcon icon={faChevronDown} />
-                </div>
-              </div>
-              <select value={preferences} onChange={(e:any) => setPreferences(e.target.value)} className="select">
-                <option value="select preferences">Select preferences</option>
-                <option value="pants">Pants</option>
-              </select>
-            </div>
+            <ColorSelector state={color} setState={setColor} />
+            <SelectField
+              state={gender}
+              setState={setGender}
+              name="gender"
+              label="Gender"
+              options={genderOptions} />
+            <SelectField
+              state={size}
+              setState={setSize}
+              name="size"
+              label="Size"
+              options={sizeOptions} />
+            <SelectField
+              state={preferences}
+              setState={setPreferences}
+              name="preferences"
+              label="Preferences"
+              options={preferencesOptions} />
           </div>
         </form>
       </OnboardingStep>
