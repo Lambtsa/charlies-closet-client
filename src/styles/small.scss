@@ -726,6 +726,7 @@ input::-webkit-calendar-picker-indicator{
     background-color: #FEEAB8;
   }
   &.selected {
+    transform: scale3d(1.1, 1.1, 1.1);
     box-shadow: 0 0 4px rgba($secondary-color, .5);
   }
 }
