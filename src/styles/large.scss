@@ -96,6 +96,9 @@
 }
 .itemdetails__img {
   grid-column: span 1;
+  &.thumbnail {
+    max-height: 20%;
+  }
 }
 
 /*
