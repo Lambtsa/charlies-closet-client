@@ -678,6 +678,7 @@ select {
 }
 .color__selector {
   width: 100%;
+  max-width: 375px;
   border-radius: 10px;
   background-color: rgba($secondary-color, .2);
   padding: 1rem;

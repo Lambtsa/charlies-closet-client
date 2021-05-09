@@ -4,12 +4,12 @@ import { useParams } from 'react-router-dom';
 /*
   Components
 */
-import Footer from '../components/Footer';
-import Header from '../components/Header';
-import Jumbotron from '../components/Jumbotron';
-import SnackBar from '../components/SnackBar';
-import Loader from '../components/Loader';
-import LikeToggle from '../components/LikeToggle';
+import Footer from '../../components/Footer';
+import Header from '../../components/Header';
+import Jumbotron from '../../components/Jumbotron';
+import SnackBar from '../../components/SnackBar';
+import Loader from '../../components/Loader';
+import LikeToggle from '../../components/LikeToggle';
 
 const ItemDetails = () => {
   const { id } = useParams<any>();

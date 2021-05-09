@@ -3,14 +3,14 @@ import React, { useEffect } from 'react';
 /*
   Components
 */
-import Header from '../components/Header';
-import Jumbotron from '../components/Jumbotron';
-import Services from '../components/Services';
-import About from '../components/About';
-import Examples from '../components/Examples';
-import Testimonials from '../components/Testimonials';
-import HowItWorks from '../components/HowItWorks';
-import Footer from '../components/Footer';
+import Header from '../../components/Header';
+import Jumbotron from '../../components/Jumbotron';
+import Services from '../../components/Services';
+import About from '../../components/About';
+import Examples from '../../components/Examples';
+import Testimonials from '../../components/Testimonials';
+import HowItWorks from '../../components/HowItWorks';
+import Footer from '../../components/Footer';
 
 const Home = () => {
   useEffect(() => {

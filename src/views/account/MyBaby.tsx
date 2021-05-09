@@ -1,8 +1,8 @@
 import React, { useState } from 'react';
-import InputField from '../components/InputField';
-import OnboardingStep from '../components/OnboardingStep';
-import ColorSelector from '../components/ColorSelector';
-import SelectField from '../components/SelectField';
+import InputField from '../../components/InputField';
+import OnboardingStep from '../../components/OnboardingStep';
+import ColorSelector from '../../components/ColorSelector';
+import SelectField from '../../components/SelectField';
 
 const MyBaby = () => {
   const [firstName, setFirstName] = useState('');

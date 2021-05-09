@@ -3,8 +3,8 @@ import React, { useEffect } from 'react';
 /*
   Components
 */
-import Footer from '../components/Footer';
-import Header from '../components/Header';
+import Footer from '../../components/Footer';
+import Header from '../../components/Header';
 
 const Boxes = () => {
   useEffect(() => {

@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import OnboardingStep from '../components/OnboardingStep';
+import OnboardingStep from '../../components/OnboardingStep';
 
 const MyBox = () => {
   const [selected, setSelected] = useState('btn-2');

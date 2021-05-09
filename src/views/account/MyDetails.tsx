@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
-import InputField from '../components/InputField';
-import OnboardingStep from '../components/OnboardingStep';
-import SnackBar from '../components/SnackBar';
+import InputField from '../../components/InputField';
+import OnboardingStep from '../../components/OnboardingStep';
+import SnackBar from '../../components/SnackBar';
 
 const baseUrl = process.env.NODE_ENV === 'production'
   ? ''

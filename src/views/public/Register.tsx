@@ -2,14 +2,14 @@ import React, { useState } from 'react';
 import { Link, useHistory } from 'react-router-dom';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faCheck } from '@fortawesome/free-solid-svg-icons';
-import charlie from '../assets/charlies_closet.webp';
+import charlie from '../../assets/charlies_closet.webp';
 
 /*
   Components
 */
-import Header from '../components/Header';
-import InputField from '../components/InputField';
-import Copyright from '../components/Copyright';
+import Header from '../../components/Header';
+import InputField from '../../components/InputField';
+import Copyright from '../../components/Copyright';
 
 const Register = () => {
   const history = useHistory();

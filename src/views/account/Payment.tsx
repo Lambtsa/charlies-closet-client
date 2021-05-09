@@ -1,12 +1,12 @@
 import React, { useState } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faLock } from '@fortawesome/free-solid-svg-icons';
-import OnboardingStep from '../components/OnboardingStep';
+import OnboardingStep from '../../components/OnboardingStep';
 
 /*
   Components
 */
-import InputField from '../components/InputField';
+import InputField from '../../components/InputField';
 
 const Payment = () => {
   const [name, setName] = useState('');

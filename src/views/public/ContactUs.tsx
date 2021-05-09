@@ -1,14 +1,14 @@
 import React, { useState } from 'react';
-import charlie from '../assets/charlies_closet.webp';
+import charlie from '../../assets/charlies_closet.webp';
 
 /*
   Components
 */
-import Header from '../components/Header';
-import InputField from '../components/InputField';
-import Copyright from '../components/Copyright';
-import SocialIcons from '../components/SocialIcons';
-import SelectField from '../components/SelectField';
+import Header from '../../components/Header';
+import InputField from '../../components/InputField';
+import Copyright from '../../components/Copyright';
+import SocialIcons from '../../components/SocialIcons';
+import SelectField from '../../components/SelectField';
 
 const ContactUs = () => {
   const [firstName, setFirstName] = useState('');

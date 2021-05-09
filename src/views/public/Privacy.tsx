@@ -1,5 +1,5 @@
 import React, { useEffect } from 'react';
-import Upload from '../components/Upload';
+import Upload from '../../components/Upload';
 
 const Privacy = () => {
   useEffect(() => {

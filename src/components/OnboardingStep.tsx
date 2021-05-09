@@ -6,7 +6,7 @@ import { NavLink, useHistory } from 'react-router-dom';
 interface OnboardingType {
   children: any,
   previous?: string,
-  next:string,
+  next?: string,
   paymentStep?: boolean,
 
 }
@@ -15,6 +15,10 @@ const OnboardingStep = (props: OnboardingType) => {
   const { children, previous, next, paymentStep } = props;
   const history = useHistory();
 
+  const handleSubmitPayment = (e: any) => {
+    e.preventDefault();
+    history.push(`/account/dashboard`);
+  }
   const handleSubmitForm = (e: any) => {
     e.preventDefault();
     history.push(`/onboarding/${next}`);
@@ -42,7 +46,7 @@ const OnboardingStep = (props: OnboardingType) => {
           {previous && <button onClick={handleBtnBack} className="form__btn back" type="button">Back</button>}
           {next && <button onClick={handleSubmitForm} className="form__btn" type="submit">Next</button>}
           {paymentStep && (
-            <button onClick={handleSubmitForm} className="form__btn" type="submit">
+            <button onClick={handleSubmitPayment} className="form__btn" type="submit">
               <FontAwesomeIcon className="btn__icon" icon={faLock} />
               Pay
           </button>

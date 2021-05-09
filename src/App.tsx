@@ -5,21 +5,22 @@ import './main.scss';
 /*
   Views
 */
-import Home from './views/Home';
-import Boxes from './views/Boxes';
-import Boutique from './views/Boutique';
-import Register from './views/Register';
-import Login from './views/Login';
-import AboutUs from './views/AboutUs';
-import FAQ from './views/FAQ';
-import Terms from './views/Terms';
-import ContactUs from './views/ContactUs';
-import Privacy from './views/Privacy';
-import ItemDetails from './views/ItemDetails';
-import MyBaby from './views/MyBaby';
-import MyBox from './views/MyBox';
-import MyDetails from './views/MyDetails';
-import Payment from './views/Payment';
+import Home from './views/public/Home';
+import Boxes from './views/public/Boxes';
+import Boutique from './views/public/Boutique';
+import Register from './views/public/Register';
+import Login from './views/public/Login';
+import AboutUs from './views/public/AboutUs';
+import FAQ from './views/public/FAQ';
+import Terms from './views/public/Terms';
+import ContactUs from './views/public/ContactUs';
+import Privacy from './views/public/Privacy';
+import ItemDetails from './views/public/ItemDetails';
+
+import MyBaby from './views/account/MyBaby';
+import MyBox from './views/account/MyBox';
+import MyDetails from './views/account/MyDetails';
+import Payment from './views/account/Payment';
 
 const App = () => (
   <>

@@ -1,13 +1,13 @@
 import React, { useEffect } from 'react';
 import { Link } from 'react-router-dom';
-import data from '../mockData/FAQ.json';
+import data from '../../mockData/FAQ.json';
 /*
   Components
 */
-import Footer from '../components/Footer';
-import Header from '../components/Header';
-import Jumbotron from '../components/Jumbotron';
-import Expandable from '../components/Expandable';
+import Footer from '../../components/Footer';
+import Header from '../../components/Header';
+import Jumbotron from '../../components/Jumbotron';
+import Expandable from '../../components/Expandable';
 
 const FAQ = () => {
   useEffect(() => {

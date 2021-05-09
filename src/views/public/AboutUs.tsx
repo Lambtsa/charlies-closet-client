@@ -1,12 +1,12 @@
 import React, { useEffect } from 'react';
-import charlie from '../assets/charlie-5.jpg';
+import charlie from '../../assets/charlie-5.jpg';
 
 /*
   Components
 */
-import Header from '../components/Header';
-import Jumbotron from '../components/Jumbotron';
-import Footer from '../components/Footer';
+import Header from '../../components/Header';
+import Jumbotron from '../../components/Jumbotron';
+import Footer from '../../components/Footer';
 
 const AboutUs = () => {
   useEffect(() => {

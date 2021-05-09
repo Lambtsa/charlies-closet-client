@@ -3,10 +3,10 @@ import React, { useEffect } from 'react';
 /*
   Components
 */
-import Header from '../components/Header';
-import Jumbotron from '../components/Jumbotron';
-import ItemList from '../components/ItemList';
-import Footer from '../components/Footer';
+import Header from '../../components/Header';
+import Jumbotron from '../../components/Jumbotron';
+import ItemList from '../../components/ItemList';
+import Footer from '../../components/Footer';
 
 const Boutique = () => {
   useEffect(() => {
