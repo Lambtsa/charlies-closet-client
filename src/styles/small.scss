@@ -1069,9 +1069,12 @@ select {
   position: relative;
   display: flex;
   flex-direction: column;
-  grid-gap: 1rem;
+  width: 100%;
   justify-content: center;
   align-items: center;
+  & > * {
+    margin-bottom: 1rem;
+  }
 }
 .split__img {
   display: none;
