@@ -18,9 +18,13 @@ const ItemDetails = () => {
   const [error, setError] = useState(false);
   const [image, setImage] = useState('');
 
+  const apiUrl = process.env.NODE_ENV === 'production'
+    ? 'https://charlies-closet-dev.herokuapp.com/api/items'
+    : 'http://localhost:8080/api/items'
+
   useEffect(() => {
     window.scrollTo(0,0);
-    fetch(`http://localhost:8080/api/items/${id}`)
+    fetch(`${apiUrl}/${id}`)
     .then((response: any) => response.json())
     .then((data: any) => {
       setItem(data);
@@ -28,7 +32,7 @@ const ItemDetails = () => {
       setIsLoading(false);
     })
     .catch(() => setError(true))
-  }, [id])
+  }, [apiUrl, id])
 
   return (
     <>

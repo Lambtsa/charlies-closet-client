@@ -12,8 +12,12 @@ const Examples = () => {
   const [isLoading, setIsLoading] = useState(true);
   const [error, setError] = useState(false);
 
+  const apiUrl = process.env.NODE_ENV === 'production'
+    ? 'https://charlies-closet-dev.herokuapp.com/api/items'
+    : 'http://localhost:8080/api/items'
+
   useEffect(() => {
-    fetch('http://localhost:8080/api/items')
+    fetch(apiUrl)
     .then((response: any) => {
       console.log(response);
       return response.json();
@@ -27,7 +31,7 @@ const Examples = () => {
       console.log(err);
       setError(true);
     })
-  }, []);
+  }, [apiUrl]);
 
   return (
     <>
