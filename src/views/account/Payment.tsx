@@ -7,6 +7,7 @@ import OnboardingStep from '../../components/OnboardingStep';
   Components
 */
 import InputField from '../../components/InputField';
+import DateField from '../../components/DateField';
 
 const Payment = () => {
   const [name, setName] = useState('');
@@ -40,13 +41,12 @@ const Payment = () => {
                 value={cardNumber}
                 setValue={setCardNumber}
                 placeholder="Enter card number" />
-              <InputField
+              <DateField
                 id="expiry"
                 label="Expiry Date"
-                type="date"
                 value={expiry}
                 setValue={setExpiry}
-                placeholder="Enter expiry date" />
+                placeholder="MM-AA" />
               <InputField
                 id="cvv"
                 label="CVV"

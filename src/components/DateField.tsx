@@ -8,19 +8,23 @@ interface DateFieldProps {
   id?: string,
   label?: string,
   required?: boolean,
+  placeholder: string,
   setValue: (arg: string) => void,
 };
 
 const DateField = (props: DateFieldProps) => {
+  const maxLength = props.placeholder.length;
+  const regex = new RegExp(`^[0-9 -]{0,${maxLength}}$`);
 
   const handleDateChange = (e: any) => {
-
-    props.setValue(e.target.value);
+    if (regex.test(e.target.value) || e.target.value === '') {
+      props.setValue(e.target.value);
+    }
+    return;
   }
 
   return (
     <>
-
       <div className="select__container">
         <div className="select__overlay">
           <div className="select__overlay--icon">
@@ -34,8 +38,8 @@ const DateField = (props: DateFieldProps) => {
             id={props.id}
             value={props.value}
             onChange={handleDateChange}
-            type="number"
-            placeholder="JJ-MM-AAAA" />
+            type="text"
+            placeholder={props.placeholder} />
       </label>
       </div>
     </>

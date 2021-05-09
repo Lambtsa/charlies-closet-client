@@ -49,7 +49,8 @@ const MyBaby = () => {
               id="birth_date"
               label="Date of birth"
               value={birth}
-              setValue={setBirth}/>
+              setValue={setBirth}
+              placeholder="JJ-MM-AAAA" />
             <ColorSelector state={color} setState={setColor} />
             <SelectField
               state={gender}
