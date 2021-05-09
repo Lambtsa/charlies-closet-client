@@ -3,6 +3,7 @@ import InputField from '../../components/InputField';
 import OnboardingStep from '../../components/OnboardingStep';
 import ColorSelector from '../../components/ColorSelector';
 import SelectField from '../../components/SelectField';
+import DateField from '../../components/DateField';
 
 const MyBaby = () => {
   const [firstName, setFirstName] = useState('');
@@ -44,13 +45,11 @@ const MyBaby = () => {
               value={firstName}
               setValue={setFirstName}
               placeholder="Enter first name" />
-            <InputField
+            <DateField
               id="birth_date"
               label="Date of birth"
-              type="date"
               value={birth}
-              setValue={setBirth}
-              placeholder="Enter date of birth" />
+              setValue={setBirth}/>
             <ColorSelector state={color} setState={setColor} />
             <SelectField
               state={gender}
