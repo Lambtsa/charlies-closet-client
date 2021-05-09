@@ -1,6 +1,5 @@
 import React, { useState } from 'react';
 import charlie from '../assets/charlies_closet.webp';
-import { faChevronDown } from '@fortawesome/free-solid-svg-icons';
 
 /*
   Components
@@ -9,7 +8,7 @@ import Header from '../components/Header';
 import InputField from '../components/InputField';
 import Copyright from '../components/Copyright';
 import SocialIcons from '../components/SocialIcons';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import SelectField from '../components/SelectField';
 
 const ContactUs = () => {
   const [firstName, setFirstName] = useState('');
@@ -17,39 +16,46 @@ const ContactUs = () => {
   const [object, setObject] = useState('');
   const [message, setMessage] = useState('');
 
+  const objectOptions = {
+    "livraison": 'Livraison',
+    'produit': 'Produit',
+  }
   return (
     <>
       <Header type="dark" fixed={false} />
       <main className="main">
-        <section className="split">
+        <section className="split__container background__white">
           <form className="split__left">
             <h1 className="split__title">Contact us</h1>
             <InputField
+              id="first_name"
+              label="First name"
               type="text"
               placeholder="Enter first name"
               value={firstName}
               setValue={setFirstName} />
             <InputField
+              id="email"
+              label="Email"
               type="email"
               placeholder="Enter email"
               value={email}
               setValue={setEmail} />
-            <div className="select__container">
-              <div className="select__overlay">
-                <div className="select__overlay--icon">
-                  <FontAwesomeIcon icon={faChevronDown} />
-                </div>
-              </div>
-              <select value={object} onChange={(e:any) => setObject(e.target.value)} className="select">
-                <option value="livraison">Livraison</option>
-                <option value="produit">Produit</option>
-              </select>
-            </div>
-            <textarea
-              value={message}
-              onChange={(e: any) => setMessage(e.target.value)}
-              className="form__input"
-              placeholder="Enter message" />
+            <SelectField
+              state={object}
+              setState={setObject}
+              name="object"
+              label="Object"
+              options={objectOptions} />
+            <label htmlFor="message">
+              Message
+              <textarea
+              id="message"
+                value={message}
+                onChange={(e: any) => setMessage(e.target.value)}
+                className="form__input"
+                placeholder="Enter message" />
+            </label>
             <button className="form__btn" type="submit">Login</button>
             <SocialIcons class="dark"/>
           </form>

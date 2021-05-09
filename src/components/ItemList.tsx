@@ -17,15 +17,19 @@ const ItemList = () => {
   const [isGender, setIsGender] = useState(false);
   const [isSize, setIsSize] = useState(false);
 
+  const apiUrl = process.env.NODE_ENV === 'production'
+    ? 'https://charlies-closet-dev.herokuapp.com/api/items'
+    : 'http://localhost:8080/api/items'
+
   useEffect(() => {
-    fetch('http://localhost:8080/api/items')
+    fetch(apiUrl)
     .then((response: any) => response.json())
     .then((data: any) => {
       setItems(data);
       setIsLoading(false);
     })
     .catch(() => setError(true))
-  }, []);
+  }, [apiUrl]);
 
   const handleFilterByPrice = () => {
     const filteredItems = items.sort((a: any, b: any) => a.itemPrice.localeCompare(b.itemPrice));

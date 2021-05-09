@@ -1,15 +1,9 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { Link } from 'react-router-dom';
 import Copyright from './Copyright';
-import InputField from './InputField';
 import SocialIcons from './SocialIcons';
 
 const Footer = () => {
-  const [email, setEmail] = useState('');
-
-  const handleFormSubmit = (e: any) => {
-    e.preventDefault();
-  };
 
   return (
     <>
@@ -37,16 +31,6 @@ const Footer = () => {
           <div className="links">
             <h3 className="links__title">Newsletter</h3>
             <p className="links__subtitle">Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
-            <form onSubmit={handleFormSubmit}>
-              <InputField
-                class="footer"
-                value={email}
-                setValue={setEmail}
-                type="email"
-                placeholder="Votre mail"
-                maxLength={30} />
-              <button className="form__btn footer" type="submit">Submit</button>
-            </form>
           </div>
         </div>
       </footer>

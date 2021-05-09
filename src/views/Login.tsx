@@ -17,15 +17,19 @@ const Login = () => {
     <>
       <Header type="dark" fixed={false} />
       <main className="main">
-        <section className="split">
+        <section className="split__container background__white">
           <form className="split__left">
             <h1 className="split__title">Espace Client</h1>
             <InputField
+              id="username"
+              label="Username"
               type="text"
               placeholder="Enter username"
               value={email}
               setValue={setEmail} />
             <InputField
+              id="password"
+              label="Password"
               type="password"
               placeholder="Enter password"
               value={password}
