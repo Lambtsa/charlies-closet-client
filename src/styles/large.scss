@@ -96,6 +96,10 @@
 }
 .itemdetails__img {
   grid-column: span 1;
+  max-height: 600px;
+  &.thumbnail {
+    max-height: 20%;
+  }
 }
 
 /*

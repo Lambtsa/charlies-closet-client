@@ -1023,13 +1023,13 @@ select {
 .itemdetails__img {
   width: 100%;
   height: 100%;
-  max-height: 600px;
+  max-height: 360px;
   object-fit: cover;
   object-position: center;
   border-radius: 10px;
   grid-column: span 2;
   &.thumbnail {
-    max-height: 20%;
+    max-height: 15%;
   }
 }
 .itemdetails__header {
