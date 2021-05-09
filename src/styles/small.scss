@@ -52,7 +52,7 @@ p {
 .split__container {
   display: grid;
   grid-template-columns: 1fr;
-  gap: 1rem;
+  grid-gap: 1rem;
   min-height: 100%;
 }
 
@@ -464,7 +464,7 @@ select {
   max-width: 1140px;
   margin: 0 auto;
   display: grid;
-  gap: 1rem;
+  grid-gap: 1rem;
   grid-template-columns: 1fr;
 }
 .service {
@@ -489,7 +489,7 @@ select {
   max-width: 1140px;
   margin: 0 auto;
   display: grid;
-  gap: 1rem;
+  grid-gap: 1rem;
   grid-template-columns: 1fr;
 }
 .about__quote {
@@ -513,7 +513,7 @@ select {
   max-width: 1140px;  
   margin: 0 auto;
   display: grid;
-  gap: 1rem;
+  grid-gap: 1rem;
   grid-template-columns: repeat(2, 1fr);
 }
 .example__link {
@@ -541,7 +541,7 @@ select {
   max-width: 1140px;
   margin: 0 auto;
   display: grid;
-  gap: 1rem;
+  grid-gap: 1rem;
   grid-template-columns: 1fr;
 }
 .testimonial {
@@ -589,7 +589,7 @@ select {
   max-width: 1140px;
   margin: 0 auto;
   display: grid;
-  gap: 1rem;
+  grid-gap: 1rem;
   grid-template-columns: 1fr;
 }
 .step {
@@ -675,7 +675,7 @@ select {
   grid-template-rows: repeat(2, 1fr);
   grid-column: 1;
   grid-row: 2 / span 3;
-  gap: 1rem;
+  grid-gap: 1rem;
   height: 250px;
 }
 .color {
@@ -862,7 +862,7 @@ select {
   display: grid;
   align-items: center;
   grid-template-columns: 1fr;
-  gap: 1rem;
+  grid-gap: 1rem;
 }
 .paragraph__text {
   color: $grey;
@@ -907,7 +907,7 @@ select {
   margin: 0 auto;
   display: grid;
   grid-template-columns: repeat(2, 1fr);
-  gap: 1rem;
+  grid-gap: 1rem;
 }
 .item {
   position: relative;
@@ -1014,7 +1014,7 @@ select {
   max-width: 1140px;
   margin: 0 auto;
   display: grid;
-  gap: 1rem;
+  grid-gap: 1rem;
   grid-template-columns: 2fr 5fr 5fr;
 }
 .itemdetails__content {
@@ -1069,7 +1069,7 @@ select {
   position: relative;
   display: flex;
   flex-direction: column;
-  gap: 1rem;
+  grid-gap: 1rem;
   justify-content: center;
   align-items: center;
 }
@@ -1090,7 +1090,7 @@ select {
   margin: 0 auto;
   display: grid;
   grid-template-columns: 1fr;
-  gap: 1rem;
+  grid-gap: 1rem;
 }
 .links {
   display: flex;
