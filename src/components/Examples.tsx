@@ -22,12 +22,10 @@ const Examples = () => {
       return response.json();
     })
     .then((data: any) => {
-      console.log(data)
       setItems(data.slice(0, 6));
       setIsLoading(false);
     })
     .catch(err => {
-      console.log(err);
       setError(true);
     })
   }, [apiUrl]);
