@@ -2,9 +2,11 @@ import React, { useState } from 'react';
 import { Link, NavLink } from 'react-router-dom';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faHamburger, faTimes } from '@fortawesome/free-solid-svg-icons';
+import useAuth from '../hooks/useAuth';
 
 const AccountNavigation = (props: {children: any}) => {
   const { children } = props;
+  const { logoutUser } = useAuth();
   const [isClicked, setIsClicked] = useState(false);
 
   const handleSaveForm = (e: any) => {
@@ -21,7 +23,7 @@ const AccountNavigation = (props: {children: any}) => {
       <header className="header account">
         <div className="header__container">
           <Link to="/account/my-baby"><h2 className="header__logo">Charlie's closet</h2></Link>
-          <button className="header__logout" type="button">Se déconnecter</button>
+          <button onClick={logoutUser} className="header__logout" type="button">Se déconnecter</button>
           <button type="button" onClick={handleBtnClick} className="header__icon" ><FontAwesomeIcon className="burger fixed" icon={faHamburger} /></button>
         </div>
       </header>
@@ -40,7 +42,7 @@ const AccountNavigation = (props: {children: any}) => {
             <NavLink activeClassName="account__link--selected" className="account__link" to="/account/my-details">Mes coordonnées</NavLink>
             <button onClick={handleBtnClick} type="button" className="header__close"><FontAwesomeIcon icon={faTimes} /></button>
           </nav>
-          <button className="account__logout" type="button">Se déconnecter</button>
+          <button onClick={logoutUser} className="account__logout" type="button">Se déconnecter</button>
         </div>
         <div>
           {children}

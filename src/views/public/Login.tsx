@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import charlie from '../../assets/charlies_closet.webp';
+import useAuth from '../../hooks/useAuth';
 
 /*
   Components
@@ -10,14 +11,20 @@ import InputField from '../../components/InputField';
 import Copyright from '../../components/Copyright';
 
 const Login = () => {
+  const { loginUser, error, setError } = useAuth();
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
-  const [error, setError] = useState(false);
 
-  const handleFormSubmit = (e: any) => {
+  const handleFormSubmit = async (e: any) => {
     e.preventDefault();
+    
     if (!email || !password) {
       setError(true);
+    } else {
+      await loginUser({
+        email,
+        password,
+      });
     }
   };
 
@@ -29,10 +36,10 @@ const Login = () => {
           <form onSubmit={handleFormSubmit} className="split__left">
             <h1 className="split__title">Espace Client</h1>
             <InputField
-              id="username"
-              label="Username"
-              type="text"
-              placeholder="Enter username"
+              id="email"
+              label="Email"
+              type="email"
+              placeholder="Enter email"
               value={email}
               setValue={setEmail} />
             <InputField

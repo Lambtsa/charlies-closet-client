@@ -17,7 +17,7 @@ const OnboardingStep = (props: OnboardingType) => {
 
   const handleSubmitPayment = (e: any) => {
     e.preventDefault();
-    history.push(`/account/dashboard`);
+    history.push(`/account/my-baby`);
   }
   const handleSubmitForm = (e: any) => {
     e.preventDefault();

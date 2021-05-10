@@ -1,8 +1,9 @@
 import React, { useState } from 'react';
-import { Link, useHistory } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faCheck } from '@fortawesome/free-solid-svg-icons';
 import charlie from '../../assets/charlies_closet.webp';
+import useAuth from '../../hooks/useAuth';
 
 /*
   Components
@@ -12,22 +13,27 @@ import InputField from '../../components/InputField';
 import Copyright from '../../components/Copyright';
 
 const Register = () => {
-  const history = useHistory();
+  const { registerUser, error, setError } = useAuth();
   const [firstName, setFirstName] = useState('');
   const [lastName, setLastName] = useState('');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [isAccepted, setIsAccepted] = useState(false);
-  const [error, setError] = useState(false);
 
-  const handleFormSubmit = (e: any) => {
+  const handleFormSubmit = async (e: any) => {
     e.preventDefault();
     /* handle empty forms */
     if (!firstName || !lastName || !email || !password || !isAccepted) {
       window.scrollTo(0, 0);
-      return setError(true);
+      setError(true);
+    } else {
+      await registerUser({
+        first_name: firstName,
+        last_name: lastName,
+        email,
+        password,
+      });
     }
-    history.push('/onboarding/my-baby');
   }
 
   return (

@@ -1,6 +1,8 @@
 import React from 'react';
 import { BrowserRouter, Route, Switch } from 'react-router-dom';
 import './main.scss';
+import { UserProvider } from './hooks/UserContext';
+import SecureRoute from './hooks/SecureRoute';
 
 /*
   Views
@@ -29,26 +31,28 @@ import AccountMyDetails from './views/account/AccountMyDetails';
 const App = () => (
   <>
     <BrowserRouter>
-      <Switch>
-        <Route exact path="/" component={Home} />
-        <Route exact path="/boxes" component={Boxes} />
-        <Route exact path="/boutique" component={Boutique} />
-        <Route exact path="/boutique/:id" component={ItemDetails} />
-        <Route exact path="/register" component={Register} />
-        <Route exact path="/login" component={Login} />
-        <Route exact path="/about-us" component={AboutUs} />
-        <Route exact path="/faq" component={FAQ} />
-        <Route exact path="/terms" component={Terms} />
-        <Route exact path="/contact-us" component={ContactUs} />
-        <Route exact path="/privacy" component={Privacy} />
-        <Route exact path="/onboarding/my-baby" component={OnboardingMyBaby} />
-        <Route exact path="/onboarding/my-box" component={OnboardingMyBox} />
-        <Route exact path="/onboarding/my-details" component={OnboardingMyDetails} />
-        <Route exact path="/onboarding/payment" component={OnboardingPayment} />
-        <Route exact path="/account/my-baby" component={AccountMyBaby} />
-        <Route exact path="/account/my-box" component={AccountMyBox} />
-        <Route exact path="/account/my-details" component={AccountMyDetails} />
-      </Switch>
+      <UserProvider>
+        <Switch>
+          <Route exact path="/" component={Home} />
+          <Route exact path="/boxes" component={Boxes} />
+          <Route exact path="/boutique" component={Boutique} />
+          <Route exact path="/boutique/:id" component={ItemDetails} />
+          <Route exact path="/register" component={Register} />
+          <Route exact path="/login" component={Login} />
+          <Route exact path="/about-us" component={AboutUs} />
+          <Route exact path="/faq" component={FAQ} />
+          <Route exact path="/terms" component={Terms} />
+          <Route exact path="/contact-us" component={ContactUs} />
+          <Route exact path="/privacy" component={Privacy} />
+          <SecureRoute path="/onboarding/my-baby" component={OnboardingMyBaby} />
+          <SecureRoute path="/onboarding/my-box" component={OnboardingMyBox} />
+          <SecureRoute path="/onboarding/my-details" component={OnboardingMyDetails} />
+          <SecureRoute path="/onboarding/payment" component={OnboardingPayment} />
+          <SecureRoute path="/account/my-baby" component={AccountMyBaby} />
+          <SecureRoute path="/account/my-box" component={AccountMyBox} />
+          <SecureRoute path="/account/my-details" component={AccountMyDetails} />
+        </Switch>
+      </UserProvider>
     </BrowserRouter>
   </>
 );
