@@ -1,12 +1,22 @@
 import React, { useState } from 'react';
+import { useHistory } from 'react-router-dom';
+
+/*
+  Components
+*/
 import OnboardingStep from '../../components/OnboardingStep';
 
 const MyBox = () => {
+  const history = useHistory()
   const [selected, setSelected] = useState('btn-2');
 
   const handleBtnClick = (btnId: string) => {
     setSelected(btnId);
   }
+  const handleFormSubmit = (e: any) => {
+    e.preventDefault();
+    history.push('/onboarding/my-details');
+  };
 
   return (
     <>
@@ -15,7 +25,7 @@ const MyBox = () => {
           <h2 className="header__logo">Charlie's closet</h2>
         </div>
       </header>
-      <OnboardingStep next="my-details" previous="my-baby">
+      <OnboardingStep handleNext={handleFormSubmit} previous="my-baby">
         <div className="boxes__container">
           <h1 className="boxes__title">Ma box</h1>
           <div className="split__container">

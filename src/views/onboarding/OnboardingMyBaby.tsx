@@ -1,4 +1,9 @@
 import React, { useState } from 'react';
+import { useHistory } from 'react-router-dom';
+
+/*
+  Components
+*/
 import InputField from '../../components/InputField';
 import OnboardingStep from '../../components/OnboardingStep';
 import ColorSelector from '../../components/ColorSelector';
@@ -6,6 +11,7 @@ import SelectField from '../../components/SelectField';
 import DateField from '../../components/DateField';
 
 const MyBaby = () => {
+  const history = useHistory();
   const [firstName, setFirstName] = useState('');
   const [birth, setBirth] = useState('');
   const [gender, setGender] = useState('');
@@ -27,6 +33,11 @@ const MyBaby = () => {
     'pantalons': 'Pantalons',
   }
 
+  const handleFormSubmit = (e: any) => {
+    e.preventDefault();
+    history.push('/onboarding/my-box');
+  };
+
   return (
     <>
       <header className="header">
@@ -34,7 +45,7 @@ const MyBaby = () => {
           <h2 className="header__logo">Charlie's closet</h2>
         </div>
       </header>
-      <OnboardingStep next="my-box">
+      <OnboardingStep handleNext={handleFormSubmit}>
         <form className="form__container">
           <h1 className="form__title">Mon bébé</h1>
           <div className="split__container">

@@ -1,19 +1,26 @@
 import React, { useState } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faLock } from '@fortawesome/free-solid-svg-icons';
-import OnboardingStep from '../../components/OnboardingStep';
+import { useHistory } from 'react-router-dom';
 
 /*
   Components
 */
+import OnboardingStep from '../../components/OnboardingStep';
 import InputField from '../../components/InputField';
 import DateField from '../../components/DateField';
 
 const Payment = () => {
+  const history = useHistory();
   const [name, setName] = useState('');
   const [cardNumber, setCardNumber] = useState('');
   const [expiry, setExpiry] = useState('');
   const [cvv, setCvv] = useState('');
+
+  const handleFormSubmit = (e: any) => {
+    e.preventDefault();
+    history.push('/account/my-baby');
+  }
 
   return (
     <>
@@ -22,11 +29,11 @@ const Payment = () => {
           <h2 className="header__logo">Charlie's closet</h2>
         </div>
       </header>
-      <OnboardingStep previous="my-details" next="" paymentStep>
+      <OnboardingStep previous="my-details" handlePayment={handleFormSubmit}>
         <div className="form__container">
           <h1 className="form__title">Paiement</h1>
           <div className="split__container">
-            <form className="split__left payment">
+            <form onSubmit={handleFormSubmit} className="split__left payment">
               <InputField
                 id="name"
                 label="Nom indiqué sur la carte"

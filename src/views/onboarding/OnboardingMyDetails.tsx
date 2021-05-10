@@ -1,4 +1,9 @@
 import React, { useState } from 'react';
+import { useHistory } from 'react-router-dom';
+
+/*
+  Components
+*/
 import InputField from '../../components/InputField';
 import OnboardingStep from '../../components/OnboardingStep';
 import SnackBar from '../../components/SnackBar';
@@ -8,6 +13,7 @@ const baseUrl = process.env.NODE_ENV === 'production'
   : 'http://localhost:8080';
 
 const MyBaby = () => {
+  const history = useHistory();
   const [firstName, setFirstName] = useState('');
   const [lastName, setLastName] = useState('');
   const [email, setEmail] = useState('');
@@ -41,6 +47,11 @@ const MyBaby = () => {
     setSuggestions([]);
   }
 
+  const handleFormSubmit = (e: any) => {
+    e.preventDefault();
+    history.push('/onboarding/payment');
+  };
+
   return (
     <>
       <header className="header">
@@ -48,8 +59,8 @@ const MyBaby = () => {
           <h2 className="header__logo">Charlie's closet</h2>
         </div>
       </header>
-      <OnboardingStep next="payment" previous="my-box">
-        <form className="form__container">
+      <OnboardingStep handleNext={handleFormSubmit} previous="my-box">
+        <form onSubmit={handleFormSubmit} className="form__container">
           <h1 className="form__title">Mes coordonnées</h1>
           <div className="split__container">
           <InputField
