@@ -17,10 +17,14 @@ import ContactUs from './views/public/ContactUs';
 import Privacy from './views/public/Privacy';
 import ItemDetails from './views/public/ItemDetails';
 
-import MyBaby from './views/account/MyBaby';
-import MyBox from './views/account/MyBox';
-import MyDetails from './views/account/MyDetails';
-import Payment from './views/account/Payment';
+import OnboardingMyBaby from './views/onboarding/OnboardingMyBaby';
+import OnboardingMyBox from './views/onboarding/OnboardingMyBox';
+import OnboardingMyDetails from './views/onboarding/OnboardingMyDetails';
+import OnboardingPayment from './views/onboarding/OnboardingPayment';
+
+import AccountMyBaby from './views/account/AccountMyBaby';
+import AccountMyBox from './views/account/AccountMyBox';
+import AccountMyDetails from './views/account/AccountMyDetails';
 
 const App = () => (
   <>
@@ -37,11 +41,13 @@ const App = () => (
         <Route exact path="/terms" component={Terms} />
         <Route exact path="/contact-us" component={ContactUs} />
         <Route exact path="/privacy" component={Privacy} />
-        <Route exact path="/onboarding/my-baby" component={MyBaby} />
-        <Route exact path="/onboarding/my-box" component={MyBox} />
-        <Route exact path="/onboarding/my-box" component={MyBox} />
-        <Route exact path="/onboarding/my-details" component={MyDetails} />
-        <Route exact path="/onboarding/payment" component={Payment} />
+        <Route exact path="/onboarding/my-baby" component={OnboardingMyBaby} />
+        <Route exact path="/onboarding/my-box" component={OnboardingMyBox} />
+        <Route exact path="/onboarding/my-details" component={OnboardingMyDetails} />
+        <Route exact path="/onboarding/payment" component={OnboardingPayment} />
+        <Route exact path="/account/my-baby" component={AccountMyBaby} />
+        <Route exact path="/account/my-box" component={AccountMyBox} />
+        <Route exact path="/account/my-details" component={AccountMyDetails} />
       </Switch>
     </BrowserRouter>
   </>

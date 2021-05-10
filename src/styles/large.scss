@@ -9,6 +9,12 @@
 /*
   Header
 */
+.header.account {
+  .header__container {
+    max-width: none;
+    margin: 0;
+  }
+}
 .header__container {
   justify-content: space-between;
   align-items: center;
@@ -35,6 +41,9 @@
 .header__icon {
   display: none;
 }
+.header__logout {
+  display: block;
+}
 .header__logo {
   font-size: 2rem;
 }
@@ -48,6 +57,9 @@
   &:hover {
     text-decoration: underline;
   }
+}
+.header__logout:hover {
+  text-decoration: underline;
 }
 /*
   Homepage
@@ -110,6 +122,38 @@
 */
 .paragraph__split {
   grid-template-columns: 1fr 2fr;
+}
+/*
+  Account
+*/
+.account__profile {
+  justify-content: flex-start;
+}
+.account__container {
+  grid-template-columns: 1fr 4fr;
+}
+.account__navigation {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-content: center;
+  justify-content: flex-start;
+  height: auto;
+  width: auto;
+  padding: 2rem 0;
+  background-color: #E4E6CF;
+  z-index: 1000;
+  border-radius: 10px;
+}
+.account__logout {
+  display: none;
+}
+.account__profile {
+  margin-bottom: 1rem;
+}
+.account__link {
+  text-align: left;
+  font-size: 1rem;
 }
 
 /*
