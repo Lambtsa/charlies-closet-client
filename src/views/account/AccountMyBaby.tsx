@@ -31,9 +31,14 @@ const MyBaby = () => {
     'pantalons': 'Pantalons',
   }
 
+  const handleSaveForm = (e: any) => {
+    e.preventDefault();
+    console.log('clicked save');
+  };
+
   return (
     <>
-      <AccountNavigation>
+      <AccountNavigation handleSaveForm={handleSaveForm}>
         <form className="form__container account">
           <h1 className="form__title">Mon bébé</h1>
           <div className="split__container">

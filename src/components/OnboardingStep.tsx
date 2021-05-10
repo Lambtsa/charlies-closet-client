@@ -8,7 +8,6 @@ interface OnboardingType {
   handlePayment?: (e: any) => void,
   handleNext?: (e: any) => void,
   previous?: string,
-
 }
 
 const OnboardingStep = (props: OnboardingType) => {

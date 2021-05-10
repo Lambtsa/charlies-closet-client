@@ -12,9 +12,14 @@ const MyBaby = () => {
     setSelected(btnId);
   }
 
+  const handleSaveForm = (e: any) => {
+    e.preventDefault();
+    console.log('clicked save');
+  };
+
   return (
     <>
-      <AccountNavigation>
+      <AccountNavigation handleSaveForm={handleSaveForm}>
         <div className="boxes__container account">
           <h1 className="boxes__title">Ma box</h1>
           <div className="split__container">

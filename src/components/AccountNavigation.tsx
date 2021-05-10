@@ -5,16 +5,16 @@ import { faHamburger, faTimes } from '@fortawesome/free-solid-svg-icons';
 import useAuth from '../hooks/useAuth';
 import { UserContext } from '../hooks/UserContext';
 
-const AccountNavigation = (props: {children: any}) => {
-  const { children } = props;
+interface AccountType {
+  children: any,
+  handleSaveForm: (e: any) => void,
+}
+
+const AccountNavigation = (props: AccountType) => {
+  const { children, handleSaveForm } = props;
   const { logoutUser } = useAuth();
   const { user } = useContext(UserContext);
   const [isClicked, setIsClicked] = useState(false);
-
-  const handleSaveForm = (e: any) => {
-    e.preventDefault();
-    console.log('clicked');
-  }
 
   const handleBtnClick = () => {
     setIsClicked(!isClicked);
