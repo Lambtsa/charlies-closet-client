@@ -26,34 +26,34 @@ const Payment = () => {
         <div className="form__container">
           <h1 className="form__title">Paiement</h1>
           <div className="split__container">
-            <form className="split__left">
+            <form className="split__left payment">
               <InputField
                 id="name"
-                label="Name on card"
+                label="Nom indiqué sur la carte"
                 type="text"
                 value={name}
                 setValue={setName}
-                placeholder="Enter name on card" />
+                placeholder="Nom indiqué sur la carte" />
               <InputField
                 id="card_number"
-                label="Card number"
+                label="Numéro de carte"
                 type="number"
                 value={cardNumber}
                 setValue={setCardNumber}
-                placeholder="Enter card number" />
+                placeholder="Numéro de carte" />
               <DateField
                 id="expiry"
-                label="Expiry Date"
+                label="Date d'expiration"
                 value={expiry}
                 setValue={setExpiry}
                 placeholder="MM-AA" />
               <InputField
                 id="cvv"
-                label="CVV"
+                label="Cryptogramme visuel"
                 type="password"
                 value={cvv}
                 setValue={setCvv}
-                placeholder="Enter CVV" />
+                placeholder="CVV" />
             </form>
             <div className="payment__details">
               <div className="box__details">

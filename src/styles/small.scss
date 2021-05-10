@@ -915,6 +915,7 @@ input::-webkit-calendar-picker-indicator{
   justify-content: center;
   width: 60px;
   height: 60px;
+  text-transform: uppercase;
   font-size: 1.2rem;
   border-radius: 50%;
   margin: 0;
@@ -933,6 +934,7 @@ input::-webkit-calendar-picker-indicator{
 }
 .profile__title {
   margin-bottom: .2rem;
+  text-transform: capitalize;
 }
 .account__links {
   display: flex;
@@ -1210,6 +1212,9 @@ input::-webkit-calendar-picker-indicator{
   align-items: center;
   & > * {
     margin-bottom: 1rem;
+  }
+  &.payment {
+    padding: 0;
   }
 }
 .split__img {

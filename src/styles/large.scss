@@ -204,6 +204,9 @@
 }
 .split__left {
   padding: 3rem 0;
+  &.payment {
+    padding: 0;
+  }
 }
 .box:hover {
   box-shadow: 0 0 6px rgba($black, .3);

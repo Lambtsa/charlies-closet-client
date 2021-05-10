@@ -1,12 +1,14 @@
-import React, { useState } from 'react';
+import React, { useState, useContext } from 'react';
 import { Link, NavLink } from 'react-router-dom';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faHamburger, faTimes } from '@fortawesome/free-solid-svg-icons';
 import useAuth from '../hooks/useAuth';
+import { UserContext } from '../hooks/UserContext';
 
 const AccountNavigation = (props: {children: any}) => {
   const { children } = props;
   const { logoutUser } = useAuth();
+  const { user } = useContext(UserContext);
   const [isClicked, setIsClicked] = useState(false);
 
   const handleSaveForm = (e: any) => {
@@ -30,10 +32,10 @@ const AccountNavigation = (props: {children: any}) => {
       <section className="account__container">
         <div className={`account__navigation ${isClicked ? 'clicked' : ''}`}>
           <div className="account__profile">
-            <h3 className="profile__icon">TL</h3>
+            <h3 className="profile__icon">{`${user.first_name[0]} ${user.last_name[0]}`}</h3>
             <div className="profile__details">
-              <h3 className="profile__title">Thom Lama</h3>
-              <p className="profile__subtitle">sheep@example.com</p>
+              <h3 className="profile__title">{`${user.first_name} ${user.last_name}`}</h3>
+              <p className="profile__subtitle">{user.email}</p>
             </div>
           </div>
           <nav className="account__links">

@@ -52,44 +52,44 @@ const MyBaby = () => {
         <form className="form__container">
           <h1 className="form__title">Mes coordonnées</h1>
           <div className="split__container">
-            <InputField
+          <InputField
               id="first_name"
-              label="First name"
+              label="Prénom"
               type="text"
               value={firstName}
               setValue={setFirstName}
-              placeholder="Enter first name" />
+              placeholder="Prénom" />
             <InputField
               id="last_name"
-              label="Last name"
+              label="Nom de famille"
               type="text"
               value={lastName}
               setValue={setLastName}
-              placeholder="Enter last name" />
+              placeholder="Nom de famille" />
             <InputField
               id="email"
               label="Email"
               type="email"
               value={email}
               setValue={setEmail}
-              placeholder="Enter date of birth" />
+              placeholder="Email" />
             <InputField
               id="telephone"
               label="Téléphone"
               type="tel"
               value={telephone}
               setValue={setTelephone}
-              placeholder="Enter telephone" />
+              placeholder="Téléphone" />
             <div className="address">
               <label>
-                Address
+                Addresse
                 <input
                   id="adresse"
                   type="text"
                   className={`form__input ${suggestions.length > 0 ? 'drop' : ''}`}
                   value={address}
                   onChange={handleAddressChange}
-                  placeholder="Start typing to search" />
+                  placeholder="Rechercher votre addresse" />
               </label>
               {suggestions.length > 0 && (
                 <ul className="address__list">

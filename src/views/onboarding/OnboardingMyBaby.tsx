@@ -14,17 +14,17 @@ const MyBaby = () => {
   const [color, setColor] = useState('');
 
   const genderOptions = {
-    'boy': 'Boy',
-    'girl': 'Girl',
+    'garçon': 'Garçon',
+    'fille': 'Fille',
   }
   const sizeOptions = {
-    "3 months": '3 months',
-    "6 months": '6 months',
-    "9 months": '9 months'
+    "3 mois": '3 mois',
+    "6 mois": '6 mois',
+    "9 mois": '9 mois'
   };
 
   const preferencesOptions = {
-    'pants': 'Pants',
+    'pantalons': 'Pantalons',
   }
 
   return (
@@ -38,16 +38,16 @@ const MyBaby = () => {
         <form className="form__container">
           <h1 className="form__title">Mon bébé</h1>
           <div className="split__container">
-            <InputField
+          <InputField
               id="first_name"
-              label="First name"
+              label="Prénom"
               type="text"
               value={firstName}
               setValue={setFirstName}
-              placeholder="Enter first name" />
+              placeholder="Prénom" />
             <DateField
               id="birth_date"
-              label="Date of birth"
+              label="Date de naissance"
               value={birth}
               setValue={setBirth}
               placeholder="JJ-MM-AAAA" />
@@ -56,19 +56,19 @@ const MyBaby = () => {
               state={gender}
               setState={setGender}
               name="gender"
-              label="Gender"
+              label="Genre"
               options={genderOptions} />
             <SelectField
               state={size}
               setState={setSize}
               name="size"
-              label="Size"
+              label="Taille"
               options={sizeOptions} />
             <SelectField
               state={preferences}
               setState={setPreferences}
               name="preferences"
-              label="Preferences"
+              label="Préférences"
               options={preferencesOptions} />
           </div>
         </form>

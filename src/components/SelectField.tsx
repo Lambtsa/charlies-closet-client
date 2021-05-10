@@ -24,7 +24,7 @@ const SelectField = (props: SelectFieldProps) => {
         <label htmlFor={name}>
           {label}
           <select id={name} value={state} onChange={(e:any) => setState(e.target.value)} className="select">
-            <option value="select gender">Select option</option>
+            <option value="select option">{`Choisir ${label.toLowerCase()}`}</option>
             {options && Object.keys(options).map((key: string, index: number) => (
               <option key={index} value={key}>{options[key]}</option>
             ))}
