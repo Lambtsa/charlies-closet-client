@@ -30,13 +30,14 @@ const UserProvider = (props: {children: any }) => {
           setUser(data.currentUser);
           setIsLoading(false);
         })
-        .catch(() => {
+        .catch((err) => {
           setIsLoading(false);
         });
     };
 
     findUser();
-  }, [token]);
+    /* eslint-disable-next-line */
+  }, []);
 
   const userState = {
     user,

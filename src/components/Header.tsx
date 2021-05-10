@@ -1,7 +1,8 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useContext } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faHamburger, faTimes } from '@fortawesome/free-solid-svg-icons';
 import { Link } from 'react-router-dom';
+import { UserContext } from '../hooks/UserContext'
 
 interface HeaderProps {
   type: string,
@@ -10,6 +11,7 @@ interface HeaderProps {
 
 const Header = (props: HeaderProps) => {
   const { type, fixed } = props;
+  const { user } = useContext(UserContext);
   const [isScrolled, setIsScrolled] = useState(false);
   const [isClicked, setIsClicked] = useState(false);
 
@@ -46,8 +48,13 @@ const Header = (props: HeaderProps) => {
           <nav className={`header__links ${isClicked ? 'clicked' : ''}`}>
             <Link className="header__link" to="/boxes">Our boxes</Link>
             <Link className="header__link" to="/boutique">Our store</Link>
-            <Link className="header__link" to="/register">Register</Link>
-            <Link className="header__link" to="/login">Login</Link>
+            {user === null && (
+              <>
+                <Link className="header__link" to="/register">Register</Link>
+                <Link className="header__link" to="/login">Login</Link>
+              </>
+            )}
+            {user !== null && <Link className="header__link" to="/account/my-baby">My account</Link>}
             <button onClick={handleBtnClick} type="button" className="header__close"><FontAwesomeIcon icon={faTimes} /></button>
           </nav>
           <button type="button" onClick={handleBtnClick} className="header__icon" ><FontAwesomeIcon className={`burger ${fixed ? 'fixed' : ''}`} icon={faHamburger} /></button>

@@ -19,7 +19,6 @@ const Examples = () => {
   useEffect(() => {
     fetch(apiUrl)
     .then((response: any) => {
-      console.log(response);
       return response.json();
     })
     .then((data: any) => {

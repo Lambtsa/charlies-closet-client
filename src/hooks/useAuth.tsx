@@ -91,8 +91,8 @@ const useAuth = () => {
     })
       .then(response => response.json())
       .then((data: any) => {
-        setUser(null);
         setToken(data.token);
+        setUser(null);
         history.push('/');
       })
       .catch(() => setError(true));
