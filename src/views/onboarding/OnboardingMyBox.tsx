@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useHistory } from 'react-router-dom';
 
 /*
@@ -9,17 +9,20 @@ import OnboardingStep from '../../components/OnboardingStep';
 const setLocalStorage = (boxId: string) => {
   if(!localStorage.box) {
     localStorage.box = JSON.stringify({ boxId })
-  } else {
-
   }
   return JSON.parse(localStorage.box).boxId;
-
 }
 
 const MyBox = () => {
   const history = useHistory()
   const [selected, setSelected] = useState(setLocalStorage('btn-2'));
   console.log(selected);
+
+  useEffect(() => {
+    localStorage.box = JSON.stringify({
+      boxId: selected,
+    })
+  }, [selected]);
 
   const handleBtnClick = (btnId: string) => {
     setSelected(btnId);

@@ -1,4 +1,4 @@
-import React, { useState, useContext, useEffect } from 'react';
+import React, { useState, useContext } from 'react';
 import { useHistory } from 'react-router-dom';
 import { UserContext } from '../../hooks/UserContext';
 
@@ -38,10 +38,6 @@ const MyBaby = () => {
   const [error, setError] = useState(false);
 
   console.log(user);
-
-  useEffect(() => {
-    console.log('this is first_name', firstName);
-  }, [firstName]);
 
   const genderOptions = {
     'garçon': 'Garçon',
