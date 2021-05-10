@@ -12,13 +12,26 @@ const baseUrl = process.env.NODE_ENV === 'production'
   ? 'https://charlies-closet-dev.herokuapp.com'
   : 'http://localhost:8080';
 
+const checkLocalStorage = (query: string) => {
+  if(!localStorage.user) {
+    localStorage.user = JSON.stringify({
+      first_name: '',
+      last_name: '',
+      email: '',
+      telephone: '',
+      address: '',
+    })
+  };
+  return JSON.parse(localStorage.user)[query];
+}
+
 const MyBaby = () => {
   const history = useHistory();
-  const [firstName, setFirstName] = useState('');
-  const [lastName, setLastName] = useState('');
-  const [email, setEmail] = useState('');
-  const [telephone, setTelephone] = useState('');
-  const [address, setAddress] = useState('');
+  const [firstName, setFirstName] = useState(checkLocalStorage('first_name'));
+  const [lastName, setLastName] = useState(checkLocalStorage('last_name'));
+  const [email, setEmail] = useState(checkLocalStorage('email'));
+  const [telephone, setTelephone] = useState(checkLocalStorage('telephone'));
+  const [address, setAddress] = useState(checkLocalStorage('address'));
   const [suggestions, setSuggestions] = useState([]);
   const [error, setError] = useState(false);
 
@@ -49,7 +62,21 @@ const MyBaby = () => {
 
   const handleFormSubmit = (e: any) => {
     e.preventDefault();
-    history.push('/onboarding/payment');
+    if (!firstName || !lastName || !email || !telephone || !address) {
+      window.scrollTo(0, 0);
+      setError(true);
+    } else {
+      setError(false);
+      const newDetailsObj = {
+        first_name: firstName,
+        last_name: lastName,
+        email,
+        telephone,
+        address,
+      };
+      localStorage.user = JSON.stringify(newDetailsObj);
+      history.push('/onboarding/payment');
+    }
   };
 
   return (
