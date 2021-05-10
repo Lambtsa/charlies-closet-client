@@ -18,6 +18,7 @@ import Terms from './views/public/Terms';
 import ContactUs from './views/public/ContactUs';
 import Privacy from './views/public/Privacy';
 import ItemDetails from './views/public/ItemDetails';
+import NotFound from './views/public/NotFound';
 
 import OnboardingMyBaby from './views/onboarding/OnboardingMyBaby';
 import OnboardingMyBox from './views/onboarding/OnboardingMyBox';
@@ -51,6 +52,7 @@ const App = () => (
           <SecureRoute path="/account/my-baby" component={AccountMyBaby} />
           <SecureRoute path="/account/my-box" component={AccountMyBox} />
           <SecureRoute path="/account/my-details" component={AccountMyDetails} />
+          <Route path="/" component={NotFound} />
         </Switch>
       </UserProvider>
     </BrowserRouter>
