@@ -25,8 +25,6 @@ const Payment = () => {
   const [cvv, setCvv] = useState('');
   const [error, setError] = useState(false);
 
-  console.log(selectedBox);
-
   useEffect(() => {
     setIsLoading(true);
     getBoxById(user.boxId)

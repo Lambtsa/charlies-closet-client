@@ -17,7 +17,7 @@ const MyBox = () => {
   const [selected, setSelected] = useState(user.boxId);
   const [boxes, setBoxes] = useState([]);
   const [error, setError] = useState(false);
-  
+
   const sortBoxesByPrice = (boxes: any) => {
     return boxes.sort((a: any, b: any) => a.boxPrice - b.boxPrice);
   };
@@ -25,7 +25,9 @@ const MyBox = () => {
   useEffect(() => {
     getAllBoxes()
       .then(response => response.json())
-      .then((data: any) => setBoxes(sortBoxesByPrice(data)))
+      .then((data: any) => {
+        setBoxes(sortBoxesByPrice(data));
+      })
       .catch(() => setError(true))
   }, []);
 
