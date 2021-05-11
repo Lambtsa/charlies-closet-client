@@ -1,6 +1,7 @@
 import React, { useState, useContext } from 'react';
 import { useHistory } from 'react-router-dom';
 import { UserContext } from '../../hooks/UserContext';
+import { updateUser } from '../../helpers/api-helpers';
 
 /*
   Components
@@ -12,32 +13,17 @@ import SelectField from '../../components/SelectField';
 import DateField from '../../components/DateField';
 import SnackBar from '../../components/SnackBar';
 
-const checkLocalStorage = (query: string) => {
-  if(!localStorage.baby) {
-    localStorage.baby = JSON.stringify({
-      first_name: '',
-      birthday: '',
-      gender: '',
-      size: '',
-      preferences: '',
-      color: '',
-    })
-  };
-  return JSON.parse(localStorage.baby)[query];
-}
-
 const MyBaby = () => {
-  const { user } = useContext(UserContext);
+  const { user, findUser } = useContext(UserContext);
+  const token = JSON.parse(localStorage.token);
   const history = useHistory();
-  const [firstName, setFirstName] = useState(checkLocalStorage('first_name'));
-  const [birth, setBirth] = useState(checkLocalStorage('birthday'));
-  const [gender, setGender] = useState(checkLocalStorage('gender'));
-  const [size, setSize] = useState(checkLocalStorage('size'));
-  const [preferences, setPreferences] = useState(checkLocalStorage('preferences'));
-  const [color, setColor] = useState(checkLocalStorage('color'));
+  const [firstName, setFirstName] = useState(user.babyDetails.first_name);
+  const [birth, setBirth] = useState(user.babyDetails.birth_date);
+  const [gender, setGender] = useState(user.babyDetails.gender);
+  const [size, setSize] = useState(user.babyDetails.size);
+  const [preferences, setPreferences] = useState(user.babyDetails.preferences);
+  const [color, setColor] = useState(user.babyDetails.color);
   const [error, setError] = useState(false);
-
-  console.log(user);
 
   const genderOptions = {
     'garçon': 'Garçon',
@@ -53,7 +39,7 @@ const MyBaby = () => {
     'pantalons': 'Pantalons',
   }
 
-  const handleFormSubmit = (e: any) => {
+  const handleFormSubmit = async (e: any) => {
     e.preventDefault();
     if (!firstName || !birth || !gender || !size || !preferences || !color) {
       window.scrollTo(0, 0);
@@ -61,14 +47,20 @@ const MyBaby = () => {
     } else {
       setError(false);
       const newBabyObj = {
-        first_name: firstName,
-        birthday: birth,
-        gender,
-        size,
-        preferences,
-        color,
+        babyDetails: {
+          first_name: firstName,
+          birth_date: birth,
+          gender,
+          size,
+          preferences,
+          color,
+        }
       };
-      localStorage.baby = JSON.stringify(newBabyObj);
+      const response = await updateUser(user._id, token, newBabyObj);
+      if (!response.ok) {
+        return setError(true);
+      }
+      findUser();
       history.push('/onboarding/my-box');
     }
   };

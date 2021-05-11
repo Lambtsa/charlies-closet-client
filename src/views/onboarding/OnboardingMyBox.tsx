@@ -1,34 +1,40 @@
-import React, { useEffect, useState } from 'react';
+import React, { useState, useContext, useEffect } from 'react';
 import { useHistory } from 'react-router-dom';
+import { UserContext } from '../../hooks/UserContext';
+import { updateUser, getAllBoxes } from '../../helpers/api-helpers';
 
 /*
   Components
 */
 import OnboardingStep from '../../components/OnboardingStep';
-
-const setLocalStorage = (boxId: string) => {
-  if(!localStorage.box) {
-    localStorage.box = JSON.stringify({ boxId })
-  }
-  return JSON.parse(localStorage.box).boxId;
-}
+import SnackBar from '../../components/SnackBar';
+import Box from '../../components/Box';
 
 const MyBox = () => {
-  const history = useHistory()
-  const [selected, setSelected] = useState(setLocalStorage('btn-2'));
-  console.log(selected);
+  const { user, findUser } = useContext(UserContext);
+  const token = JSON.parse(localStorage.token);
+  const history = useHistory();
+  const [selected, setSelected] = useState(user.boxId);
+  const [boxes, setBoxes] = useState([]);
+  const [error, setError] = useState(false);
 
   useEffect(() => {
-    localStorage.box = JSON.stringify({
-      boxId: selected,
-    })
-  }, [selected]);
+    getAllBoxes()
+      .then(response => response.json())
+      .then((data: any) => setBoxes(data))
+      .catch(() => setError(true))
+  }, []);
 
   const handleBtnClick = (btnId: string) => {
     setSelected(btnId);
   }
-  const handleFormSubmit = (e: any) => {
+  const handleFormSubmit = async (e: any) => {
     e.preventDefault();
+    const response = await updateUser(user._id, token, { boxId: selected });
+    if (!response.ok) {
+      return setError(true);
+    }
+    findUser();
     history.push('/onboarding/my-details');
   };
 
@@ -41,34 +47,12 @@ const MyBox = () => {
       </header>
       <OnboardingStep handleNext={handleFormSubmit} previous="my-baby">
         <div className="boxes__container">
+          {error && <SnackBar state={error} setState={setError} type="error" message="Problem with boxes" />}
           <h1 className="boxes__title">Ma box</h1>
           <div className="split__container">
-            <button
-              type="button"
-              onClick={() => handleBtnClick("btn-1")}
-              className={`box ${selected === 'btn-1' ? 'selected' : ''}`}>
-              <h2 className="box__title">La box fashion</h2>
-              <ul>
-                <li className="box__list">2 pantalons</li>
-                <li className="box__list">2 hauts</li>
-                <li className="box__list">1 ensemble</li>
-              </ul>
-              <p className="box__price">29,99€/mois</p>
-            </button>
-            <button
-              type="button"
-              onClick={() => handleBtnClick("btn-2")}
-              className={`box ${selected === 'btn-2' ? 'selected' : ''}`}>
-              <h2 className="box__title">La box compassion</h2>
-              <ul>
-                <li className="box__list">2 pantalons</li>
-                <li className="box__list">2 hauts</li>
-                <li className="box__list">2 nuits de babysitting</li>
-                <li className="box__list">1 bouteille de rhum brun</li>
-              </ul>
-              <p className="box__price">39,99€/mois</p>
-              <p className="box__tag">Best seller</p>
-            </button>
+            {boxes.length > 0 && boxes.map((box: any) => (
+              <Box key={box._id} boxObj={box} handleBtnClick={handleBtnClick} selected={selected} />
+            ))}
           </div>
         </div>
       </OnboardingStep>

@@ -36,6 +36,7 @@ const DateField = (props: DateFieldProps) => {
           <input
             className="form__input date"
             id={props.id}
+            autoComplete="none"
             value={props.value}
             onChange={handleDateChange}
             type="text"

@@ -1,7 +1,7 @@
 import React from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faLock } from '@fortawesome/free-solid-svg-icons';
-import { NavLink, useHistory } from 'react-router-dom';
+import { useHistory, useLocation } from 'react-router-dom';
 
 interface OnboardingType {
   children: any,
@@ -13,6 +13,7 @@ interface OnboardingType {
 const OnboardingStep = (props: OnboardingType) => {
   const { children, handleNext, handlePayment, previous } = props;
   const history = useHistory();
+  const location = useLocation();
 
   const handleBtnBack = () => {
     if (previous) {
@@ -25,10 +26,10 @@ const OnboardingStep = (props: OnboardingType) => {
       <section className="onboarding">
         <div className="nav__container">
           <nav className="nav__links">
-            <NavLink activeClassName="nav__link--selected" className="nav__link" to="/onboarding/my-baby">Mon bébé</NavLink>
-            <NavLink activeClassName="nav__link--selected" className="nav__link" to="/onboarding/my-box">Ma box</NavLink>
-            <NavLink activeClassName="nav__link--selected" className="nav__link" to="/onboarding/my-details">Mes coordonnées</NavLink>
-            <NavLink activeClassName="nav__link--selected" className="nav__link" to="/onboarding/payment">Règlement</NavLink>
+            <p className={`nav__link ${location.pathname === '/onboarding/my-baby' ? 'selected' : ''}`}>Mon bébé</p>
+            <p className={`nav__link ${location.pathname === '/onboarding/my-box' ? 'selected' : ''}`}>Ma box</p>
+            <p className={`nav__link ${location.pathname === '/onboarding/my-details' ? 'selected' : ''}`}>Mes coordonnées</p>
+            <p className={`nav__link ${location.pathname === '/onboarding/payment' ? 'selected' : ''}`}>Règlement</p>
           </nav>
         </div>
         {children}

@@ -37,6 +37,7 @@ const InputField = (props: InputFieldProps) => {
         <input
           className="form__input"
           id={props.id}
+          autoComplete="none"
           value={props.value}
           onChange={handleValueChange}
           type={props.type}

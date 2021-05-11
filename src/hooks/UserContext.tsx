@@ -12,29 +12,29 @@ const UserProvider = (props: {children: any }) => {
   const token = localStorage.token ? JSON.parse(localStorage.token) : '';
   const [isLoading, setIsLoading] = useState(true);
 
-  useEffect(() => {
-    const findUser = async () => {
-      await fetch(`${baseUrl}/auth/user`, {
-        method: 'GET',
-        headers: {
-          Authorization: `Bearer ${token}`,
-        },
+  const findUser = async () => {
+    await fetch(`${baseUrl}/auth/user`, {
+      method: 'GET',
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+    })
+      .then((response: any) => {
+        if (!response.ok) {
+          throw new Error('user is not logged in');
+        }
+        return response.json();
       })
-        .then((response: any) => {
-          if (!response.ok) {
-            throw new Error('user is not logged in');
-          }
-          return response.json();
-        })
-        .then((data : any) => {
-          setUser(data.currentUser);
-          setIsLoading(false);
-        })
-        .catch((err) => {
-          setIsLoading(false);
-        });
-    };
+      .then((data : any) => {
+        setUser(data.currentUser);
+        setIsLoading(false);
+      })
+      .catch((err) => {
+        setIsLoading(false);
+      });
+  };
 
+  useEffect(() => {
     findUser();
     /* eslint-disable-next-line */
   }, []);
@@ -42,6 +42,7 @@ const UserProvider = (props: {children: any }) => {
   const userState = {
     user,
     setUser,
+    findUser,
     isLoading,
   };
 

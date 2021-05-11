@@ -32,9 +32,9 @@ const AccountNavigation = (props: AccountType) => {
       <section className="account__container">
         <div className={`account__navigation ${isClicked ? 'clicked' : ''}`}>
           <div className="account__profile">
-            <h3 className="profile__icon">{`${user.first_name[0]} ${user.last_name[0]}`}</h3>
+            <h3 className="profile__icon">{`${user.userDetails.first_name[0]} ${user.userDetails.last_name[0]}`}</h3>
             <div className="profile__details">
-              <h3 className="profile__title">{`${user.first_name} ${user.last_name}`}</h3>
+              <h3 className="profile__title">{`${user.userDetails.first_name} ${user.userDetails.last_name}`}</h3>
               <p className="profile__subtitle">{user.email}</p>
             </div>
           </div>

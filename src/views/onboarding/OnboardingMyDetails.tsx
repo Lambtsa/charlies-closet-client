@@ -1,5 +1,7 @@
-import React, { useState } from 'react';
+import React, { useContext, useState } from 'react';
 import { useHistory } from 'react-router-dom';
+import { updateUser } from '../../helpers/api-helpers';
+import { UserContext } from '../../hooks/UserContext';
 
 /*
   Components
@@ -12,26 +14,15 @@ const baseUrl = process.env.NODE_ENV === 'production'
   ? 'https://charlies-closet-dev.herokuapp.com'
   : 'http://localhost:8080';
 
-const checkLocalStorage = (query: string) => {
-  if(!localStorage.user) {
-    localStorage.user = JSON.stringify({
-      first_name: '',
-      last_name: '',
-      email: '',
-      telephone: '',
-      address: '',
-    })
-  };
-  return JSON.parse(localStorage.user)[query];
-}
-
 const MyBaby = () => {
+  const { user, findUser } = useContext(UserContext); 
+  const token = JSON.parse(localStorage.token);
   const history = useHistory();
-  const [firstName, setFirstName] = useState(checkLocalStorage('first_name'));
-  const [lastName, setLastName] = useState(checkLocalStorage('last_name'));
-  const [email, setEmail] = useState(checkLocalStorage('email'));
-  const [telephone, setTelephone] = useState(checkLocalStorage('telephone'));
-  const [address, setAddress] = useState(checkLocalStorage('address'));
+  const [firstName, setFirstName] = useState(user.userDetails.first_name);
+  const [lastName, setLastName] = useState(user.userDetails.last_name);
+  const [maidenName, setMaidenName] = useState(user.userDetails.maiden__name);
+  const [telephone, setTelephone] = useState(user.userDetails.telephone);
+  const [address, setAddress] = useState(user.userDetails.address);
   const [suggestions, setSuggestions] = useState([]);
   const [error, setError] = useState(false);
 
@@ -60,21 +51,27 @@ const MyBaby = () => {
     setSuggestions([]);
   }
 
-  const handleFormSubmit = (e: any) => {
+  const handleFormSubmit = async (e: any) => {
     e.preventDefault();
-    if (!firstName || !lastName || !email || !telephone || !address) {
+    if (!firstName || !lastName || !telephone || !address) {
       window.scrollTo(0, 0);
       setError(true);
     } else {
       setError(false);
       const newDetailsObj = {
-        first_name: firstName,
-        last_name: lastName,
-        email,
-        telephone,
-        address,
+        userDetails: {
+          first_name: firstName,
+          last_name: lastName,
+          maiden_name: maidenName,
+          telephone,
+          address,
+        }
       };
-      localStorage.user = JSON.stringify(newDetailsObj);
+      const response = await updateUser(user._id, token, newDetailsObj);
+      if (!response.ok) {
+        return setError(true);
+      }
+      findUser();
       history.push('/onboarding/payment');
     }
   };
@@ -105,12 +102,12 @@ const MyBaby = () => {
               setValue={setLastName}
               placeholder="Nom de famille" />
             <InputField
-              id="email"
-              label="Email"
-              type="email"
-              value={email}
-              setValue={setEmail}
-              placeholder="Email" />
+              id="maiden"
+              label="Nom de naissance"
+              type="text"
+              value={maidenName}
+              setValue={setMaidenName}
+              placeholder="Nom de naissance" />
             <InputField
               id="telephone"
               label="Téléphone"
@@ -123,6 +120,7 @@ const MyBaby = () => {
                 Addresse
                 <input
                   id="adresse"
+                  autoComplete="off"
                   type="text"
                   className={`form__input ${suggestions.length > 0 ? 'drop' : ''}`}
                   value={address}
