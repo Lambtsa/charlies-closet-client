@@ -15,7 +15,7 @@ const baseUrl = process.env.NODE_ENV === 'production'
   : 'http://localhost:8080';
 
 const MyBaby = () => {
-  const { user, findUser } = useContext(UserContext); 
+  const { user, findUser } = useContext(UserContext);
   const token = JSON.parse(localStorage.token);
   const history = useHistory();
   const [firstName, setFirstName] = useState(user.userDetails.first_name);

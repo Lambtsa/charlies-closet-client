@@ -1,4 +1,6 @@
-import React, { useState } from 'react';
+import React, { useContext, useState } from 'react';
+import { UserContext } from '../../hooks/UserContext';
+import { updateUser } from '../../helpers/api-helpers';
 
 /*
   Components
@@ -8,14 +10,19 @@ import InputField from '../../components/InputField';
 import DateField from '../../components/DateField';
 import ColorSelector from '../../components/ColorSelector';
 import SelectField from '../../components/SelectField';
+import SnackBar from '../../components/SnackBar';
 
 const MyBaby = () => {
-  const [firstName, setFirstName] = useState('');
-  const [birth, setBirth] = useState('');
-  const [gender, setGender] = useState('');
-  const [size, setSize] = useState('');
-  const [preferences, setPreferences] = useState('');
-  const [color, setColor] = useState('');
+  const token = JSON.parse(localStorage.token);
+  const { user, findUser } = useContext(UserContext);
+  const [firstName, setFirstName] = useState(user.babyDetails.first_name);
+  const [birth, setBirth] = useState(user.babyDetails.birth_date);
+  const [gender, setGender] = useState(user.babyDetails.gender);
+  const [size, setSize] = useState(user.babyDetails.size);
+  const [preferences, setPreferences] = useState(user.babyDetails.preferences);
+  const [color, setColor] = useState(user.babyDetails.color);
+  const [error, setError] = useState(false);
+  const [isValid, setIsValid] = useState(false);
 
   const genderOptions = {
     'garçon': 'Garçon',
@@ -31,13 +38,36 @@ const MyBaby = () => {
     'pantalons': 'Pantalons',
   }
 
-  const handleSaveForm = (e: any) => {
+  const handleSaveForm = async (e: any) => {
     e.preventDefault();
-    console.log('clicked save');
+    if (!firstName || !birth || !gender || !size || !preferences || !color) {
+      window.scrollTo(0, 0);
+      setError(true);
+    } else {
+      setError(false);
+      const newBabyObj = {
+        babyDetails: {
+          first_name: firstName,
+          birth_date: birth,
+          gender,
+          size,
+          preferences,
+          color,
+        }
+      };
+      const response = await updateUser(user._id, token, newBabyObj);
+      if (!response.ok) {
+        return setError(true);
+      }
+      findUser();
+      setIsValid(true);
+    }
   };
 
   return (
     <>
+      {error && <SnackBar type="error" message="There has been an error saving your information" setState={setError} state={error} />}
+      {isValid && <SnackBar type="success" message="Your information has been updated" setState={setIsValid} state={isValid} />}
       <AccountNavigation handleSaveForm={handleSaveForm}>
         <form className="form__container account">
           <h1 className="form__title">Mon bébé</h1>
@@ -80,5 +110,6 @@ const MyBaby = () => {
     </>
   );
 };
+
 
 export default MyBaby;

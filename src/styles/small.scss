@@ -105,7 +105,7 @@ p {
   SnackBar Component
 */
 .snackbar {
-  z-index: 10000;
+  z-index: 20000;
   max-width: 768px;
   margin: 0 auto;
   box-shadow: 0 0 4px $grey;
@@ -936,7 +936,7 @@ input::-webkit-calendar-picker-indicator{
   color: $primary-color;
 }
 .profile__title {
-  margin-bottom: .2rem;
+  margin-bottom: .3rem;
   text-transform: capitalize;
 }
 .account__links {

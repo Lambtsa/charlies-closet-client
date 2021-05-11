@@ -1,4 +1,6 @@
-import React, { useState } from 'react';
+import React, { useState, useContext } from 'react';
+import { updateUser } from '../../helpers/api-helpers';
+import { UserContext } from '../../hooks/UserContext';
 
 /*
   Components
@@ -12,13 +14,16 @@ const baseUrl = process.env.NODE_ENV === 'production'
   : 'http://localhost:8080';
 
 const MyBaby = () => {
-  const [firstName, setFirstName] = useState('');
-  const [lastName, setLastName] = useState('');
-  const [email, setEmail] = useState('');
-  const [telephone, setTelephone] = useState('');
-  const [address, setAddress] = useState('');
+  const { user, findUser } = useContext(UserContext);
+  const token = JSON.parse(localStorage.token);
+  const [firstName, setFirstName] = useState(user.userDetails.first_name);
+  const [lastName, setLastName] = useState(user.userDetails.last_name);
+  const [maidenName, setMaidenName] = useState(user.userDetails.maiden__name);
+  const [telephone, setTelephone] = useState(user.userDetails.telephone);
+  const [address, setAddress] = useState(user.userDetails.address);
   const [suggestions, setSuggestions] = useState([]);
   const [error, setError] = useState(false);
+  const [isValid, setIsValid] = useState(false);
 
   const handleAddressChange = (e: any) => {
     setAddress(e.target.value);
@@ -45,13 +50,35 @@ const MyBaby = () => {
     setSuggestions([]);
   }
 
-  const handleSaveForm = (e: any) => {
+  const handleSaveForm = async (e: any) => {
     e.preventDefault();
-    console.log('clicked save');
+    if (!firstName || !lastName || !telephone || !address) {
+      window.scrollTo(0, 0);
+      setError(true);
+    } else {
+      setError(false);
+      const newDetailsObj = {
+        userDetails: {
+          first_name: firstName,
+          last_name: lastName,
+          maiden_name: maidenName,
+          telephone,
+          address,
+        }
+      };
+      const response = await updateUser(user._id, token, newDetailsObj);
+      if (!response.ok) {
+        return setError(true);
+      }
+      setIsValid(true);
+      findUser();
+    }
   };
 
   return (
     <>
+      {isValid && <SnackBar type="success" message="Your information has been updated" setState={setIsValid} state={isValid} />}
+      {error && <SnackBar type="error" message="There has been an error" setState={setError} state={error} />}
       <AccountNavigation handleSaveForm={handleSaveForm}>
         <form className="form__container account">
           <h1 className="form__title">Mes coordonnées</h1>
@@ -71,12 +98,12 @@ const MyBaby = () => {
               setValue={setLastName}
               placeholder="Nom de famille" />
             <InputField
-              id="email"
-              label="Email"
-              type="email"
-              value={email}
-              setValue={setEmail}
-              placeholder="Email" />
+              id="maiden"
+              label="Nom de naissance"
+              type="text"
+              value={maidenName}
+              setValue={setMaidenName}
+              placeholder="Nom de naissance" />
             <InputField
               id="telephone"
               label="Téléphone"
@@ -110,7 +137,6 @@ const MyBaby = () => {
           </div>
         </form>
       </AccountNavigation>
-      {error && <SnackBar type="error" message="Error fetching address" setState={setError} state={error} />}
     </>
   );
 };
