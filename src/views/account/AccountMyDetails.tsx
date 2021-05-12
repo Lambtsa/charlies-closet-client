@@ -7,7 +7,7 @@ import { Redirect } from 'react-router-dom';
   Components
 */
 import AccountNavigation from '../../components/AccountNavigation';
-import InputField from '../../components/InputField';
+import InputField from '../../components/inputs/InputField';
 import SnackBar from '../../components/SnackBar';
 
 const baseUrl = process.env.NODE_ENV === 'production'

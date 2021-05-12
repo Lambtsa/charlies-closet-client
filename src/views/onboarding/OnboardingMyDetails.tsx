@@ -6,7 +6,7 @@ import { UserContext } from '../../hooks/UserContext';
 /*
   Components
 */
-import InputField from '../../components/InputField';
+import InputField from '../../components/inputs/InputField';
 import OnboardingStep from '../../components/OnboardingStep';
 import SnackBar from '../../components/SnackBar';
 

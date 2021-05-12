@@ -4,8 +4,8 @@ import { Link } from 'react-router-dom';
 /*
   Components
 */
-import Loader from './Loader';
-import SnackBar from './SnackBar';
+import Loader from '../Loader';
+import SnackBar from '../SnackBar';
 
 const Examples = () => {
   const [items, setItems] = useState([]);

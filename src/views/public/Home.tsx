@@ -5,11 +5,11 @@ import React, { useEffect } from 'react';
 */
 import Header from '../../components/Header';
 import Jumbotron from '../../components/Jumbotron';
-import Services from '../../components/Services';
-import About from '../../components/About';
-import Examples from '../../components/Examples';
-import Testimonials from '../../components/Testimonials';
-import HowItWorks from '../../components/HowItWorks';
+import Services from '../../components/homepage/Services';
+import About from '../../components/homepage/About';
+import Examples from '../../components/homepage/Examples';
+import Testimonials from '../../components/homepage/Testimonials';
+import HowItWorks from '../../components/homepage/HowItWorks';
 import Footer from '../../components/Footer';
 
 const Home = () => {

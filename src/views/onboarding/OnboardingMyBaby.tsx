@@ -6,11 +6,11 @@ import { updateUser } from '../../helpers/api-helpers';
 /*
   Components
 */
-import InputField from '../../components/InputField';
+import InputField from '../../components/inputs/InputField';
 import OnboardingStep from '../../components/OnboardingStep';
-import ColorSelector from '../../components/ColorSelector';
-import SelectField from '../../components/SelectField';
-import DateField from '../../components/DateField';
+import ColorSelector from '../../components/inputs/ColorSelector';
+import SelectField from '../../components/inputs/SelectField';
+import DateField from '../../components/inputs/DateField';
 import SnackBar from '../../components/SnackBar';
 
 const MyBaby = () => {
