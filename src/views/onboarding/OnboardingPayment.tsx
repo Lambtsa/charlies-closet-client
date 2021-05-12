@@ -1,9 +1,10 @@
 import React, { useEffect, useState, useContext } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faLock } from '@fortawesome/free-solid-svg-icons';
-import { useHistory } from 'react-router-dom';
+import { useHistory, Redirect } from 'react-router-dom';
 import { getBoxById } from '../../helpers/api-helpers';
 import { UserContext } from '../../hooks/UserContext';
+import { updateUser } from '../../helpers/api-helpers';
 
 /*
   Components
@@ -16,6 +17,7 @@ import SnackBar from '../../components/SnackBar';
 
 const Payment = () => {
   const { user } = useContext(UserContext);
+  const token = JSON.parse(localStorage.token);
   const history = useHistory();
   const [selectedBox, SetSelectedBox] = useState<any>();
   const [isLoading, setIsLoading] = useState(true);
@@ -29,17 +31,30 @@ const Payment = () => {
     setIsLoading(true);
     getBoxById(user.boxId)
       .then(response => response.json())
-      .then((data: any) => {
-        SetSelectedBox(data);
-        setIsLoading(false);
-      })
-      .catch(() => setError(true));
+      .then((data: any) => SetSelectedBox(data))
+      .catch(() => setError(true))
+      .finally(() => setIsLoading(false));
       /* eslint-disable-next-line */
   }, []);
 
-  const handleFormSubmit = (e: any) => {
+  const handleFormSubmit = async (e: any) => {
     e.preventDefault();
-    history.push('/account/my-baby');
+    const response = await updateUser(user._id, token, { 
+      onboardingProgress: {
+        finished: true,
+        step: '/account/dashboard',
+      },
+    });
+    if (!response.ok) {
+      return setError(true);
+    }
+    history.push('/account/dashboard');
+  }
+
+  if (user.onboardingProgress.finished) {
+    return (
+      <Redirect to="/account/dashboard" />
+    )
   }
 
   return (

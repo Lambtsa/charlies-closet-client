@@ -7,7 +7,7 @@ import { UserContext } from '../hooks/UserContext';
 
 interface AccountType {
   children: any,
-  handleSaveForm: (e: any) => void,
+  handleSaveForm?: (e: any) => void,
 }
 
 const AccountNavigation = (props: AccountType) => {
@@ -39,6 +39,7 @@ const AccountNavigation = (props: AccountType) => {
             </div>
           </div>
           <nav className="account__links">
+            <NavLink activeClassName="account__link--selected" className="account__link" to="/account/dashboard">Tableau de bord</NavLink>
             <NavLink activeClassName="account__link--selected" className="account__link" to="/account/my-baby">Mon bébé</NavLink>
             <NavLink activeClassName="account__link--selected" className="account__link" to="/account/my-box">Ma box</NavLink>
             <NavLink activeClassName="account__link--selected" className="account__link" to="/account/my-details">Mes coordonnées</NavLink>

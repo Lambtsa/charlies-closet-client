@@ -1,4 +1,6 @@
-import React, { useState } from 'react';
+import React, { useContext, useState } from 'react';
+import { UserContext } from '../../hooks/UserContext';
+import { Redirect } from 'react-router-dom';
 
 /*
   Components
@@ -6,7 +8,14 @@ import React, { useState } from 'react';
 import AccountNavigation from '../../components/AccountNavigation';
 
 const MyBaby = () => {
+  const { user } = useContext(UserContext);
   const [selected, setSelected] = useState('btn-2');
+
+  if (!user.onboardingProgress.finished) {
+    return (
+      <Redirect push to={user.onboardingProgress.step} />
+    )
+  }
 
   const handleBtnClick = (btnId: string) => {
     setSelected(btnId);

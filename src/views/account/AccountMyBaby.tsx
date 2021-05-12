@@ -1,6 +1,7 @@
 import React, { useContext, useState } from 'react';
 import { UserContext } from '../../hooks/UserContext';
 import { updateUser } from '../../helpers/api-helpers';
+import { Redirect } from 'react-router-dom';
 
 /*
   Components
@@ -23,6 +24,12 @@ const MyBaby = () => {
   const [color, setColor] = useState(user.babyDetails.color);
   const [error, setError] = useState(false);
   const [isValid, setIsValid] = useState(false);
+
+  if (!user.onboardingProgress.finished) {
+    return (
+      <Redirect push to={user.onboardingProgress.step} />
+    )
+  }
 
   const genderOptions = {
     'garçon': 'Garçon',

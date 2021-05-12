@@ -15,7 +15,7 @@ interface Credentials {
 
 const useAuth = () => {
   const history = useHistory();
-  const { setUser } = useContext(UserContext);
+  const { setUser, user } = useContext(UserContext);
   const [error, setError] = useState(false);
   const [token, setToken] = useState(localStorage.token ? JSON.parse(localStorage.token) : '');
 
@@ -77,7 +77,7 @@ const useAuth = () => {
       })
       .then(async (responseData: any) => {
         setToken(responseData.token);
-        await setUserContext(responseData.token, '/onboarding/my-baby');
+        await setUserContext(responseData.token, user.onboardingProgress.step);
       })
       .catch(() => setError(true));
   };

@@ -1,5 +1,5 @@
 import React, { useContext, useState } from 'react';
-import { useHistory } from 'react-router-dom';
+import { useHistory, Redirect } from 'react-router-dom';
 import { updateUser } from '../../helpers/api-helpers';
 import { UserContext } from '../../hooks/UserContext';
 
@@ -59,6 +59,10 @@ const MyBaby = () => {
     } else {
       setError(false);
       const newDetailsObj = {
+        onboardingProgress: {
+          finished: false,
+          step: '/onboarding/payment',
+        },
         userDetails: {
           first_name: firstName,
           last_name: lastName,
@@ -75,6 +79,12 @@ const MyBaby = () => {
       history.push('/onboarding/payment');
     }
   };
+
+  if (user.onboardingProgress.finished) {
+    return (
+      <Redirect to="/account/dashboard" />
+    )
+  }
 
   return (
     <>

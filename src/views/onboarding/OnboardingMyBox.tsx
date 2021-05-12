@@ -1,5 +1,5 @@
 import React, { useState, useContext, useEffect } from 'react';
-import { useHistory } from 'react-router-dom';
+import { useHistory, Redirect } from 'react-router-dom';
 import { UserContext } from '../../hooks/UserContext';
 import { updateUser, getAllBoxes } from '../../helpers/api-helpers';
 
@@ -36,13 +36,25 @@ const MyBox = () => {
   }
   const handleFormSubmit = async (e: any) => {
     e.preventDefault();
-    const response = await updateUser(user._id, token, { boxId: selected });
+    const response = await updateUser(user._id, token, {
+      onboardingProgress: {
+        finished: false,
+        step: '/onboarding/my-details',
+      },
+      boxId: selected 
+    });
     if (!response.ok) {
       return setError(true);
     }
     findUser();
     history.push('/onboarding/my-details');
   };
+
+  if (user.onboardingProgress.finished) {
+    return (
+      <Redirect to="/account/dashboard" />
+    )
+  }
 
   return (
     <>

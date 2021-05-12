@@ -1,6 +1,7 @@
 import React, { useState, useContext } from 'react';
 import { updateUser } from '../../helpers/api-helpers';
 import { UserContext } from '../../hooks/UserContext';
+import { Redirect } from 'react-router-dom';
 
 /*
   Components
@@ -24,6 +25,12 @@ const MyBaby = () => {
   const [suggestions, setSuggestions] = useState([]);
   const [error, setError] = useState(false);
   const [isValid, setIsValid] = useState(false);
+
+  if (!user.onboardingProgress.finished) {
+    return (
+      <Redirect push to={user.onboardingProgress.step} />
+    )
+  }
 
   const handleAddressChange = (e: any) => {
     setAddress(e.target.value);

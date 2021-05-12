@@ -25,6 +25,7 @@ import OnboardingMyBox from './views/onboarding/OnboardingMyBox';
 import OnboardingMyDetails from './views/onboarding/OnboardingMyDetails';
 import OnboardingPayment from './views/onboarding/OnboardingPayment';
 
+import AccountDashboard from './views/account/AccountDashboard';
 import AccountMyBaby from './views/account/AccountMyBaby';
 import AccountMyBox from './views/account/AccountMyBox';
 import AccountMyDetails from './views/account/AccountMyDetails';
@@ -49,6 +50,7 @@ const App = () => (
           <SecureRoute path="/onboarding/my-box" component={OnboardingMyBox} />
           <SecureRoute path="/onboarding/my-details" component={OnboardingMyDetails} />
           <SecureRoute path="/onboarding/payment" component={OnboardingPayment} />
+          <SecureRoute path="/account/dashboard" component={AccountDashboard} />
           <SecureRoute path="/account/my-baby" component={AccountMyBaby} />
           <SecureRoute path="/account/my-box" component={AccountMyBox} />
           <SecureRoute path="/account/my-details" component={AccountMyDetails} />
