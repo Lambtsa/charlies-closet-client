@@ -728,6 +728,7 @@ input::-webkit-calendar-picker-indicator{
 .color {
   border-radius: 10px;
   &:hover {
+    transform: scale3d(1.1, 1.1, 1.1);
     box-shadow: 0 0 4px rgba($secondary-color, .5);
   }
   &:nth-child(1) {

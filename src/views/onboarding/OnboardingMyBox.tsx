@@ -27,8 +27,12 @@ const MyBox = () => {
       .then(response => response.json())
       .then((data: any) => {
         setBoxes(sortBoxesByPrice(data));
+        if (selected === '') {
+          setSelected(data[1]._id);
+        }
       })
       .catch(() => setError(true))
+      /* eslint-disable-next-line */
   }, []);
 
   const handleBtnClick = (btnId: string) => {
