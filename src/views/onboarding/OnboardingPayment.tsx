@@ -11,7 +11,7 @@ const stripeTestPromise = loadStripe(PUBLIC_KEY);
 const Stripe = () => {
 
   return (
-    <Elements stripe={stripeTestPromise}>
+    <Elements options={{ locale: 'fr' }}  stripe={stripeTestPromise}>
       <CheckoutForm />
     </Elements>
   );

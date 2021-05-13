@@ -7,7 +7,7 @@ import { updateUser, getAllBoxes } from '../../helpers/api-helpers';
   Components
 */
 import OnboardingStep from '../../components/OnboardingStep';
-import SnackBar from '../../components/SnackBar';
+import SnackBar from '../../components/validation/SnackBar';
 import Box from '../../components/Box';
 
 const MyBox = () => {
@@ -17,7 +17,7 @@ const MyBox = () => {
   const [selected, setSelected] = useState(user.boxId);
   const [boxes, setBoxes] = useState([]);
   const [error, setError] = useState(false);
-
+  
   const sortBoxesByPrice = (boxes: any) => {
     return boxes.sort((a: any, b: any) => a.boxPrice - b.boxPrice);
   };

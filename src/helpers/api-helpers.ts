@@ -15,8 +15,20 @@ const getAllBoxes = () => fetch(`${baseUrl}/boxes`);
 
 const getBoxById = (id: string) => fetch(`${baseUrl}/boxes/${id}`);
 
+const createSubscription = (email: string, priceId: string) => fetch('http://localhost:8080/api/payments/create-customer', {
+  method: 'POST',
+  headers: {
+    'Content-Type': 'application/json',
+  },
+  body: JSON.stringify({
+    email,
+    priceId,
+  }),
+})
+
 export {
   updateUser,
   getAllBoxes,
   getBoxById,
+  createSubscription,
 };

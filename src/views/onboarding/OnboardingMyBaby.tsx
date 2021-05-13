@@ -11,7 +11,7 @@ import OnboardingStep from '../../components/OnboardingStep';
 import ColorSelector from '../../components/inputs/ColorSelector';
 import SelectField from '../../components/inputs/SelectField';
 import DateField from '../../components/inputs/DateField';
-import SnackBar from '../../components/SnackBar';
+import SnackBar from '../../components/validation/SnackBar';
 
 const MyBaby = () => {
   const { user, findUser } = useContext(UserContext);

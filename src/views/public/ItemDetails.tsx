@@ -7,8 +7,8 @@ import { useParams } from 'react-router-dom';
 import Footer from '../../components/Footer';
 import Header from '../../components/Header';
 import Jumbotron from '../../components/Jumbotron';
-import SnackBar from '../../components/SnackBar';
-import Loader from '../../components/Loader';
+import SnackBar from '../../components/validation/SnackBar';
+import Loader from '../../components/validation/Loader';
 import LikeToggle from '../../components/LikeToggle';
 
 const ItemDetails = () => {

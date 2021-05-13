@@ -10,26 +10,43 @@ import {
   useElements,
 } from "@stripe/react-stripe-js";
 import { UserContext } from '../hooks/UserContext';
-import { getBoxById, updateUser } from '../helpers/api-helpers';
+import { getBoxById, updateUser, createSubscription } from '../helpers/api-helpers';
 
 /*
   Components
 */
 import OnboardingStep from './OnboardingStep';
-import SnackBar from './SnackBar';
-import Loader from './Loader';
+import SnackBar from './validation/SnackBar';
 import InputField from './inputs/InputField';
+import FullScreenLoader from "./validation/FullScreenLoader";
 
 export const CheckoutForm = () => {
   const { user } = useContext(UserContext);
   const token = JSON.parse(localStorage.token);
   const history = useHistory();
-  const [name, setName] = useState('');
-  const [selectedBox, SetSelectedBox] = useState<any>();
-  const [isLoading, setIsLoading] = useState(true);
-  const [error, setError] = useState(false);
   const stripe: any = useStripe();
   const elements: any = useElements();
+  const [name, setName] = useState('');
+  const [selectedBox, SetSelectedBox] = useState<any>();
+  const [isPaying, setIsPaying] = useState(false);
+  const [paymentMessage, setPaymentMessage] = useState('');
+  const [isLoading, setIsLoading] = useState(true);
+  const [error, setError] = useState(false);
+  const [errorMessage, setErrorMessage] = useState('');
+  const [clientSecret, setClientSecret] = useState('');
+
+  useEffect(() => {
+    if (selectedBox) {
+      createSubscription(user.email, selectedBox.priceId)
+        .then(response => response.json())
+        .then(data => setClientSecret(data.clientSecret))
+        .catch((err) => {
+          setError(true);
+          setErrorMessage(err.message);
+        });
+    }
+    /* eslint-disable-next-line */
+  }, [selectedBox])
 
   useEffect(() => {
     setIsLoading(true);
@@ -42,38 +59,53 @@ export const CheckoutForm = () => {
   }, []);
 
   const handleFormSubmit = async (e: any) => {
+    setPaymentMessage('validation du paiement...');
+    setIsPaying(true);
     e.preventDefault();
-    const { error, paymentMethod } = await stripe.createPaymentMethod({
-      type: "card",
-      card: elements.getElement(CardNumberElement),
-    });
-
-    if (!error) {
-      console.log("Stripe 23 | token generated!", paymentMethod);
-      //send token to backend here
-    } else {
-      console.log(error.message);
+    if (!stripe || !elements) {
+      // Stripe.js has not loaded yet. Make sure to disable
+      // form submission until Stripe.js has loaded.
+      return;
     }
-    // const response = await updateUser(user._id, token, { 
-    //   onboardingProgress: {
-    //     finished: true,
-    //     step: '/account/dashboard',
-    //   },
-    // });
-    // if (!response.ok) {
-    //   return setError(true);
-    // }
-    // history.push('/account/dashboard');
+
+    const cardElement = elements.getElement(CardNumberElement);
+
+    // Create payment method and confirm payment intent.
+    const result = await stripe.confirmCardPayment(clientSecret, {
+      payment_method: {
+        card: cardElement,
+        billing_details: {
+          name: name,
+        },
+      }
+    });
+    if(result.error) {
+      window.scrollTo(0,0);
+      setIsPaying(false);
+      setError(true);
+      setErrorMessage(result.error.message);
+    } else {
+      setPaymentMessage('Paiement validé');
+      const response = await updateUser(user._id, token, { 
+        onboardingProgress: {
+          finished: true,
+          step: '/account/dashboard',
+        },
+      });
+      if (!response.ok) {
+        return setError(true);
+      }
+      history.push('/account/dashboard');
+    };
   };
 
   const CARD_OPTIONS: any = {
-    iconStyle: "solid",
     style: {
       base: {
         iconColor: "#60764D",
         backgroundColor: 'transparent',
         color: "#60764D",
-        fontWeight: 500,
+        fontWeight: 400,
         fontFamily: "'Nunito', sans-serif",
         fontSize: "16px",
         fontSmoothing: "antialiased",
@@ -81,7 +113,7 @@ export const CheckoutForm = () => {
           color: "#60764D"
         },
         "::placeholder": {
-          color: "#60764D"
+          color: "rgba(96, 118, 77, 0.6)"
         }
       },
       invalid: {
@@ -93,47 +125,63 @@ export const CheckoutForm = () => {
 
   return (
     <>
+      {error && <SnackBar type="error" message={errorMessage} setState={setError} state={error} />}
+      {isPaying && <FullScreenLoader loaderText={paymentMessage} />}
       <OnboardingStep previous="my-details" handlePayment={handleFormSubmit}>
-      <div className="form__container">
+        <div className="form__container">
           <h1 className="form__title">Paiement</h1>
-          {error && <SnackBar type="error" message="There has been an issue" setState={setError} state={error} />}
-          {isLoading && <Loader />}
-          {!isLoading && (
-            <>
-              <div className="split__container">
-                <div>
-                  <InputField
-                    id="name"
-                    label="Nom indiqué sur la carte"
-                    type="text"
-                    value={name}
-                    setValue={setName}
-                    placeholder="Nom indiqué sur la carte" />
-                  <CardNumberElement options={CARD_OPTIONS} className="form__card" />
-                  <CardExpiryElement options={CARD_OPTIONS} className="form__card" />
-                  <CardCvcElement options={CARD_OPTIONS} className="form__card" />
+          <div className="split__container">
+            <div className="split__left payment">
+              <InputField
+                id="name"
+                label="Nom indiqué sur la carte"
+                type="text"
+                value={name}
+                setValue={setName}
+                placeholder="Nom indiqué sur la carte" />
+              <label htmlFor="cardNumber">
+                Numéro de carte
+                <CardNumberElement
+                  id="cardNumber"
+                  options={CARD_OPTIONS}
+                  className="form__card" />
+              </label>
+              <label htmlFor="expiry">
+                Date d'expiration
+                <CardExpiryElement
+                  id="expiry"
+                  options={CARD_OPTIONS}
+                  className="form__card" />
+              </label>
+              <label htmlFor="cvc">
+                Cryptogramme visuel
+                <CardCvcElement
+                  id="cvc"
+                  options={CARD_OPTIONS}
+                  className="form__card" />
+              </label>
+            </div>
+            {!isLoading && (
+              <div className="payment__details">
+                <div className="box__details">
+                  <h2 className="box__title">{selectedBox.boxTitle}</h2>
+                  <ul>
+                    {selectedBox.boxServices.map((service: any, index: number) => (
+                      <li key={index} className="box__list payment">
+                        <p>{service}</p>
+                        <p>inclus</p>
+                      </li>
+                    ))}
+                  </ul>
                 </div>
-                <div className="payment__details">
-                  <div className="box__details">
-                    <h2 className="box__title">{selectedBox.boxTitle}</h2>
-                    <ul>
-                      {selectedBox.boxServices.map((service: any, index: number) => (
-                        <li key={index} className="box__list payment">
-                          <p>{service}</p>
-                          <p>inclus</p>
-                        </li>
-                      ))}
-                    </ul>
-                  </div>
-                  <p className="box__price">{`${selectedBox.boxPrice} €/mois`}</p>
-                </div>
+                <p className="box__price">{`${selectedBox.boxPrice} €/mois`}</p>
               </div>
-              <div className="info__container">
-                <FontAwesomeIcon className="info__icon" icon={faLock} />
-                <p>Ce site utilise SSL pour s’assurer que votre paiement est sécurisé.</p>
-              </div>
-            </>
-          )}
+            )}
+          </div>
+          <div className="info__container">
+            <FontAwesomeIcon className="info__icon" icon={faLock} />
+            <p>Ce site est sécurisé par un certificat SSL pour assurer la protection de vos données.</p>
+          </div>
         </div>
       </OnboardingStep>
     </>

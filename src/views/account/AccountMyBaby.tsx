@@ -11,7 +11,7 @@ import InputField from '../../components/inputs/InputField';
 import DateField from '../../components/inputs/DateField';
 import ColorSelector from '../../components/inputs/ColorSelector';
 import SelectField from '../../components/inputs/SelectField';
-import SnackBar from '../../components/SnackBar';
+import SnackBar from '../../components/validation/SnackBar';
 
 const MyBaby = () => {
   const token = JSON.parse(localStorage.token);

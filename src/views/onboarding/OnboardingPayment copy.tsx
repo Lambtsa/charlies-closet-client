@@ -13,8 +13,8 @@ import { updateUser } from '../../helpers/api-helpers';
 import OnboardingStep from '../../components/OnboardingStep';
 import InputField from '../../components/inputs/InputField';
 import DateField from '../../components/inputs/DateField';
-import Loader from '../../components/Loader';
-import SnackBar from '../../components/SnackBar';
+import Loader from '../../components/validation/Loader';
+import SnackBar from '../../components/validation/SnackBar';
 
 const stripeLoadedPromise = loadStripe('pk_test_51IqCHuCMc4r979byCs8JDKIFuggy18xHjxbmsPGxtbZPSHlJRLCKLVdVE8NzyHh5BgW7aZoXZyq1HpQYiYFvRiJf00vROOR21S');
 

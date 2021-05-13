@@ -4,8 +4,8 @@ import { useHistory } from 'react-router-dom';
 /*
   Components
 */
-import SnackBar from '../components/SnackBar';
-import Loader from './Loader';
+import SnackBar from './validation/SnackBar';
+import Loader from './validation/Loader';
 import LikeToggle from './LikeToggle';
 
 const ItemList = () => {
