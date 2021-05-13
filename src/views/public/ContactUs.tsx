@@ -5,10 +5,10 @@ import charlie from '../../assets/charlies_closet.webp';
   Components
 */
 import Header from '../../components/Header';
-import InputField from '../../components/InputField';
+import InputField from '../../components/inputs/InputField';
 import Copyright from '../../components/Copyright';
 import SocialIcons from '../../components/SocialIcons';
-import SelectField from '../../components/SelectField';
+import SelectField from '../../components/inputs/SelectField';
 
 const ContactUs = () => {
   const [firstName, setFirstName] = useState('');

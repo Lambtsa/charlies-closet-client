@@ -1,7 +1,7 @@
 import React, { useContext } from 'react';
 import { Route, Redirect } from 'react-router-dom';
 import { UserContext } from './UserContext';
-import Loader from '../components/Loader';
+import Loader from '../components/validation/Loader';
 
 type SecureRouteProps = {
   component: any,

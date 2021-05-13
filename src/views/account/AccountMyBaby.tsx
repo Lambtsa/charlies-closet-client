@@ -7,11 +7,11 @@ import { Redirect } from 'react-router-dom';
   Components
 */
 import AccountNavigation from '../../components/AccountNavigation';
-import InputField from '../../components/InputField';
-import DateField from '../../components/DateField';
-import ColorSelector from '../../components/ColorSelector';
-import SelectField from '../../components/SelectField';
-import SnackBar from '../../components/SnackBar';
+import InputField from '../../components/inputs/InputField';
+import DateField from '../../components/inputs/DateField';
+import ColorSelector from '../../components/inputs/ColorSelector';
+import SelectField from '../../components/inputs/SelectField';
+import SnackBar from '../../components/validation/SnackBar';
 
 const MyBaby = () => {
   const token = JSON.parse(localStorage.token);

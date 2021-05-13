@@ -49,9 +49,11 @@ const AccountNavigation = (props: AccountType) => {
         </div>
         <div>
           {children}
-          <div className="btn__container account">
-            <button onClick={handleSaveForm} className="form__btn" type="submit">Save</button>
-          </div>
+          {handleSaveForm && (
+            <div className="btn__container account">
+              <button onClick={handleSaveForm} className="form__btn" type="submit">Save</button>
+            </div>
+          )}
         </div>
       </section>
     </>

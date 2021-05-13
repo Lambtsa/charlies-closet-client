@@ -7,7 +7,7 @@ import useAuth from '../../hooks/useAuth';
   Components
 */
 import Header from '../../components/Header';
-import InputField from '../../components/InputField';
+import InputField from '../../components/inputs/InputField';
 import Copyright from '../../components/Copyright';
 
 const Login = () => {

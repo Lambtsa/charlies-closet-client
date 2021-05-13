@@ -7,17 +7,17 @@ import { updateUser, getAllBoxes } from '../../helpers/api-helpers';
   Components
 */
 import OnboardingStep from '../../components/OnboardingStep';
-import SnackBar from '../../components/SnackBar';
+import SnackBar from '../../components/validation/SnackBar';
 import Box from '../../components/Box';
 
 const MyBox = () => {
   const { user, findUser } = useContext(UserContext);
   const token = JSON.parse(localStorage.token);
   const history = useHistory();
-  const [selected, setSelected] = useState(user.boxId);
+  const [selected, setSelected] = useState(user.pricePlanId);
   const [boxes, setBoxes] = useState([]);
   const [error, setError] = useState(false);
-
+  
   const sortBoxesByPrice = (boxes: any) => {
     return boxes.sort((a: any, b: any) => a.boxPrice - b.boxPrice);
   };
@@ -28,7 +28,7 @@ const MyBox = () => {
       .then((data: any) => {
         setBoxes(sortBoxesByPrice(data));
         if (selected === '') {
-          setSelected(data[1]._id);
+          setSelected(data[1].priceId);
         }
       })
       .catch(() => setError(true))
@@ -45,7 +45,7 @@ const MyBox = () => {
         finished: false,
         step: '/onboarding/my-details',
       },
-      boxId: selected 
+      pricePlanId: selected,
     });
     if (!response.ok) {
       return setError(true);

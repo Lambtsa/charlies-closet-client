@@ -6,9 +6,9 @@ import { UserContext } from '../../hooks/UserContext';
 /*
   Components
 */
-import InputField from '../../components/InputField';
+import InputField from '../../components/inputs/InputField';
 import OnboardingStep from '../../components/OnboardingStep';
-import SnackBar from '../../components/SnackBar';
+import SnackBar from '../../components/validation/SnackBar';
 
 const baseUrl = process.env.NODE_ENV === 'production'
   ? 'https://charlies-closet-dev.herokuapp.com'

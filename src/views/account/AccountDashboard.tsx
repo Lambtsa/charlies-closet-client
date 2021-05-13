@@ -1,7 +1,20 @@
-import React from 'react';
+import React, { useContext } from 'react';
+import { Redirect } from 'react-router-dom';
+import { UserContext } from '../../hooks/UserContext';
+
+/*
+  Components
+*/
 import AccountNavigation from '../../components/AccountNavigation';
 
 const AccountDashboard = () => {
+  const { user } = useContext(UserContext);
+
+  if (!user.onboardingProgress.finished) {
+    return (
+      <Redirect push to={user.onboardingProgress.step} />
+    )
+  }
 
   return (
     <>

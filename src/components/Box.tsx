@@ -2,7 +2,7 @@ import React from 'react';
 
 interface BoxType {
   boxObj: any,
-  selected: boolean,
+  selected: any,
   handleBtnClick: (id: string) => void,
 }
 
@@ -12,8 +12,8 @@ const Box = (props: BoxType) => {
     <>
       <button
         type="button"
-        onClick={() => handleBtnClick(boxObj._id)}
-        className={`box ${selected === boxObj._id ? 'selected' : ''}`}>
+        onClick={() => handleBtnClick(boxObj.priceId)}
+        className={`box ${selected === boxObj.priceId ? 'selected' : ''}`}>
         <h2 className="box__title">{boxObj.boxTitle}</h2>
         <ul>
           {boxObj.boxServices.map((service: any, index: number) => (
