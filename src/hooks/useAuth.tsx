@@ -15,7 +15,7 @@ interface Credentials {
 
 const useAuth = () => {
   const history = useHistory();
-  const { setUser, user } = useContext(UserContext);
+  const { setUser } = useContext(UserContext);
   const [error, setError] = useState(false);
   const [token, setToken] = useState(localStorage.token ? JSON.parse(localStorage.token) : '');
 

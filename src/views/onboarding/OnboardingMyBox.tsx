@@ -14,7 +14,7 @@ const MyBox = () => {
   const { user, findUser } = useContext(UserContext);
   const token = JSON.parse(localStorage.token);
   const history = useHistory();
-  const [selected, setSelected] = useState(user.selectedBoxId);
+  const [selected, setSelected] = useState(user.pricePlanId);
   const [boxes, setBoxes] = useState([]);
   const [error, setError] = useState(false);
   
@@ -28,7 +28,7 @@ const MyBox = () => {
       .then((data: any) => {
         setBoxes(sortBoxesByPrice(data));
         if (selected === '') {
-          setSelected(data[1]._id);
+          setSelected(data[1].priceId);
         }
       })
       .catch(() => setError(true))
@@ -45,7 +45,7 @@ const MyBox = () => {
         finished: false,
         step: '/onboarding/my-details',
       },
-      selectedBoxId: selected,
+      pricePlanId: selected,
     });
     if (!response.ok) {
       return setError(true);

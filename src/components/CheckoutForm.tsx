@@ -21,7 +21,7 @@ import InputField from './inputs/InputField';
 import FullScreenLoader from "./validation/FullScreenLoader";
 
 export const CheckoutForm = () => {
-  const { user } = useContext(UserContext);
+  const { user, findUser } = useContext(UserContext);
   const token = JSON.parse(localStorage.token);
   const history = useHistory();
   const stripe: any = useStripe();
@@ -36,8 +36,7 @@ export const CheckoutForm = () => {
   const [clientSecret, setClientSecret] = useState('');
 
   useEffect(() => {
-    setIsLoading(true);
-    getBoxById(user.selectedBoxId)
+    getBoxById(user.pricePlanId)
       .then(response => response.json())
       .then((data: any) => SetSelectedBox(data))
       .catch(() => setError(true))
@@ -49,19 +48,18 @@ export const CheckoutForm = () => {
     const customer = {
       name: `${user.userDetails.first_name} ${user.userDetails.last_name}`,
       email: user.email,
-      address: user.userDetails.address,
+      priceId: user.pricePlanId,
     }
-    if (selectedBox) {
-      createSubscription(customer, selectedBox.priceId)
-        .then(response => response.json())
-        .then(data => setClientSecret(data.clientSecret))
-        .catch((err) => {
-          setError(true);
-          setErrorMessage(err.message);
-        });
-    }
+    createSubscription(customer, token)
+      .then(response => response.json())
+      .then(data => setClientSecret(data.clientSecret))
+      .catch((err) => {
+        setError(true);
+        setErrorMessage(err.message);
+      });
+    findUser();
     /* eslint-disable-next-line */
-  }, [selectedBox])
+  }, [])
 
   const handleFormSubmit = async (e: any) => {
     setPaymentMessage('validation du paiement...');

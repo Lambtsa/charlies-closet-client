@@ -18,19 +18,19 @@ const getBoxById = (id: string) => fetch(`${baseUrl}/boxes/${id}`);
 interface UserType {
   name: string,
   email: string,
-  address: string,
+  priceId: string,
 }
 
-const createSubscription = (user: UserType, priceId: string) => fetch('http://localhost:8080/api/payments/create-customer', {
+const createSubscription = (user: UserType, token: string) => fetch('http://localhost:8080/api/payments/create-subscription', {
   method: 'POST',
   headers: {
     'Content-Type': 'application/json',
+    Authorization: `Bearer ${token}`,
   },
   body: JSON.stringify({
     name: user.name,
     email: user.email,
-    address: user.address,
-    priceId,
+    priceId: user.priceId,
   }),
 })
 
