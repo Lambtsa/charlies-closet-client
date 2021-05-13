@@ -1,5 +1,5 @@
 import React, { useContext, useState, useEffect } from "react";
-import { useHistory } from 'react-router-dom';
+import { Redirect } from 'react-router-dom';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faLock } from '@fortawesome/free-solid-svg-icons';
 import {
@@ -23,7 +23,6 @@ import FullScreenLoader from "./validation/FullScreenLoader";
 export const CheckoutForm = () => {
   const { user, findUser } = useContext(UserContext);
   const token = JSON.parse(localStorage.token);
-  const history = useHistory();
   const stripe: any = useStripe();
   const elements: any = useElements();
   const [name, setName] = useState('');
@@ -33,7 +32,6 @@ export const CheckoutForm = () => {
   const [isLoading, setIsLoading] = useState(true);
   const [error, setError] = useState(false);
   const [errorMessage, setErrorMessage] = useState('');
-  const [clientSecret, setClientSecret] = useState('');
 
   useEffect(() => {
     getBoxById(user.pricePlanId)
@@ -44,37 +42,32 @@ export const CheckoutForm = () => {
       /* eslint-disable-next-line */
   }, []);
 
-  useEffect(() => {
-    const customer = {
-      name: `${user.userDetails.first_name} ${user.userDetails.last_name}`,
-      email: user.email,
-      priceId: user.pricePlanId,
-    }
-    createSubscription(customer, token)
-      .then(response => response.json())
-      .then(data => setClientSecret(data.clientSecret))
-      .catch((err) => {
-        setError(true);
-        setErrorMessage(err.message);
-      });
-    findUser();
-    /* eslint-disable-next-line */
-  }, [])
-
   const handleFormSubmit = async (e: any) => {
     setPaymentMessage('validation du paiement...');
     setIsPaying(true);
     e.preventDefault();
+
     if (!stripe || !elements) {
       // Stripe.js has not loaded yet. Make sure to disable
       // form submission until Stripe.js has loaded.
       return;
     }
+    /* Create subscription */
+    const customer = {
+      name: `${user.userDetails.first_name} ${user.userDetails.last_name}`,
+      email: user.email,
+      priceId: user.pricePlanId,
+    }
+    const response = await createSubscription(customer, token);
+    if (!response.ok) {
+      setError(true);
+      setErrorMessage('issue');
+    }
+    const data = await response.json();
 
+    /* Accept payment */
     const cardElement = elements.getElement(CardNumberElement);
-
-    // Create payment method and confirm payment intent.
-    const result = await stripe.confirmCardPayment(clientSecret, {
+    const result = await stripe.confirmCardPayment(data.clientSecret, {
       payment_method: {
         card: cardElement,
         billing_details: {
@@ -88,7 +81,6 @@ export const CheckoutForm = () => {
       setError(true);
       setErrorMessage(result.error.message);
     } else {
-      console.log(result);
       setPaymentMessage('Paiement validé');
       const response = await updateUser(user._id, token, { 
         onboardingProgress: {
@@ -99,7 +91,8 @@ export const CheckoutForm = () => {
       if (!response.ok) {
         setError(true);
       } else {
-        history.push('/account/dashboard');
+        // history.push('/account/dashboard');
+        findUser()
       }
     };
   };
@@ -127,6 +120,12 @@ export const CheckoutForm = () => {
       }
     }
   };
+
+  if (user.onboardingProgress.finished) {
+    return (
+      <Redirect to="/account/dashboard" />
+    )
+  }
 
   return (
     <>
