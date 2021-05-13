@@ -76,10 +76,14 @@ const useAuth = () => {
         return response.json();
       })
       .then(async (responseData: any) => {
+        const currentStep = responseData.data.authenticatedUser.onboardingProgress.step;
         setToken(responseData.token);
-        await setUserContext(responseData.token, user.onboardingProgress.step);
+        await setUserContext(responseData.token, currentStep);
       })
-      .catch(() => setError(true));
+      .catch((err) => {
+        console.log(err.message);
+        setError(true)
+      });
   };
 
   const logoutUser = async () => {
