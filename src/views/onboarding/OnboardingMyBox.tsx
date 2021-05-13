@@ -14,7 +14,7 @@ const MyBox = () => {
   const { user, findUser } = useContext(UserContext);
   const token = JSON.parse(localStorage.token);
   const history = useHistory();
-  const [selected, setSelected] = useState(user.boxId);
+  const [selected, setSelected] = useState(user.selectedBoxId);
   const [boxes, setBoxes] = useState([]);
   const [error, setError] = useState(false);
   
@@ -45,7 +45,7 @@ const MyBox = () => {
         finished: false,
         step: '/onboarding/my-details',
       },
-      boxId: selected 
+      selectedBoxId: selected,
     });
     if (!response.ok) {
       return setError(true);

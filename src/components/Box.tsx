@@ -2,7 +2,7 @@ import React from 'react';
 
 interface BoxType {
   boxObj: any,
-  selected: boolean,
+  selected: string,
   handleBtnClick: (id: string) => void,
 }
 

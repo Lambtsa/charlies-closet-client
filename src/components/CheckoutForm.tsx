@@ -36,8 +36,23 @@ export const CheckoutForm = () => {
   const [clientSecret, setClientSecret] = useState('');
 
   useEffect(() => {
+    setIsLoading(true);
+    getBoxById(user.selectedBoxId)
+      .then(response => response.json())
+      .then((data: any) => SetSelectedBox(data))
+      .catch(() => setError(true))
+      .finally(() => setIsLoading(false));
+      /* eslint-disable-next-line */
+  }, []);
+
+  useEffect(() => {
+    const customer = {
+      name: `${user.userDetails.first_name} ${user.userDetails.last_name}`,
+      email: user.email,
+      address: user.userDetails.address,
+    }
     if (selectedBox) {
-      createSubscription(user.email, selectedBox.priceId)
+      createSubscription(customer, selectedBox.priceId)
         .then(response => response.json())
         .then(data => setClientSecret(data.clientSecret))
         .catch((err) => {
@@ -47,16 +62,6 @@ export const CheckoutForm = () => {
     }
     /* eslint-disable-next-line */
   }, [selectedBox])
-
-  useEffect(() => {
-    setIsLoading(true);
-    getBoxById(user.boxId)
-      .then(response => response.json())
-      .then((data: any) => SetSelectedBox(data))
-      .catch(() => setError(true))
-      .finally(() => setIsLoading(false));
-      /* eslint-disable-next-line */
-  }, []);
 
   const handleFormSubmit = async (e: any) => {
     setPaymentMessage('validation du paiement...');
@@ -85,6 +90,7 @@ export const CheckoutForm = () => {
       setError(true);
       setErrorMessage(result.error.message);
     } else {
+      console.log(result);
       setPaymentMessage('Paiement validé');
       const response = await updateUser(user._id, token, { 
         onboardingProgress: {
@@ -93,9 +99,10 @@ export const CheckoutForm = () => {
         },
       });
       if (!response.ok) {
-        return setError(true);
+        setError(true);
+      } else {
+        history.push('/account/dashboard');
       }
-      history.push('/account/dashboard');
     };
   };
 
