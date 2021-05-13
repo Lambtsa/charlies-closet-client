@@ -41,8 +41,8 @@ const AccountNavigation = (props: AccountType) => {
           <nav className="account__links">
             <NavLink activeClassName="account__link--selected" className="account__link" to="/account/dashboard">Tableau de bord</NavLink>
             <NavLink activeClassName="account__link--selected" className="account__link" to="/account/my-baby">Mon bébé</NavLink>
-            <NavLink activeClassName="account__link--selected" className="account__link" to="/account/my-box">Ma box</NavLink>
             <NavLink activeClassName="account__link--selected" className="account__link" to="/account/my-details">Mes coordonnées</NavLink>
+            <NavLink activeClassName="account__link--selected" className="account__link" to="/account/mes-factures">Mes factures</NavLink>
             <button onClick={handleBtnClick} type="button" className="header__close"><FontAwesomeIcon icon={faTimes} /></button>
           </nav>
           <button onClick={logoutUser} className="account__logout" type="button">Se déconnecter</button>

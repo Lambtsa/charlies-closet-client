@@ -13,7 +13,7 @@ import ColorSelector from '../../components/inputs/ColorSelector';
 import SelectField from '../../components/inputs/SelectField';
 import SnackBar from '../../components/validation/SnackBar';
 
-const MyBaby = () => {
+const AccountMyBaby = () => {
   const token = JSON.parse(localStorage.token);
   const { user, findUser } = useContext(UserContext);
   const [firstName, setFirstName] = useState(user.babyDetails.first_name);
@@ -119,4 +119,4 @@ const MyBaby = () => {
 };
 
 
-export default MyBaby;
+export default AccountMyBaby;
