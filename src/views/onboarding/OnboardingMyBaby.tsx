@@ -13,7 +13,7 @@ import SelectField from '../../components/inputs/SelectField';
 import DateField from '../../components/inputs/DateField';
 import SnackBar from '../../components/validation/SnackBar';
 
-const MyBaby = () => {
+const OnboardingMyBaby = () => {
   const { user, findUser } = useContext(UserContext);
   const token = JSON.parse(localStorage.token);
   const history = useHistory();
@@ -126,4 +126,4 @@ const MyBaby = () => {
   );
 };
 
-export default MyBaby;
+export default OnboardingMyBaby;

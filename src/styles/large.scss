@@ -116,6 +116,9 @@
     max-height: 20%;
   }
 }
+.faq__contact {
+  flex-direction: row;
+}
 
 /*
   Content
@@ -154,6 +157,20 @@
 .account__link {
   text-align: left;
   font-size: 1rem;
+}
+
+/*
+  Invoices
+*/
+.invoice__subtitle.status {
+  display: block;
+  padding: .5rem 1rem;
+  background-color: #76b16e;
+  border-radius: 20px;
+  color: $white;
+}
+.invoice__subtitle.paid-date {
+  display: block;
 }
 
 /*

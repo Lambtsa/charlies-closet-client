@@ -8,7 +8,7 @@ const PUBLIC_KEY = "pk_test_51IqCHuCMc4r979byCs8JDKIFuggy18xHjxbmsPGxtbZPSHlJRLC
 
 const stripeTestPromise = loadStripe(PUBLIC_KEY);
 
-const Stripe = () => {
+const OnboardingPayment = () => {
 
   return (
     <Elements options={{ locale: 'fr' }}  stripe={stripeTestPromise}>
@@ -17,4 +17,4 @@ const Stripe = () => {
   );
 };
 
-export default Stripe;
+export default OnboardingPayment;

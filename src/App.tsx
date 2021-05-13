@@ -27,7 +27,7 @@ import OnboardingPayment from './views/onboarding/OnboardingPayment';
 
 import AccountDashboard from './views/account/AccountDashboard';
 import AccountMyBaby from './views/account/AccountMyBaby';
-import AccountMyBox from './views/account/AccountMyBox';
+import AccountMyInvoices from './views/account/AccountMyInvoices';
 import AccountMyDetails from './views/account/AccountMyDetails';
 
 const App = () => (
@@ -52,7 +52,7 @@ const App = () => (
           <SecureRoute path="/onboarding/payment" component={OnboardingPayment} />
           <SecureRoute path="/account/dashboard" component={AccountDashboard} />
           <SecureRoute path="/account/my-baby" component={AccountMyBaby} />
-          <SecureRoute path="/account/my-box" component={AccountMyBox} />
+          <SecureRoute path="/account/mes-factures" component={AccountMyInvoices} />
           <SecureRoute path="/account/my-details" component={AccountMyDetails} />
           <Route path="/" component={NotFound} />
         </Switch>

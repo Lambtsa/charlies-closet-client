@@ -10,7 +10,7 @@ import OnboardingStep from '../../components/OnboardingStep';
 import SnackBar from '../../components/validation/SnackBar';
 import Box from '../../components/Box';
 
-const MyBox = () => {
+const OnboardingMyBox = () => {
   const { user, findUser } = useContext(UserContext);
   const token = JSON.parse(localStorage.token);
   const history = useHistory();
@@ -82,4 +82,4 @@ const MyBox = () => {
   );
 };
 
-export default MyBox;
+export default OnboardingMyBox;

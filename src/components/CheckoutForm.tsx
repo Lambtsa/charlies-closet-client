@@ -64,6 +64,7 @@ export const CheckoutForm = () => {
       setErrorMessage('issue');
     }
     const data = await response.json();
+    console.log(data);
 
     /* Accept payment */
     const cardElement = elements.getElement(CardNumberElement);
@@ -81,6 +82,7 @@ export const CheckoutForm = () => {
       setError(true);
       setErrorMessage(result.error.message);
     } else {
+      console.log(result);
       setPaymentMessage('Paiement validé');
       const response = await updateUser(user._id, token, { 
         onboardingProgress: {
@@ -91,7 +93,6 @@ export const CheckoutForm = () => {
       if (!response.ok) {
         setError(true);
       } else {
-        // history.push('/account/dashboard');
         findUser()
       }
     };

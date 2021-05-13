@@ -14,7 +14,7 @@ const baseUrl = process.env.NODE_ENV === 'production'
   ? 'https://charlies-closet-dev.herokuapp.com'
   : 'http://localhost:8080';
 
-const MyBaby = () => {
+const AccountMyDetails = () => {
   const { user, findUser } = useContext(UserContext);
   const token = JSON.parse(localStorage.token);
   const [firstName, setFirstName] = useState(user.userDetails.first_name);
@@ -148,4 +148,4 @@ const MyBaby = () => {
   );
 };
 
-export default MyBaby;
+export default AccountMyDetails;
